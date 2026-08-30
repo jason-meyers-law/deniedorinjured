@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-08-30 (domain cutover)
+
+- The site now serves at https://deniedorinjured.com (GitHub Pages
+  custom domain; DNS moved off Squarespace). Canonicals, sitemap, and
+  JSON-LD emit the real domain; robots.txt added at the domain root;
+  www and the old github.io URL 301 to the apex. Still noindex/STAGING
+  pending launch QA.
+
 ## 2026-08-30 (practice-page illustrations)
 
 - Each practice-area page now opens with an original themed SVG
