@@ -47,7 +47,7 @@ export const firm = {
 /** GA4 measurement ID (G-XXXXXXXXXX). Empty string = analytics fully
  * disabled and no script is emitted. Create the property under the
  * same Google account as Search Console, then set the ID here. */
-export const analyticsId = "";
+export const analyticsId = "G-FPRJ701RX1";
 
 /** Primary-source profile backing the bio's verified facts. */
 export const barProfileUrl =
