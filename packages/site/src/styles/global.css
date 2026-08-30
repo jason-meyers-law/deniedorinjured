@@ -233,6 +233,22 @@ a:hover { color: var(--link-hover); }
 
 article, .measure { max-width: 44rem; }
 
+/* Attorney photo beside intro text (bio page) */
+.staff-details {
+  display: flex;
+  gap: 1.4rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.staff-details p { margin-top: 0; flex: 1 1 16rem; }
+.staff-photo {
+  flex-shrink: 0;
+  width: 146px;
+  height: auto;
+  box-shadow: var(--shadow);
+  border-radius: 2px;
+}
+
 /* Themed page illustration on practice pages */
 .page-art {
   display: block;

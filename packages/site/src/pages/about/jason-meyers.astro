@@ -24,6 +24,7 @@ const personLd = {
     addressRegion: firm.postal.region,
     addressCountry: "US",
   },
+  image: new URL(href("/images/jason-meyers.png"), Astro.site).toString(),
   sameAs: [barProfileUrl],
 };
 
@@ -54,12 +55,21 @@ const pending: [string, string][] = [
     Bar member profile; the highlighted items are placeholders awaiting
     the attorney, and the page needs his review before it can be indexed.
   </p>
-  <p>
-    {firm.attorney} is a Florida attorney practicing in Brevard County.
-    Before representing injured people, he spent years on the insurance
-    side of injury litigation — experience that shapes how he evaluates
-    and works up claims for injured clients.
-  </p>
+  <div class="staff-details">
+    <img
+      class="staff-photo"
+      src={href("/images/jason-meyers.png")}
+      alt="Portrait of Jason O. Meyers"
+      width="146"
+      height="204"
+    />
+    <p>
+      {firm.attorney} is a Florida attorney practicing in Brevard County.
+      Before representing injured people, he spent years on the insurance
+      side of injury litigation — experience that shapes how he evaluates
+      and works up claims for injured clients.
+    </p>
+  </div>
 
   <h2>Credentials</h2>
   <ul>
