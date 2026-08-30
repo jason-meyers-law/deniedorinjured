@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-08-30 (launch-facing SEO assets)
+
+- Favicon set (DI monogram: SVG + PNG + apple-touch) and a 1200x630
+  og:image share card in the site palette; social embeds now render
+  with a visual (twitter:card summary_large_image).
+- Fonts self-hosted (latin woff2 subsets, SIL OFL notice in
+  THIRD_PARTY_LICENSES) with preload hints; Google Fonts third-party
+  requests removed from every page.
+
 ## 2026-08-30 (domain cutover)
 
 - The site now serves at https://deniedorinjured.com (GitHub Pages
