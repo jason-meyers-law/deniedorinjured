@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 260">
+  <!-- Sedan silhouette in the site palette (ink / light / steel blue). -->
+  <g>
+    <path d="M250 166 Q264 112 322 106 L478 106 Q544 112 566 166 Z" fill="#3a4145"/>
+    <rect x="140" y="160" width="520" height="50" rx="20" fill="#3a4145"/>
+    <path d="M302 154 Q312 124 342 120 L452 120 L452 154 Z" fill="#f5f5f7"/>
+    <path d="M468 154 L468 122 Q518 126 538 154 Z" fill="#f5f5f7"/>
+    <circle cx="250" cy="208" r="31" fill="#3a4145"/>
+    <circle cx="250" cy="208" r="12" fill="#f5f5f7"/>
+    <circle cx="250" cy="208" r="4" fill="#4489b1"/>
+    <circle cx="550" cy="208" r="31" fill="#3a4145"/>
+    <circle cx="550" cy="208" r="12" fill="#f5f5f7"/>
+    <circle cx="550" cy="208" r="4" fill="#4489b1"/>
+    <circle cx="646" cy="176" r="7" fill="#4489b1"/>
+    <line x1="90" y1="240" x2="710" y2="240" stroke="#3a4145" stroke-width="6" stroke-linecap="round"/>
+  </g>
+</svg>

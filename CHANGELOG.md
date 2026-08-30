@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-08-30 (practice-page illustrations)
+
+- Each practice-area page now opens with an original themed SVG
+  illustration in the site palette: sedan (car accidents), bicycle,
+  crosswalk figure (pedestrian), candle (wrongful death); motorcycle
+  and truck art staged for their future pages. Wired through the
+  content schema (`image`/`imageAlt` frontmatter).
+
 ## 2026-08-30 (Justice design port)
 
 - Site redesigned on CloudCannon's MIT "Justice" law-firm template

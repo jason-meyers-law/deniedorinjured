@@ -2,6 +2,8 @@
 title: "Florida Wrongful Death Lawyer"
 description: "How Florida wrongful-death claims work: who may bring them, who may recover, and what damages the law allows."
 draft: true
+image: "/images/practice/candle.svg"
+imageAlt: "A single lit candle"
 order: 40
 related: []
 ---

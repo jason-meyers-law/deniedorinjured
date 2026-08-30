@@ -18,9 +18,14 @@ interface Props {
   legalReviewDate?: Date;
   related?: { label: string; path: string }[];
   crumbs?: { label: string; path: string }[];
+  /** Themed illustration (site-relative path, e.g. /images/practice/car.svg). */
+  image?: string;
+  imageAlt?: string;
 }
-const { title, description, draft, publishDate, legalReviewDate, related = [], crumbs = [] } =
-  Astro.props;
+const {
+  title, description, draft, publishDate, legalReviewDate,
+  related = [], crumbs = [], image, imageAlt,
+} = Astro.props;
 
 /** Dates appear only once real (frontmatter-set); nothing fabricated. */
 const articleLd = {
@@ -43,6 +48,9 @@ const articleLd = {
   <article>
     {crumbs.length > 0 && <Breadcrumbs items={crumbs} />}
     <h1>{title}</h1>
+    {image && (
+      <img class="page-art" src={href(image)} alt={imageAlt ?? ""} width="800" height="260" />
+    )}
     {draft && (
       <p class="draft-notice">
         Draft — this page has not completed attorney legal review. Statements

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 260">
+  <!-- Bicycle line drawing in the site palette. -->
+  <g fill="none" stroke="#3a4145" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="250" cy="180" r="55"/>
+    <circle cx="550" cy="180" r="55"/>
+    <polyline points="250,180 335,95 500,95 550,180"/>
+    <polyline points="250,180 415,180 335,95"/>
+    <line x1="500" y1="95" x2="415" y2="180"/>
+    <line x1="335" y1="95" x2="326" y2="70"/>
+    <line x1="303" y1="68" x2="349" y2="68" stroke-width="12"/>
+    <line x1="500" y1="95" x2="494" y2="72"/>
+    <path d="M494 72 q22 -8 34 6"/>
+  </g>
+  <circle cx="415" cy="180" r="15" fill="none" stroke="#4489b1" stroke-width="8"/>
+  <line x1="415" y1="180" x2="432" y2="202" stroke="#3a4145" stroke-width="8" stroke-linecap="round"/>
+  <line x1="424" y1="204" x2="446" y2="204" stroke="#3a4145" stroke-width="10" stroke-linecap="round"/>
+  <line x1="90" y1="240" x2="710" y2="240" stroke="#3a4145" stroke-width="6" stroke-linecap="round"/>
+</svg>

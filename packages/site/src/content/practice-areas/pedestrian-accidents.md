@@ -2,6 +2,8 @@
 title: "Florida Pedestrian Accident Lawyer"
 description: "Claims for pedestrians struck by vehicles in Florida: liability, available insurance, and why these cases are fought hard."
 draft: true
+image: "/images/practice/pedestrian.svg"
+imageAlt: "Figure walking across a crosswalk"
 order: 30
 related:
   - /florida-injury-answers/what-to-do-after-a-florida-car-accident/

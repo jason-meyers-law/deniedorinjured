@@ -19,6 +19,9 @@ const practiceAreas = defineCollection({
   schema: legalPage.extend({
     /** Order on the personal-injury hub; lower first. */
     order: z.number().default(100),
+    /** Themed page illustration (site-relative path) and its alt text. */
+    image: z.string().optional(),
+    imageAlt: z.string().optional(),
   }),
 });
 

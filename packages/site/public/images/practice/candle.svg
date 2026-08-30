@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 260">
+  <!-- A single candle: quiet mark for the wrongful-death page. -->
+  <path d="M400 58 q18 24 9 40 q-4 11 -9 11 q-5 0 -9 -11 q-9 -16 9 -40 z" fill="#4489b1"/>
+  <line x1="400" y1="112" x2="400" y2="124" stroke="#3a4145" stroke-width="6" stroke-linecap="round"/>
+  <rect x="372" y="124" width="56" height="92" rx="8" fill="#3a4145"/>
+  <path d="M330 222 q70 20 140 0 l0 9 q-70 18 -140 0 z" fill="#3a4145"/>
+</svg>

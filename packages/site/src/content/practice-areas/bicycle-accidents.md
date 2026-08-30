@@ -2,6 +2,8 @@
 title: "Florida Bicycle Accident Lawyer"
 description: "Injury claims for Florida cyclists hit by drivers: fault, the surprising role of PIP, and preserving the bicycle as evidence."
 draft: true
+image: "/images/practice/bicycle.svg"
+imageAlt: "Line drawing of a bicycle"
 order: 20
 related:
   - /florida-injury-answers/what-to-do-after-a-florida-car-accident/

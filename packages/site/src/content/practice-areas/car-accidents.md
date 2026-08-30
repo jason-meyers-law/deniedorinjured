@@ -2,6 +2,8 @@
 title: "Florida Car Accident Lawyer"
 description: "How Florida car-accident claims work: fault, PIP, the insurance that actually pays, and the mistakes that reduce a claim's value."
 draft: true
+image: "/images/practice/car.svg"
+imageAlt: "Line drawing of a sedan"
 order: 10
 related:
   - /florida-injury-answers/what-to-do-after-a-florida-car-accident/

@@ -233,6 +233,14 @@ a:hover { color: var(--link-hover); }
 
 article, .measure { max-width: 44rem; }
 
+/* Themed page illustration on practice pages */
+.page-art {
+  display: block;
+  margin: 0.5rem auto 1.5rem;
+  width: min(100%, 460px);
+  height: auto;
+}
+
 /* Footer: columned links + legal line */
 .site-footer {
   padding: 3rem 1.25rem 2rem;
