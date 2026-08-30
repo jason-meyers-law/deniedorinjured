@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-08-30 (Justice design port)
+
+- Site redesigned on CloudCannon's MIT "Justice" law-firm template
+  (THIRD_PARTY_LICENSES): Quattrocento/Vollkorn typography, centered
+  display header with courthouse hero on the homepage, light content
+  section, dark contact band, boxed cards, columned footer with the
+  Injured/Denied split.
+
 ## 2026-08-30 (SEO pass)
 
 - BaseHead component: title template ("page | Denied or Injured"),

@@ -26,6 +26,12 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
 <meta name="description" content={description} />
 {STAGING && <meta name="robots" content="noindex, nofollow" />}
 <link rel="canonical" href={canonical} />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Quattrocento&family=Vollkorn:ital,wght@0,400;0,700;1,400&display=swap"
+/>
 <link rel="sitemap" href={href("/sitemap-index.xml")} />
 <meta property="og:site_name" content={firm.brand} />
 <meta property="og:type" content={ogType} />

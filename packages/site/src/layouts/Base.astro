@@ -1,6 +1,8 @@
 ---
-/** Base HTML shell: header, nav, footer, staging noindex. Every page
- * uses this; legal-article chrome lives in Article.astro on top. */
+/** Base HTML shell in the Justice-template layout: centered display
+ * header with nav (hero image on pages that ask for it), light main
+ * section, dark contact band, columned footer. Staging noindex and
+ * banner ride along on every page. */
 import { STAGING, firm, href } from "../lib/site";
 import BaseHead from "../components/BaseHead.astro";
 import "../styles/global.css";
@@ -9,15 +11,21 @@ interface Props {
   title: string;
   description: string;
   ogType?: "website" | "article";
+  /** Show the header hero image (homepage). */
+  hero?: boolean;
 }
-const { title, description, ogType } = Astro.props;
+const { title, description, ogType, hero = false } = Astro.props;
 
 const nav = [
   ["Personal Injury", "/personal-injury/"],
-  ["Florida Injury Answers", "/florida-injury-answers/"],
-  ["About Jason Meyers", "/about/jason-meyers/"],
+  ["Injury Answers", "/florida-injury-answers/"],
+  ["Insurance Denied", "/insurance-denied/"],
+  ["About", "/about/jason-meyers/"],
   ["Contact", "/contact/"],
 ] as const;
+
+const current = Astro.url.pathname;
+const isActive = (path: string) => current.startsWith(href(path));
 ---
 
 <html lang="en">
@@ -31,33 +39,72 @@ const nav = [
       </div>
     )}
     <header class="site-header">
-      <div class="wrap">
-        <a class="brand" href={href("/")}>
-          {firm.brand}
-          <small>{firm.brandLine}</small>
-        </a>
-        <nav class="site-nav">
-          {nav.map(([label, path]) => <a href={href(path)}>{label}</a>)}
-        </nav>
-      </div>
+      <p class="brand-title"><a href={href("/")}>{firm.brand}</a></p>
+      <p class="brand-line">{firm.brandLine}</p>
+      <nav class="site-nav">
+        <ul>
+          {nav.map(([label, path]) => (
+            <li>
+              <a href={href(path)} class={isActive(path) ? "active" : undefined}>{label}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      {hero && (
+        <img
+          class="header-img"
+          src={href("/images/building.jpg")}
+          alt="Classical courthouse facade with columns"
+          width="2003"
+          height="1728"
+        />
+      )}
     </header>
-    <main>
+    <main class="main-section">
       <div class="wrap">
         <slot />
       </div>
     </main>
+    <section class="quote-section">
+      <p class="wrap">
+        <a href={href("/contact/")}>Contact {firm.entity}</a> to discuss an
+        injury or an insurance denial.
+      </p>
+    </section>
     <footer class="site-footer">
-      <div class="wrap">
-        <p>
-          {firm.entity} &middot; {firm.geography} &middot;
-          Office: <span class="unconfirmed">{firm.address}</span> &middot;
-          Phone: <span class="unconfirmed">{firm.phone}</span>
-        </p>
+      <div class="footer-columns">
+        <ul class="footer-links">
+          <li><h2>Injured</h2></li>
+          <li><a href={href("/personal-injury/car-accidents/")}>Car Accidents</a></li>
+          <li><a href={href("/personal-injury/bicycle-accidents/")}>Bicycle Accidents</a></li>
+          <li><a href={href("/personal-injury/pedestrian-accidents/")}>Pedestrian Accidents</a></li>
+          <li><a href={href("/personal-injury/wrongful-death/")}>Wrongful Death</a></li>
+          <li><a href={href("/florida-injury-answers/")}>Florida Injury Answers</a></li>
+        </ul>
+        <ul class="footer-links">
+          <li><h2>Denied</h2></li>
+          <li><a href={href("/insurance-denied/")}>Insurance Coverage Disputes</a></li>
+          <li><h2>Firm</h2></li>
+          <li><a href={href("/about/jason-meyers/")}>Jason O. Meyers</a></li>
+          <li><a href={href("/contact/")}>Contact</a></li>
+        </ul>
+        <ul class="footer-links">
+          <li><h2>{firm.entity}</h2></li>
+          <li>{firm.address}</li>
+          <li>{firm.phone}</li>
+          <li>{firm.geography}</li>
+        </ul>
+      </div>
+      <div class="legal-line">
         <p>
           The information on this website is general information, not legal
           advice, and reading it does not create an attorney–client
           relationship. Contacting the firm does not by itself create an
           attorney–client relationship.
+        </p>
+        <p>
+          &copy; {new Date().getFullYear()} {firm.entity}
+          &bull; Template by <a href="https://cloudcannon.com/" rel="noopener">CloudCannon</a>
         </p>
       </div>
     </footer>
