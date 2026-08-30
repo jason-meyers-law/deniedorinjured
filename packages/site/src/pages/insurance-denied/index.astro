@@ -1,0 +1,35 @@
+---
+/** Phase 2 silo hub (PLAN.md §33): the audience here is insureds whose
+ * carrier denied or limited protection — a different reader than the
+ * injury pages. Reserved now with a substantive overview; the child
+ * pages (denied defense, reservation of rights, bad faith, ...) come
+ * after the PI foundation is established. */
+import Base from "../../layouts/Base.astro";
+import { firm, href } from "../../lib/site";
+---
+
+<Base
+  title="Insurance Denied Your Defense or Coverage? | Denied or Injured"
+  description="Representation for Florida insureds when a liability insurer denies a defense, reserves rights, or mishandles settlement."
+>
+  <h1>When Your Insurer Denies You</h1>
+  <p>
+    Liability insurance is a promise of two things: a defense when you
+    are sued, and payment of covered claims against you. Disputes arise
+    when an insurer refuses to defend, defends under a reservation of
+    rights, denies indemnity, or lets a claim that could have settled
+    within policy limits turn into a judgment above them.
+  </p>
+  <p>
+    {firm.entity} represents Florida insureds — individuals, property
+    owners, contractors, and businesses — in these disputes. Detailed
+    pages on denied defenses, reservations of rights, declaratory
+    judgment actions, coverage denials, and Florida bad-faith law are in
+    preparation; the firm's initial published focus is the
+    <a href={href("/personal-injury/")}>personal-injury practice</a>.
+  </p>
+  <p>
+    If an insurer has denied or limited your protection now, use the
+    <a href={href("/contact/")}>contact page</a>.
+  </p>
+</Base>

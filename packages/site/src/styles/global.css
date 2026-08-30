@@ -1,0 +1,175 @@
+/* Design tokens are provisional — DECISIONS.md §20 (colors, logo) is
+   unconfirmed. Calm, professional defaults: deep navy + warm neutral. */
+:root {
+  --ink: #1a2332;
+  --ink-soft: #44506a;
+  --paper: #ffffff;
+  --paper-soft: #f5f6f8;
+  --accent: #8c6d2f;
+  --accent-soft: #f3ecdc;
+  --rule: #d9dde4;
+  --max-width: 68rem;
+  --measure: 44rem;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--ink);
+  background: var(--paper);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+body { margin: 0; }
+
+h1, h2, h3, nav, .card, .cta, .banner, footer {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 0.5rem; }
+h2 { font-size: 1.35rem; margin-top: 2.2rem; }
+h3 { font-size: 1.1rem; }
+
+a { color: #1d4ed8; }
+a:hover { text-decoration-thickness: 2px; }
+
+p, ul, ol { max-width: var(--measure); }
+
+.wrap {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* Header */
+.site-header {
+  border-bottom: 3px solid var(--ink);
+  padding: 1rem 0;
+}
+.site-header .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.75rem 2rem;
+}
+.brand {
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+.brand small {
+  display: block;
+  font-weight: 400;
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+}
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+  margin-left: auto;
+}
+.site-nav a {
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+.site-nav a:hover { text-decoration: underline; }
+
+/* Staging banner */
+.banner {
+  background: #7a1f1f;
+  color: #fff;
+  font-size: 0.85rem;
+  padding: 0.45rem 0;
+  text-align: center;
+}
+
+/* Two-path homepage gateway */
+.gateway {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: 1.25rem;
+  margin: 2rem 0;
+}
+.gateway a.card { text-decoration: none; }
+.card {
+  display: block;
+  border: 1px solid var(--rule);
+  border-top: 4px solid var(--ink);
+  background: var(--paper-soft);
+  padding: 1.25rem 1.4rem;
+  color: var(--ink);
+}
+.card:hover { border-top-color: var(--accent); }
+.card h2, .card h3 { margin-top: 0; }
+.card p { color: var(--ink-soft); font-size: 0.95rem; }
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+/* Draft notice on unreviewed legal pages */
+.draft-notice {
+  border: 1px dashed #a33;
+  background: #fdf2f2;
+  color: #7a1f1f;
+  font-size: 0.9rem;
+  padding: 0.6rem 0.9rem;
+  margin: 1rem 0;
+  max-width: var(--measure);
+}
+
+/* Direct answer block: the extractable 2–4 sentence answer up top */
+.direct-answer {
+  background: var(--accent-soft);
+  border-left: 4px solid var(--accent);
+  padding: 0.9rem 1.1rem;
+  margin: 1.25rem 0;
+  max-width: var(--measure);
+  font-size: 1.05rem;
+}
+
+/* Author / review block */
+.author-box {
+  border-top: 1px solid var(--rule);
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  max-width: var(--measure);
+}
+
+/* Restrained CTA */
+.cta {
+  border: 1px solid var(--rule);
+  background: var(--paper-soft);
+  padding: 1.1rem 1.3rem;
+  margin: 2rem 0;
+  max-width: var(--measure);
+}
+.cta p { margin: 0.3rem 0; }
+
+main { padding: 2rem 0 3rem; }
+
+.site-footer {
+  border-top: 3px solid var(--ink);
+  background: var(--paper-soft);
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  padding: 1.5rem 0 2rem;
+}
+.site-footer p { max-width: none; }
+
+.unconfirmed {
+  background: #fff3cd;
+  padding: 0 0.25rem;
+  font-style: italic;
+}

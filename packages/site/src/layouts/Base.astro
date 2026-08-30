@@ -1,0 +1,68 @@
+---
+/** Base HTML shell: header, nav, footer, staging noindex. Every page
+ * uses this; legal-article chrome lives in Article.astro on top. */
+import { STAGING, firm, href } from "../lib/site";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+
+const nav = [
+  ["Personal Injury", "/personal-injury/"],
+  ["Florida Injury Answers", "/florida-injury-answers/"],
+  ["About Jason Meyers", "/about/jason-meyers/"],
+  ["Contact", "/contact/"],
+] as const;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {STAGING && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+  </head>
+  <body>
+    {STAGING && (
+      <div class="banner">
+        Staging preview — draft content, pending attorney review. Not legal advice.
+      </div>
+    )}
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href={href("/")}>
+          {firm.brand}
+          <small>{firm.brandLine}</small>
+        </a>
+        <nav class="site-nav">
+          {nav.map(([label, path]) => <a href={href(path)}>{label}</a>)}
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="wrap">
+        <slot />
+      </div>
+    </main>
+    <footer class="site-footer">
+      <div class="wrap">
+        <p>
+          {firm.entity} &middot; {firm.geography} &middot;
+          Office: <span class="unconfirmed">{firm.address}</span> &middot;
+          Phone: <span class="unconfirmed">{firm.phone}</span>
+        </p>
+        <p>
+          The information on this website is general information, not legal
+          advice, and reading it does not create an attorney–client
+          relationship. Contacting the firm does not by itself create an
+          attorney–client relationship.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

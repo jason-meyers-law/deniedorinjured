@@ -1,0 +1,27 @@
+---
+/** Author + review-date block required on every legal article
+ * (PLAN.md §7). Bio facts stay generic until DECISIONS.md §9 confirms
+ * credentials; nothing here may overstate them. */
+import { firm, href } from "../lib/site";
+
+interface Props {
+  publishDate?: Date;
+  legalReviewDate?: Date;
+}
+const { publishDate, legalReviewDate } = Astro.props;
+const fmt = (d: Date) =>
+  d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+---
+
+<div class="author-box">
+  <p>
+    <strong>{firm.attorney}</strong> — Florida attorney,
+    <a href={href("/about/jason-meyers/")}>full biography</a>.
+  </p>
+  <p>
+    {publishDate && <>Published: {fmt(publishDate)}. </>}
+    {legalReviewDate
+      ? <>Last legally reviewed: {fmt(legalReviewDate)}.</>
+      : <>Legal review: <span class="unconfirmed">pending</span>.</>}
+  </p>
+</div>

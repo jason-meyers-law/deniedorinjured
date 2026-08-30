@@ -1,0 +1,28 @@
+---
+/** Answer-library hub: the informational / AI-retrieval layer. */
+import Base from "../../layouts/Base.astro";
+import { href } from "../../lib/site";
+import { getCollection } from "astro:content";
+
+const answers = await getCollection("answers");
+---
+
+<Base
+  title="Florida Injury Answers | Denied or Injured"
+  description="Direct, lawyer-reviewed answers to common Florida personal-injury questions."
+>
+  <h1>Florida Injury Answers</h1>
+  <p>
+    One question per page, answered directly, with the Florida legal
+    rule and its sources. Each page shows who wrote it and when it was
+    last legally reviewed.
+  </p>
+  <ul class="card-grid">
+    {answers.map((a) => (
+      <li class="card">
+        <h3><a href={href(`/florida-injury-answers/${a.id}/`)}>{a.data.question}</a></h3>
+        <p>{a.data.description}</p>
+      </li>
+    ))}
+  </ul>
+</Base>

@@ -1,0 +1,18 @@
+---
+/** The one restrained call-to-action (PLAN.md §7, §22). Wording is
+ * provisional until Florida advertising review; contact details render
+ * as visibly unconfirmed until DECISIONS.md §4 is resolved. */
+import { firm, href } from "../lib/site";
+---
+
+<div class="cta">
+  <p>
+    If you were seriously injured in Brevard County or elsewhere in
+    Florida and want to discuss how the insurance issues affect your
+    claim, contact {firm.entity}.
+  </p>
+  <p>
+    Phone: <span class="unconfirmed">{firm.phone}</span> &middot;
+    <a href={href("/contact/")}>Contact the firm</a>
+  </p>
+</div>

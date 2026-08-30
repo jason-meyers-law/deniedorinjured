@@ -1,0 +1,7 @@
+{
+  "name": "deniedorinjured",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
+}

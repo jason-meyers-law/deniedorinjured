@@ -1,0 +1,45 @@
+---
+/** Chrome for legal articles (practice areas and answer pages): draft
+ * notice while unreviewed, rendered body, related links, author block,
+ * restrained CTA. The body itself comes from the content collections. */
+import Base from "./Base.astro";
+import AuthorBox from "../components/AuthorBox.astro";
+import ContactCTA from "../components/ContactCTA.astro";
+import { href } from "../lib/site";
+
+interface Props {
+  title: string;
+  description: string;
+  draft: boolean;
+  publishDate?: Date;
+  legalReviewDate?: Date;
+  related?: { label: string; path: string }[];
+}
+const { title, description, draft, publishDate, legalReviewDate, related = [] } = Astro.props;
+---
+
+<Base title={title} description={description}>
+  <article>
+    <h1>{title}</h1>
+    {draft && (
+      <p class="draft-notice">
+        Draft — this page has not completed attorney legal review. Statements
+        of Florida law below are placeholders until verified against primary
+        sources.
+      </p>
+    )}
+    <slot />
+    {related.length > 0 && (
+      <>
+        <h2>Related questions</h2>
+        <ul>
+          {related.map((r) => (
+            <li><a href={href(r.path)}>{r.label}</a></li>
+          ))}
+        </ul>
+      </>
+    )}
+    <ContactCTA />
+    <AuthorBox publishDate={publishDate} legalReviewDate={legalReviewDate} />
+  </article>
+</Base>

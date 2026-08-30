@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# The fast half of ci.sh: template/type errors fail before the commit
+# exists. Activate with: git config core.hooksPath .githooks
+set -euo pipefail
+cd "$(dirname "$0")/.."
+if [ ! -d node_modules ]; then
+  echo "pre-commit: node_modules missing, skipping astro check (run npm ci)"
+  exit 0
+fi
+npm run -w site check

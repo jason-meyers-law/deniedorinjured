@@ -1,0 +1,28 @@
+name: site
+
+# Thin trigger: the logic lives in packages/site/ci.sh so CI is runnable
+# and debuggable locally.
+on:
+  push:
+    paths:
+      - "packages/site/**"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/site.yml"
+  pull_request:
+    paths:
+      - "packages/site/**"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/site.yml"
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: ./packages/site/ci.sh
