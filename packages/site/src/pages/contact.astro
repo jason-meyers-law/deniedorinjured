@@ -15,7 +15,7 @@ import { firm } from "../lib/site";
     {firm.entity} — {firm.geography}.
   </p>
   <ul>
-    <li>Phone: {firm.phone}</li>
+    <li>Phone: <a href={firm.phoneHref}>{firm.phone}</a></li>
     <li>Email: <span class="unconfirmed">{firm.email}</span></li>
     <li>Office: {firm.address}</li>
   </ul>

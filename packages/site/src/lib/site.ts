@@ -31,6 +31,7 @@ export const firm = {
   attorney: "Jason O. Meyers",
   barNumber: "106509",
   phone: "(321) 382-0403",
+  phoneHref: "tel:+13213820403",
   email: "[CONFIRM]",
   address: "653 Brevard Ave, Cocoa, FL 32922",
   /** Split form of the office address, for PostalAddress JSON-LD. */
@@ -42,6 +43,11 @@ export const firm = {
   },
   geography: "Brevard County / Space Coast, Florida",
 } as const;
+
+/** GA4 measurement ID (G-XXXXXXXXXX). Empty string = analytics fully
+ * disabled and no script is emitted. Create the property under the
+ * same Google account as Search Console, then set the ID here. */
+export const analyticsId = "";
 
 /** Primary-source profile backing the bio's verified facts. */
 export const barProfileUrl =

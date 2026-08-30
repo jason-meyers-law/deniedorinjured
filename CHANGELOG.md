@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-08-30 (measurement)
+
+- GA4 wiring behind `analyticsId` in site.ts — no script is emitted
+  until the measurement ID is set. Reports pageviews plus phone_click
+  and email_click conversion events. Phone numbers are now tel: links
+  everywhere (tap-to-call on mobile).
+
 ## 2026-08-30 (launch-facing SEO assets)
 
 - Favicon set (DI monogram: SVG + PNG + apple-touch) and a 1200x630

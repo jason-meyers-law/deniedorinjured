@@ -12,7 +12,7 @@ import { firm, href } from "../lib/site";
     claim, contact {firm.entity}.
   </p>
   <p>
-    Phone: {firm.phone} &middot;
+    Phone: <a href={firm.phoneHref}>{firm.phone}</a> &middot;
     <a href={href("/contact/")}>Contact the firm</a>
   </p>
 </div>

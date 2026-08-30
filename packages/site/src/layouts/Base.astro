@@ -4,6 +4,7 @@
  * section, dark contact band, columned footer. Staging noindex and
  * banner ride along on every page. */
 import { STAGING, firm, href } from "../lib/site";
+import Analytics from "../components/Analytics.astro";
 import BaseHead from "../components/BaseHead.astro";
 import "../styles/global.css";
 
@@ -31,6 +32,7 @@ const isActive = (path: string) => current.startsWith(href(path));
 <html lang="en">
   <head>
     <BaseHead title={title} description={description} ogType={ogType} />
+    <Analytics />
   </head>
   <body>
     {STAGING && (
@@ -91,7 +93,7 @@ const isActive = (path: string) => current.startsWith(href(path));
         <ul class="footer-links">
           <li><h2>{firm.entity}</h2></li>
           <li>{firm.address}</li>
-          <li>{firm.phone}</li>
+          <li><a href={firm.phoneHref}>{firm.phone}</a></li>
           <li>{firm.geography}</li>
         </ul>
       </div>
