@@ -1,13 +1,12 @@
-// Staging deploy target is GitHub Pages project hosting, so the site
-// lives under /deniedorinjured/. Go-live on deniedorinjured.com means:
-// site -> "https://deniedorinjured.com", base -> "/", add public/CNAME
-// (steps in docs/launch-qa.md).
+// Custom-domain configuration (the domain-cutover branch): merged to
+// main only at DNS-flip time — see issue #1. The Pages custom domain
+// itself lives in repo settings (Actions deploys need no CNAME file).
 import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  site: "https://jason-meyers-law.github.io",
-  base: "/deniedorinjured",
+  site: "https://deniedorinjured.com",
+  base: "/",
   trailingSlash: "always",
   integrations: [
     // Emits sitemap-index.xml; submit to Search Console at launch

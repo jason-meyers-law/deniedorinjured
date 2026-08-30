@@ -1,0 +1,8 @@
+# Deliberate policy (PLAN.md §9): allow crawling — indexing is governed
+# by the per-page meta robots tag (noindex while STAGING), and crawlers
+# must be able to fetch pages to see it. GPTBot policy: owner decision
+# still open (DECISIONS.md §22) — allowed by default until decided.
+User-agent: *
+Allow: /
+
+Sitemap: https://deniedorinjured.com/sitemap-index.xml
