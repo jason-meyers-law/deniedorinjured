@@ -1,0 +1,15 @@
+---
+/** Renders one JSON-LD block. Callers must only pass facts that are
+ * verified AND visible on the page (PLAN.md §10: structured data must
+ * exactly match visible content). */
+interface Props {
+  data: Record<string, unknown>;
+}
+const { data } = Astro.props;
+---
+
+<script
+  is:inline
+  type="application/ld+json"
+  set:html={JSON.stringify({ "@context": "https://schema.org", ...data })}
+/>

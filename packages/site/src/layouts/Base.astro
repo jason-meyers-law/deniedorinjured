@@ -2,13 +2,15 @@
 /** Base HTML shell: header, nav, footer, staging noindex. Every page
  * uses this; legal-article chrome lives in Article.astro on top. */
 import { STAGING, firm, href } from "../lib/site";
+import BaseHead from "../components/BaseHead.astro";
 import "../styles/global.css";
 
 interface Props {
   title: string;
   description: string;
+  ogType?: "website" | "article";
 }
-const { title, description } = Astro.props;
+const { title, description, ogType } = Astro.props;
 
 const nav = [
   ["Personal Injury", "/personal-injury/"],
@@ -20,12 +22,7 @@ const nav = [
 
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    {STAGING && <meta name="robots" content="noindex, nofollow" />}
-    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <BaseHead title={title} description={description} ogType={ogType} />
   </head>
   <body>
     {STAGING && (

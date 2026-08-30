@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-08-30 (SEO pass)
+
+- BaseHead component: title template ("page | Denied or Injured"),
+  meta description, canonical, Open Graph/Twitter meta on every page.
+- JSON-LD structured data, Bar-verified facts only: LegalService +
+  WebSite (homepage), Person (bio), Article + BreadcrumbList (practice
+  and answer pages). Visible breadcrumbs added to article pages; bio
+  gains a "Verify" link to the Florida Bar profile.
+- XML sitemap via @astrojs/sitemap (sitemap-index.xml), 404 excluded,
+  linked from every head; submit to Search Console at launch.
+
 ## 2026-08-30
 
 - Repo seeded with PLAN.md and DECISIONS.md.

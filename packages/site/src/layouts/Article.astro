@@ -1,11 +1,14 @@
 ---
-/** Chrome for legal articles (practice areas and answer pages): draft
- * notice while unreviewed, rendered body, related links, author block,
- * restrained CTA. The body itself comes from the content collections. */
+/** Chrome for legal articles (practice areas and answer pages):
+ * breadcrumbs (+BreadcrumbList JSON-LD), draft notice while
+ * unreviewed, rendered body, Article JSON-LD, related links, author
+ * block, restrained CTA. The body comes from the content collections. */
 import Base from "./Base.astro";
 import AuthorBox from "../components/AuthorBox.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
 import ContactCTA from "../components/ContactCTA.astro";
-import { href } from "../lib/site";
+import JsonLd from "../components/JsonLd.astro";
+import { firm, href } from "../lib/site";
 
 interface Props {
   title: string;
@@ -14,12 +17,31 @@ interface Props {
   publishDate?: Date;
   legalReviewDate?: Date;
   related?: { label: string; path: string }[];
+  crumbs?: { label: string; path: string }[];
 }
-const { title, description, draft, publishDate, legalReviewDate, related = [] } = Astro.props;
+const { title, description, draft, publishDate, legalReviewDate, related = [], crumbs = [] } =
+  Astro.props;
+
+/** Dates appear only once real (frontmatter-set); nothing fabricated. */
+const articleLd = {
+  "@type": "Article",
+  headline: title,
+  description,
+  mainEntityOfPage: new URL(Astro.url.pathname, Astro.site).toString(),
+  author: {
+    "@type": "Person",
+    name: firm.attorney,
+    url: new URL(href("/about/jason-meyers/"), Astro.site).toString(),
+  },
+  publisher: { "@type": "Organization", name: firm.entity },
+  ...(publishDate && { datePublished: publishDate.toISOString() }),
+  ...(legalReviewDate && { dateModified: legalReviewDate.toISOString() }),
+};
 ---
 
-<Base title={title} description={description}>
+<Base title={title} description={description} ogType="article">
   <article>
+    {crumbs.length > 0 && <Breadcrumbs items={crumbs} />}
     <h1>{title}</h1>
     {draft && (
       <p class="draft-notice">
@@ -42,4 +64,5 @@ const { title, description, draft, publishDate, legalReviewDate, related = [] } 
     <ContactCTA />
     <AuthorBox publishDate={publishDate} legalReviewDate={legalReviewDate} />
   </article>
+  <JsonLd data={articleLd} />
 </Base>

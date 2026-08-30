@@ -3,7 +3,29 @@
  * visibly unconfirmed until DECISIONS.md §9 supplies verified facts —
  * publishing an unverified credential is prohibited (PLAN.md §35). */
 import Base from "../../layouts/Base.astro";
-import { firm } from "../../lib/site";
+import JsonLd from "../../components/JsonLd.astro";
+import { firm, href, barProfileUrl } from "../../lib/site";
+
+/** Every field below is Bar-verified and visible on this page. */
+const personLd = {
+  "@type": "Person",
+  name: firm.attorney,
+  jobTitle: "Attorney",
+  url: new URL(href("/about/jason-meyers/"), Astro.site).toString(),
+  worksFor: { "@type": "LegalService", name: firm.entity },
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: "Stetson University College of Law",
+  },
+  telephone: firm.phone,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: firm.postal.city,
+    addressRegion: firm.postal.region,
+    addressCountry: "US",
+  },
+  sameAs: [barProfileUrl],
+};
 
 /** The first block is verified against the Florida Bar member profile
  * for Bar #106509 (retrieved 2026-08-30); the rest awaits DECISIONS.md
@@ -23,7 +45,7 @@ const pending: [string, string][] = [
 ---
 
 <Base
-  title="Jason O. Meyers — Florida Attorney | Denied or Injured"
+  title="Jason O. Meyers — Florida Attorney"
   description="Biography of Jason O. Meyers, Florida attorney at Jason Meyers Law, PLLC."
 >
   <h1>{firm.attorney}</h1>
@@ -58,4 +80,12 @@ const pending: [string, string][] = [
     specifics of this section will be written from {firm.attorney}'s
     verified experience — not generic speculation.
   </p>
+
+  <h2>Verify</h2>
+  <p>
+    Bar admission, standing, and discipline history are public record:
+    <a href={barProfileUrl} rel="noopener">
+      Florida Bar member profile, Bar No. {firm.barNumber}</a>.
+  </p>
+  <JsonLd data={personLd} />
 </Base>

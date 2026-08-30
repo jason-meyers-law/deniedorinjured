@@ -26,6 +26,11 @@ const related = entry.data.related.map((path) => ({
   publishDate={entry.data.publishDate}
   legalReviewDate={entry.data.legalReviewDate}
   related={related}
+  crumbs={[
+    { label: "Home", path: "/" },
+    { label: "Florida Injury Answers", path: "/florida-injury-answers/" },
+    { label: entry.data.question, path: `/florida-injury-answers/${entry.id}/` },
+  ]}
 >
   <Content />
 </Article>

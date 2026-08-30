@@ -47,10 +47,12 @@ everything here passes. Do these in order.
       (allow Googlebot/Bingbot/OAI-SearchBot; GPTBot per owner).
 - [ ] Search Console + Bing Webmaster verified; GA4 (or equivalent)
       installed and events tested.
-- [ ] Structured data (LegalService/Person/Article) added ONLY with
-      confirmed facts, validates, and matches visible content. (None is
-      shipped today by design — do not carry over the old site's empty
-      LocalBusiness fields, see docs/site-audit.md.)
+- [ ] Structured data re-verified against final confirmed facts.
+      Shipped today: LegalService+WebSite (homepage), Person (bio,
+      Bar-verified fields only), Article+BreadcrumbList (content
+      pages). Every field must stay Bar/owner-verified and match
+      visible content — never carry over the old site's empty
+      LocalBusiness fields (docs/site-audit.md).
 - [ ] 404 works; old-domain redirect map (docs/redirect-map.md)
       implemented per the owner's old-domain decision and tested.
 - [ ] Accessibility pass (headings, contrast, alt text, keyboard nav).

@@ -116,6 +116,15 @@ p, ul, ol { max-width: var(--measure); }
   list-style: none;
 }
 
+/* Breadcrumb trail */
+.crumbs {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin-bottom: 0.75rem;
+}
+.crumbs a { color: var(--ink-soft); }
+.crumbs span[aria-current] { color: var(--ink); }
+
 /* Draft notice on unreviewed legal pages */
 .draft-notice {
   border: 1px dashed #a33;

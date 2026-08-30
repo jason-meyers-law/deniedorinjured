@@ -33,5 +33,16 @@ export const firm = {
   phone: "(321) 382-0403",
   email: "[CONFIRM]",
   address: "653 Brevard Ave, Cocoa, FL 32922",
+  /** Split form of the office address, for PostalAddress JSON-LD. */
+  postal: {
+    street: "653 Brevard Ave",
+    city: "Cocoa",
+    region: "FL",
+    zip: "32922",
+  },
   geography: "Brevard County / Space Coast, Florida",
 } as const;
+
+/** Primary-source profile backing the bio's verified facts. */
+export const barProfileUrl =
+  "https://www.floridabar.org/directories/find-mbr/profile/?num=106509";

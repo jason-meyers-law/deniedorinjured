@@ -1,0 +1,35 @@
+---
+/** All document-head metadata in one place: title template, meta
+ * description, canonical, robots (staging noindex), Open Graph.
+ * Title format follows PLAN.md §27 — "[page] | Denied or Injured",
+ * with the brand suffix dropped when the title already carries it.
+ * No meta keywords: search engines ignore it and it leaks nothing
+ * useful. */
+import { STAGING, firm, href } from "../lib/site";
+
+interface Props {
+  title: string;
+  description: string;
+  ogType?: "website" | "article";
+}
+const { title, description, ogType = "website" } = Astro.props;
+
+const fullTitle = title.includes(firm.brand)
+  ? title
+  : `${title} | ${firm.brand}`;
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+{STAGING && <meta name="robots" content="noindex, nofollow" />}
+<link rel="canonical" href={canonical} />
+<link rel="sitemap" href={href("/sitemap-index.xml")} />
+<meta property="og:site_name" content={firm.brand} />
+<meta property="og:type" content={ogType} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta name="twitter:card" content="summary" />

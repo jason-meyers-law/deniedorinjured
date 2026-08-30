@@ -3,12 +3,46 @@
  * wording). PI dominates per Phase 1; the insurance-denied path is
  * present but secondary and links to a reserved hub. */
 import Base from "../layouts/Base.astro";
-import { firm, href } from "../lib/site";
+import JsonLd from "../components/JsonLd.astro";
+import { firm, href, barProfileUrl } from "../lib/site";
 import { getCollection } from "astro:content";
 
 const areas = (await getCollection("practiceAreas")).sort(
   (a, b) => a.data.order - b.data.order,
 );
+
+const homeUrl = new URL(href("/"), Astro.site).toString();
+
+/** Entity facts here are Bar-verified and visible on the site (footer
+ * NAP, bio). Anything unconfirmed (hours, logo, geo) stays out until
+ * DECISIONS.md resolves it — PLAN.md §10. */
+const legalServiceLd = {
+  "@type": "LegalService",
+  name: firm.entity,
+  alternateName: firm.brand,
+  url: homeUrl,
+  telephone: firm.phone,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: firm.postal.street,
+    addressLocality: firm.postal.city,
+    addressRegion: firm.postal.region,
+    postalCode: firm.postal.zip,
+    addressCountry: "US",
+  },
+  areaServed: "Brevard County, Florida",
+  founder: {
+    "@type": "Person",
+    name: firm.attorney,
+    url: new URL(href("/about/jason-meyers/"), Astro.site).toString(),
+  },
+};
+
+const webSiteLd = {
+  "@type": "WebSite",
+  name: firm.brand,
+  url: homeUrl,
+};
 ---
 
 <Base
@@ -63,4 +97,6 @@ const areas = (await getCollection("practiceAreas")).sort(
     what happens after suit is filed.
     <a href={href("/florida-injury-answers/")}>Browse the answer library</a>.
   </p>
+  <JsonLd data={legalServiceLd} />
+  <JsonLd data={webSiteLd} />
 </Base>
