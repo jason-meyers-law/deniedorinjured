@@ -16,7 +16,7 @@ import { firm } from "../lib/site";
   </p>
   <ul>
     <li>Phone: <a href={firm.phoneHref}>{firm.phone}</a></li>
-    <li>Email: <span class="unconfirmed">{firm.email}</span></li>
+    <li>Email: <a href={`mailto:${firm.email}`}>{firm.email}</a></li>
     <li>Office: {firm.address}</li>
   </ul>
   <p>

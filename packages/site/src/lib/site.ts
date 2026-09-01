@@ -32,7 +32,9 @@ export const firm = {
   barNumber: "106509",
   phone: "(321) 382-0403",
   phoneHref: "tel:+13213820403",
-  email: "[CONFIRM]",
+  // Public intake — M365 shared mailbox on the JasonMeyersLaw tenant
+  // (DECISIONS.md §4.3). Jason also has jason@ as an alias on his mailbox.
+  email: "intake@deniedorinjured.com",
   address: "653 Brevard Ave, Cocoa, FL 32922",
   /** Split form of the office address, for PostalAddress JSON-LD. */
   postal: {

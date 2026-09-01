@@ -201,7 +201,7 @@ TEXT POLICY:
 
 ```text
 PUBLIC INTAKE EMAIL:
-[CONFIRM]
+intake@deniedorinjured.com
 ```
 
 ## 4.4 Office hours

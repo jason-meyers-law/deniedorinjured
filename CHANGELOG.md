@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-09-01 (contact email)
+
+- Public intake email set to `intake@deniedorinjured.com` and rendered
+  as a `mailto:` link on the contact page (fires the `email_click`
+  conversion). Backed by an M365 shared mailbox on the JasonMeyersLaw
+  tenant; `jason@deniedorinjured.com` is an alias on Jason's mailbox.
+  Resolves DECISIONS.md §4.3. Goes live only once the mailbox exists
+  and `STAGING` flips (docs/launch-qa.md).
+
 ## 2026-08-30 (measurement)
 
 - GA4 wiring behind `analyticsId` in site.ts — no script is emitted
