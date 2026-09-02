@@ -12,7 +12,7 @@ const aboutUrl = new URL(href("/about/jason-meyers/"), Astro.site).toString();
 const jasonLd = {
   "@type": "Person",
   name: firm.attorney,
-  jobTitle: "Founder and Attorney",
+  jobTitle: "Attorney",
   url: aboutUrl,
   worksFor: { "@type": "LegalService", name: firm.entity },
   alumniOf: [
@@ -46,7 +46,7 @@ const michaelLd = {
   <h1>Attorneys</h1>
 
   <h2>{firm.attorney}</h2>
-  <p class="staff-title">Founder and Attorney</p>
+  <p class="staff-title">Attorney</p>
   <div class="staff-details">
     <img
       class="staff-photo"
