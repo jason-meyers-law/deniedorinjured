@@ -30,21 +30,21 @@ everything here passes. Do these in order.
       are unconfirmed (added 2026-09-02). Each page indexes only when its
       own review clears it.
 
-## 3. Domain cutover (DNS currently points at a private Squarespace site)
+## 3. Domain cutover
 
-- [ ] Squarespace site at deniedorinjured.com retired or DNS simply
-      repointed (it serves 401s today, so nothing public is lost).
-- [ ] DNS: apex A records to GitHub Pages IPs (185.199.108–111.153)
-      + `www` CNAME to `jason-meyers-law.github.io`, or the reverse
-      with the preferred host — pick ONE canonical host.
+- [x] DNS is cut over and live (verified 2026-09-02): apex A records
+      point to the GitHub Pages IPs, `www` CNAME to
+      `jason-meyers-law.github.io`; `https://deniedorinjured.com/`
+      returns 200 from GitHub with a valid cert. The Squarespace private
+      site is gone from this domain.
 - [x] Repo: `astro.config.mjs` already set — `site:
       "https://deniedorinjured.com"`, `base: "/"`, `trailingSlash:
       "always"`. Custom domain lives in Pages settings (Actions deploy
-      needs no CNAME file — see astro.config comment). CONFIRM the Pages
-      setting + HTTPS enforcement are actually on.
-- [ ] Enforce HTTPS in Pages settings once the cert issues.
+      needs no CNAME file — see astro.config comment).
+- [x] HTTPS enforced (site serves 200 over HTTPS with a valid cert).
 - [ ] `STAGING = false` in `packages/site/src/lib/site.ts` (removes
-      noindex + banner). This is the very last switch.
+      noindex + banner). This is the very last switch — do not flip
+      until section 1 and 2 below are clear.
 
 ## 4. Technical verification
 
