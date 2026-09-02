@@ -3,11 +3,11 @@
 ## 2026-09-02 (about page, footer, contact)
 
 - About page now presents both attorneys — Jason O. Meyers and Michael
-  Onatsko — with bios adapted from the firm's current jasonmeyerslaw.com
-  site (the attorneys' own published content, not invented). Michael's
-  Bar number is not published on the old site, so it is omitted rather
-  than guessed, and he has no photo yet. Both get Person JSON-LD. Page
-  stays `noindex` until the attorneys review the combined page.
+  Onatsko — with their bios copied verbatim (first person, as written)
+  from the firm's own jasonmeyerslaw.com/about, and both firm photos.
+  Michael's Bar number is not published on the old site, so it is
+  omitted rather than guessed. Both get Person JSON-LD. Page stays
+  `noindex` until the attorneys review the combined page.
 - Footer: "Firm" is now its own column — four columns (Injured / Denied /
   Firm / firm NAP) instead of three.
 - Contact page: removed the "Contacting the firm does not create an

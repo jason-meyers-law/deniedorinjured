@@ -1,22 +1,18 @@
 ---
-/** Attorneys page. Bios are the firm's own published content, adapted
- * from jasonmeyerslaw.com (retrieved 2026-09-02) — not invented. Bar
- * facts for Jason are verified against the Florida Bar profile (No.
- * 106509). Michael Onatsko's Bar number is not published on the old
- * site, so it is intentionally omitted rather than guessed. Kept
- * `noindex` until the attorneys review this combined page; remove the
- * flag below once cleared. */
+/** Attorneys page. Bios are copied verbatim from the firm's own site,
+ * jasonmeyerslaw.com/about (retrieved 2026-09-02) — first person, as
+ * written, not summarized. Photos are the firm's own. Kept `noindex`
+ * until the attorneys review this combined page; remove the flag then. */
 import Base from "../../layouts/Base.astro";
 import JsonLd from "../../components/JsonLd.astro";
 import { firm, href, barProfileUrl } from "../../lib/site";
 
 const aboutUrl = new URL(href("/about/jason-meyers/"), Astro.site).toString();
 
-/** Jason — fields verified against the Florida Bar member profile. */
 const jasonLd = {
   "@type": "Person",
   name: firm.attorney,
-  jobTitle: "Attorney",
+  jobTitle: "Founder and Attorney",
   url: aboutUrl,
   worksFor: { "@type": "LegalService", name: firm.entity },
   alumniOf: [
@@ -24,17 +20,10 @@ const jasonLd = {
     { "@type": "CollegeOrUniversity", name: "Stetson University College of Law" },
   ],
   telephone: firm.phone,
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: firm.postal.city,
-    addressRegion: firm.postal.region,
-    addressCountry: "US",
-  },
   image: new URL(href("/images/jason-meyers.png"), Astro.site).toString(),
   sameAs: [barProfileUrl],
 };
 
-/** Michael — from his published bio only (no Bar number available). */
 const michaelLd = {
   "@type": "Person",
   name: "Michael Onatsko",
@@ -45,19 +34,8 @@ const michaelLd = {
     { "@type": "CollegeOrUniversity", name: "University of Central Florida" },
     { "@type": "CollegeOrUniversity", name: "Nova Southeastern University" },
   ],
+  image: new URL(href("/images/michael-onatsko.webp"), Astro.site).toString(),
 };
-
-const jasonCredentials: [string, string][] = [
-  ["Florida Bar admission", "September 2013 (Bar No. 106509)"],
-  ["Standing", "Member in Good Standing, eligible to practice"],
-  ["Law school", "Stetson University College of Law, J.D. 2013"],
-  ["Undergraduate", "Florida State University (Philosophy and Religion)"],
-  ["Location", "Brevard County, Florida (18th Judicial Circuit)"],
-];
-const michaelCredentials: [string, string][] = [
-  ["Law school", "Nova Southeastern University (J.D.)"],
-  ["Undergraduate", "University of Central Florida (Legal Studies)"],
-];
 ---
 
 <Base
@@ -68,6 +46,7 @@ const michaelCredentials: [string, string][] = [
   <h1>Attorneys</h1>
 
   <h2>{firm.attorney}</h2>
+  <p class="staff-title">Founder and Attorney</p>
   <div class="staff-details">
     <img
       class="staff-photo"
@@ -76,60 +55,90 @@ const michaelCredentials: [string, string][] = [
       width="146"
       height="204"
     />
-    <p>
-      {firm.attorney} studied Philosophy and Religion at Florida State
-      University, then spent three years as a discrimination investigator at
-      the Florida Commission on Human Relations before attending law school at
-      Stetson University near St. Petersburg. His legal background is in civil
-      litigation — personal injury, insurance disputes, property damage, and
-      breach-of-contract claims — primarily representing large corporations.
-      In March 2024 he established his own practice to serve individuals and
-      small business owners. He has tried multiple cases to verdict and brings
-      that courtroom experience to how he advises clients.
-    </p>
+    <div class="staff-bio">
+      <p>
+        I am the son of Jeff and Lillian Meyers. My father, Jeff, was a F-15
+        flight mechanic in the Airforce. My mother stayed home with me and my
+        brother and sister. My mother attended school at night and obtained a
+        master's degree in education. She went on to be a teacher as me and my
+        siblings entered our teenage years.
+      </p>
+      <p>
+        My parents instilled the values of hard work and education in me. I
+        attended Florida State University where I studied Philosophy and
+        Religion. After graduating, I worked as a discrimination investigator
+        at the Florida Commission on Human Relations for three years. I was
+        encouraged by the staff attorneys at FCHR to attend law school.
+      </p>
+      <p>
+        I attended law school at Stetson University in Gulfport, located near
+        St. Petersburg in the Tampa Bay area. After graduating, I began working
+        as an attorney in Civil Litigation in the area of personal injury,
+        insurance disputes, property damage, and breach of contract claims. My
+        practice consisted mostly of representing large corporations. In March
+        2024, I left the big firm practice to establish a practice in the
+        community to assist small business owners and individuals with their
+        legal needs.
+      </p>
+      <p>
+        I have tried several cases to verdict. I pride myself on my courtroom
+        experience because it educates and informs the advice that I give to my
+        clients. I take the time to educate my clients on the litigation
+        process and what could happen with the understanding that I am capable
+        and willing to go to trial to see their case through. This is important
+        when negotiating a result because the other side knows that you are
+        represented by an attorney that will take the case to trial and thus is
+        more likely to give you full value during negotiations and potentially
+        avoiding the costs of litigation.
+      </p>
+      <p>
+        When I am not practicing law, I am with my wife and two children or on
+        the tennis court.
+      </p>
+    </div>
   </div>
-
-  <ul>
-    {jasonCredentials.map(([label, value]) => (
-      <li>{label}: {value}</li>
-    ))}
-  </ul>
-
-  <h3>Why representing the other side matters to an injured client</h3>
-  <p>
-    Having represented large corporations and insurers in personal-injury and
-    coverage disputes, {firm.attorney} knows how the other side investigates,
-    evaluates, and defends claims — and brings that perspective to the injured
-    people he now represents.
-  </p>
 
   <h2>Michael Onatsko</h2>
+  <p class="staff-title">Attorney</p>
   <div class="staff-details">
-    <p>
-      Michael Onatsko is a first-generation American whose parents immigrated
-      to the United States seeking religious freedom. He earned his bachelor's
-      degree in Legal Studies from the University of Central Florida and his
-      J.D. from Nova Southeastern University. He began his career in civil
-      litigation defense at two large insurance-defense firms, representing
-      clients ranging from individuals in motor-vehicle accidents to major
-      insurance carriers, trucking companies, and Fortune 500 corporations. He
-      now focuses on civil litigation, representing individuals and businesses
-      across Florida.
-    </p>
+    <img
+      class="staff-photo"
+      src={href("/images/michael-onatsko.webp")}
+      alt="Portrait of Michael Onatsko"
+      width="750"
+      height="938"
+    />
+    <div class="staff-bio">
+      <p>
+        I am a first-generation American whose parents came to the United
+        States of America seeking freedom from religious persecution. Growing
+        up, I watched my parents build a new life in the States with me and my
+        four siblings. This instilled a strong work ethic that I carry with me
+        to this day through discipline and perseverance.
+      </p>
+      <p>
+        I obtained my bachelor's degree in Legal Studies at the University of
+        Central Florida and completed my J.D. at Nova Southeastern University.
+        After graduating law school, I returned to Central Florida and began my
+        legal career in civil litigation, focusing on defense work. At two
+        large insurance defense firms, I had the opportunity to represent a
+        wide range of clients, from individuals involved in motor vehicle
+        accidents to major insurance carriers, trucking companies, and Fortune
+        500 corporations. These early years provided invaluable courtroom
+        experience and sharpened my ability to think strategically.
+      </p>
+      <p>
+        Since leaving the defense firms, I continue to focus on civil
+        litigation. I have dedicated my career to representing individuals and
+        businesses across Florida, both plaintiffs and defendants, in a variety
+        of legal disputes.
+      </p>
+      <p>
+        When I am not in the office or the courtroom, I spend my time outdoors
+        boating with my fiancée and our three dogs.
+      </p>
+    </div>
   </div>
-
-  <ul>
-    {michaelCredentials.map(([label, value]) => (
-      <li>{label}: {value}</li>
-    ))}
-  </ul>
-
-  <h2>Verify</h2>
-  <p>
-    Bar admission, standing, and discipline history are public record:
-    <a href={barProfileUrl} rel="noopener">
-      Florida Bar member profile, Bar No. {firm.barNumber}</a>.
-  </p>
 
   <JsonLd data={jasonLd} />
   <JsonLd data={michaelLd} />

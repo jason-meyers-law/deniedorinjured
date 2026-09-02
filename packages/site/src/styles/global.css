@@ -272,6 +272,13 @@ article, .measure { max-width: 44rem; }
   box-shadow: var(--shadow);
   border-radius: 2px;
 }
+.staff-title {
+  margin: 0 0 1rem;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+.staff-bio { flex: 1 1 16rem; }
+.staff-bio p:first-child { margin-top: 0; }
 
 /* Themed page illustration on practice pages */
 .page-art {
