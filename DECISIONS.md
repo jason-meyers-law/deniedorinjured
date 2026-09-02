@@ -129,17 +129,20 @@ This must be resolved before local SEO, structured data, Google Business Profile
 Current correct office:
 
 ```text
-Street:
-City:
-State:
-ZIP:
+Street: 653 Brevard Ave
+City: Cocoa
+State: FL
+ZIP: 32922
 ```
 
 Owner decision:
 
 ```text
 CANONICAL PUBLIC OFFICE:
-[CONFIRM]
+653 Brevard Ave, Cocoa, FL 32922 — matches the Florida Bar physical
+address and JasonMeyersLaw.com. This is the mainland city of Cocoa, not
+Cocoa Beach. The Bar's Melbourne address is a mailing address only, not
+the bona fide public office. (Confirmed 2026-09-02.)
 ```
 
 ## 3.2 Office status
@@ -1704,8 +1707,13 @@ Do not launch until all of the following are confirmed:
 [ ] Phone
 [ ] Email
 [ ] Office hours
-[ ] Attorney roster
-[ ] Attorney credentials
+[x] Attorney roster — Jason O. Meyers and Michael Onatsko, both
+    titled "Attorney" (no Founder distinction). Confirmed 2026-09-02.
+[ ] Attorney credentials — Jason's are Bar-verified (No. 106509).
+    Michael's Bar number is not yet supplied; his bio (education,
+    background) is in from jasonmeyerslaw.com. Not a launch blocker
+    per owner (2026-09-02) but still open if/when his Bar number is
+    added.
 [ ] Practice areas
 [ ] Service geography
 [ ] Fee/consultation wording
