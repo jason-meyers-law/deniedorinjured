@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-09-02 (vCard photo crop)
+
+- Embedded vCard headshots are now square crops anchored at the top of
+  each portrait, so the face sits centered in the circular contact
+  photo on iOS/Android instead of being pushed up by the center crop.
+
 ## 2026-09-02 (vCard photos)
 
 - vCard photos are now embedded inline (base64 JPEG, RFC 2426 folding,
