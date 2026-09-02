@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-09-02 (vCard photos)
+
+- vCard `PHOTO` URLs now point at headshots hosted on deniedorinjured.com
+  (`/images/jason-meyers.png`, new `/images/michael-onatsko.jpg`)
+  instead of the old site's Squarespace CDN. Michael's is a JPEG copy of
+  the WebP used on the Attorneys page, since contact apps don't decode
+  WebP.
+
 ## 2026-09-02 (michael@ mailbox)
 
 - `michael@deniedorinjured.com` created as an M365 shared mailbox
