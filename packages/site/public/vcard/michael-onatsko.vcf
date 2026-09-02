@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Lawyer;Michael Onatsko;;;
+FN:Michael Onatsko Lawyer
+ORG:Meyers & Onatsko
+TITLE:Attorney
+EMAIL;TYPE=INTERNET:michael@deniedorinjured.com
+TEL;TYPE=CELL:(321) 292-1522
+URL:https://deniedorinjured.com
+PHOTO;VALUE=URI:https://images.squarespace-cdn.com/content/v1/67c6c614ec85643a3dde4de3/f72fd18f-72ee-42fd-90f7-0bf956004999/Monatsko%2Bphoto.jpg
+END:VCARD

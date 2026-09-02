@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-09-02 (vCards)
+
+- Hosted the attorneys' vCard files, verbatim as supplied, at
+  `/vcard/jason-meyers.vcf` and `/vcard/michael-onatsko.vcf` (static
+  files in `public/`). Printed QR codes point at these URLs.
+
 ## 2026-09-02 (jason@ mailbox)
 
 - `jason@deniedorinjured.com` is now its own M365 shared mailbox (same
