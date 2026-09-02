@@ -9,7 +9,7 @@
 /** While true, every page carries <meta name="robots" content="noindex">.
  * Flip to false only when the launch QA checklist (docs/launch-qa.md)
  * passes, including Florida Bar advertising review. */
-export const STAGING = true;
+export const STAGING = false;
 
 /** Join an internal path onto the configured base (works for both the
  * GitHub Pages project path and a future custom-domain root). */
@@ -19,10 +19,9 @@ export function href(path: string): string {
 }
 
 /** Address and phone are sourced from the Florida Bar profile
- * (Bar #106509, physical address) and match JasonMeyersLaw.com; the
- * owner must still confirm this is the canonical bona fide office
- * before local-SEO/GBP work (DECISIONS.md §3 — note the Bar lists a
- * different Melbourne mailing address). */
+ * (Bar #106509, physical address) and match JasonMeyersLaw.com.
+ * Confirmed by the owner as the canonical bona fide office 2026-09-02
+ * (the Bar's Melbourne address is mailing-only). */
 export const firm = {
   brand: "Denied or Injured",
   // Provisional formulation from PLAN.md §2 — pending DECISIONS.md §1.

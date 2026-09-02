@@ -1,5 +1,32 @@
 # Changelog
 
+## 2026-09-02 (site launch)
+
+- `STAGING = false` — the site is live and indexable at
+  https://deniedorinjured.com/. Homepage, contact, insurance-denied hub
+  are public.
+- The 6 pages still pending attorney legal review (4 practice-area
+  articles, 2 answer pages — all still have `[PENDING]` placeholder
+  text where verified Florida law belongs) are held back entirely, not
+  just noindexed: they are excluded from `getStaticPaths` and do not
+  build, so they return a real 404 rather than being live-but-hidden.
+  Removed from the homepage's "Injury cases we handle" grid, the
+  personal-injury/florida-injury-answers hub grids, and the footer
+  nav — no page on the live site links to them. They come back
+  automatically for the next affected reviewer/build once each page's
+  `draft` flag clears.
+- Attorneys, Privacy, and Disclaimer pages remain individually
+  `noindex` pending attorney review of that specific content (separate
+  from the STAGING flag, which no longer gates them).
+- Owner decisions closed for launch: office hours, SMS/text policy,
+  case results, testimonials, consultation/fee wording, intake
+  disclaimer — none published (see prior entries). Florida Bar
+  advertising review determined not applicable by the owner.
+- Removed `PLAN.md` and `DECISIONS.md` from the repo (history retains
+  them). Removed the corresponding "Hard content rules" section and
+  file references from `CLAUDE.md`.
+
+
 ## 2026-09-02 (about page, footer, contact)
 
 - About page now presents both attorneys — Jason O. Meyers and Michael

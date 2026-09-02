@@ -4,9 +4,9 @@ import Base from "../../layouts/Base.astro";
 import { href } from "../../lib/site";
 import { getCollection } from "astro:content";
 
-const areas = (await getCollection("practiceAreas")).sort(
-  (a, b) => a.data.order - b.data.order,
-);
+const areas = (await getCollection("practiceAreas"))
+  .filter((a) => !a.data.draft)
+  .sort((a, b) => a.data.order - b.data.order);
 ---
 
 <Base

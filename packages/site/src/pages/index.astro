@@ -7,9 +7,9 @@ import JsonLd from "../components/JsonLd.astro";
 import { firm, href, barProfileUrl } from "../lib/site";
 import { getCollection } from "astro:content";
 
-const areas = (await getCollection("practiceAreas")).sort(
-  (a, b) => a.data.order - b.data.order,
-);
+const areas = (await getCollection("practiceAreas"))
+  .filter((a) => !a.data.draft)
+  .sort((a, b) => a.data.order - b.data.order);
 
 const homeUrl = new URL(href("/"), Astro.site).toString();
 
@@ -81,15 +81,19 @@ const webSiteLd = {
     </a>
   </div>
 
-  <h2>Injury cases we handle</h2>
-  <ul class="card-grid">
-    {areas.map((a) => (
-      <li class="card">
-        <h3><a href={href(`/personal-injury/${a.id}/`)}>{a.data.title}</a></h3>
-        <p>{a.data.description}</p>
-      </li>
-    ))}
-  </ul>
+  {areas.length > 0 && (
+    <>
+      <h2>Injury cases we handle</h2>
+      <ul class="card-grid">
+        {areas.map((a) => (
+          <li class="card">
+            <h3><a href={href(`/personal-injury/${a.id}/`)}>{a.data.title}</a></h3>
+            <p>{a.data.description}</p>
+          </li>
+        ))}
+      </ul>
+    </>
+  )}
 
   <h2>Florida injury answers</h2>
   <p>

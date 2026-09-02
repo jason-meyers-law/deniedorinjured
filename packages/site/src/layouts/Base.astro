@@ -3,10 +3,18 @@
  * header with nav (hero image on pages that ask for it), light main
  * section, dark contact band, columned footer. Staging noindex and
  * banner ride along on every page. */
+import { getCollection } from "astro:content";
 import { STAGING, firm, href } from "../lib/site";
 import Analytics from "../components/Analytics.astro";
 import BaseHead from "../components/BaseHead.astro";
 import "../styles/global.css";
+
+// Footer only links to reviewed (non-draft) practice-area pages — a
+// draft page isn't built at all (see personal-injury/[...slug].astro),
+// so linking to one would be a dead link.
+const publishedAreas = (await getCollection("practiceAreas"))
+  .filter((a) => !a.data.draft)
+  .sort((a, b) => a.data.order - b.data.order);
 
 interface Props {
   title: string;
@@ -79,10 +87,9 @@ const isActive = (path: string) => current.startsWith(href(path));
       <div class="footer-columns">
         <ul class="footer-links">
           <li><h2>Injured</h2></li>
-          <li><a href={href("/personal-injury/car-accidents/")}>Car Accidents</a></li>
-          <li><a href={href("/personal-injury/bicycle-accidents/")}>Bicycle Accidents</a></li>
-          <li><a href={href("/personal-injury/pedestrian-accidents/")}>Pedestrian Accidents</a></li>
-          <li><a href={href("/personal-injury/wrongful-death/")}>Wrongful Death</a></li>
+          {publishedAreas.map((a) => (
+            <li><a href={href(`/personal-injury/${a.id}/`)}>{a.data.title}</a></li>
+          ))}
           <li><a href={href("/florida-injury-answers/")}>Florida Injury Answers</a></li>
         </ul>
         <ul class="footer-links">
