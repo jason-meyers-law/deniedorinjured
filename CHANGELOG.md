@@ -6,9 +6,10 @@
   the circular contact photo on iOS/Android instead of being pushed up
   by the center crop. Michael's is a top-anchored crop of his portrait.
   Jason's source photo (146x204, the only size that exists) is padded
-  to square by extending its edges, with extra headroom added on top,
-  so the whole photo — head through shoulders and tie — stays inside
-  the circular mask.
+  to square over a blurred, zoomed copy of itself (letterbox fill),
+  with a little headroom on top, so the whole photo — head through
+  shoulders and tie — stays inside the circular mask without a hard
+  edge where the original photo ends.
 
 ## 2026-09-02 (vCard photos)
 
