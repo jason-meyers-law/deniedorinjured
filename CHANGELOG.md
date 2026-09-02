@@ -2,11 +2,12 @@
 
 ## 2026-09-02 (vCard photos)
 
-- vCard `PHOTO` URLs now point at headshots hosted on deniedorinjured.com
-  (`/images/jason-meyers.png`, new `/images/michael-onatsko.jpg`)
-  instead of the old site's Squarespace CDN. Michael's is a JPEG copy of
-  the WebP used on the Attorneys page, since contact apps don't decode
-  WebP.
+- vCard photos are now embedded inline (base64 JPEG, RFC 2426 folding,
+  CRLF) instead of referencing the old site's Squarespace CDN by URL —
+  iOS Contacts ignores URL photos, so the headshot only shows on iPhone
+  when embedded. Files are ~10 KB (Jason) and ~50 KB (Michael). A JPEG
+  copy of Michael's headshot (`/images/michael-onatsko.jpg`) is also
+  hosted alongside the WebP.
 
 ## 2026-09-02 (michael@ mailbox)
 
