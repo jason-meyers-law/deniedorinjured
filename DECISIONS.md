@@ -200,7 +200,9 @@ Owner decision:
 
 ```text
 TEXT POLICY:
-[CONFIRM]
+Not offered at launch. No SMS/texting is presented as a contact
+option, so no SMS-consent language is needed on the site.
+(Decided 2026-09-02.)
 ```
 
 ## 4.3 Public email
@@ -226,7 +228,8 @@ Owner decision:
 
 ```text
 PUBLIC HOURS:
-[CONFIRM]
+Not published at launch. No specific hours appear on the site.
+(Decided 2026-09-02.)
 ```
 
 ## 4.5 After-hours response
@@ -706,7 +709,7 @@ Owner decision:
 
 ```text
 CASE RESULTS POLICY:
-[CONFIRM]
+No. No case results are published at launch. (Decided 2026-09-02.)
 ```
 
 ## 13.2 Approved results
@@ -728,7 +731,7 @@ Owner decision:
 
 ```text
 APPROVED PUBLIC RESULTS:
-[CONFIRM OR NONE]
+NONE. (Decided 2026-09-02.)
 ```
 
 Do not publish until advertising compliance is confirmed.
@@ -760,7 +763,7 @@ Owner decision:
 
 ```text
 TESTIMONIAL POLICY:
-[CONFIRM]
+Do not use testimonials initially. (Decided 2026-09-02.)
 ```
 
 ## 14.3 Client names
@@ -795,7 +798,8 @@ Owner decision:
 
 ```text
 CONSULTATION POLICY:
-[CONFIRM]
+Not published at launch. No consultation-fee claim appears on the
+site. (Decided 2026-09-02.)
 ```
 
 ## 15.2 Personal injury fees
@@ -813,7 +817,8 @@ Owner decision:
 
 ```text
 PUBLIC PI FEE LANGUAGE:
-[CONFIRM]
+Not published at launch. No fee/attorney-fee claim appears anywhere on
+the site. (Decided 2026-09-02.)
 ```
 
 Do not publish fee claims until wording is matched to actual engagement agreement and Florida rules.
@@ -1706,7 +1711,7 @@ Do not launch until all of the following are confirmed:
 [ ] Bona fide office address
 [ ] Phone
 [ ] Email
-[ ] Office hours
+[x] Office hours — not published at launch (§4.4).
 [x] Attorney roster — Jason O. Meyers and Michael Onatsko, both
     titled "Attorney" (no Founder distinction). Confirmed 2026-09-02.
 [ ] Attorney credentials — Jason's are Bar-verified (No. 106509).
@@ -1716,15 +1721,18 @@ Do not launch until all of the following are confirmed:
     added.
 [ ] Practice areas
 [ ] Service geography
-[ ] Fee/consultation wording
-[ ] Intake disclaimer
+[x] Fee/consultation wording — not published at launch (§15).
+[x] Intake disclaimer — generic no-advice/no-relationship/no-guarantee
+      disclaimer shipped (packages/site/src/pages/disclaimer.astro), pending attorney review.
 [ ] Privacy policy
-[ ] SMS/contact consent language if applicable
-[ ] Testimonials approved
-[ ] Results approved
+[x] SMS/contact consent language if applicable — N/A, texting not
+      offered at launch (§4.2).
+[x] Testimonials approved — none used at launch (§14.2).
+[x] Results approved — none published at launch (§13).
 [ ] Florida advertising review completed
 [x] Old-domain redirects tested (N/A — no redirects, see §1)
-[ ] Google Business Profile naming aligned
+[ ] Google Business Profile naming aligned — deferred, not a launch
+      blocker (GBP not yet set up: §14.1 URL/ID still open).
 [ ] Structured data aligned with visible facts
 ```
 
