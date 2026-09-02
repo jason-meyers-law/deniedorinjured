@@ -44,7 +44,7 @@ const articleLd = {
 };
 ---
 
-<Base title={title} description={description} ogType="article">
+<Base title={title} description={description} ogType="article" noindex={draft}>
   <article>
     {crumbs.length > 0 && <Breadcrumbs items={crumbs} />}
     <h1>{title}</h1>

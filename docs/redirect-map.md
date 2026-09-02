@@ -1,6 +1,13 @@
-# Redirect Map (Draft): JasonMeyersLaw.com → DeniedOrInjured.com
+# Redirect Map: JasonMeyersLaw.com → DeniedOrInjured.com
 
-**Status: DRAFT.** All rows below are draft. The owner has not yet decided the old-domain strategy — whether JasonMeyersLaw.com gets fully 301-redirected to DeniedOrInjured.com, or stays live to cover non-personal-injury practice areas (Contracts, Housing, Employment) that the new site's architecture doesn't cover. Do not implement any of these redirects until that decision is made.
+**Status: DECIDED — NO REDIRECTS (2026-09-02).** The owner decided *not*
+to redirect the old domain. JasonMeyersLaw.com stays live as-is (it
+still carries the general civil-practice content — Contracts, Housing,
+Employment, Insurance); DeniedOrInjured.com launches as a separate,
+PI-focused site. **No 301s are to be implemented.** The table below is
+retained only as a record of what a migration *would* have mapped, and
+as guidance for avoiding duplicate PI content across the two domains
+(DECISIONS.md §1). Do not implement any of these rows.
 
 Source: `docs/site-audit.md` (audit dated 2026-08-30). JasonMeyersLaw.com has exactly 5 discovered URLs (root, `/home` duplicate, `/about`, `/services`, `/contact`) — it is a small, general civil-practice site today, not a personal-injury site, so most of the new architecture below has no old-site source page and will be net-new content rather than a migration.
 

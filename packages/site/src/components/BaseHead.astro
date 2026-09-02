@@ -11,8 +11,12 @@ interface Props {
   title: string;
   description: string;
   ogType?: "website" | "article";
+  /** Force noindex on this page even after launch (e.g. draft legal
+   * content that has not passed attorney review). Site-wide STAGING
+   * noindex still applies on top of this. */
+  noindex?: boolean;
 }
-const { title, description, ogType = "website" } = Astro.props;
+const { title, description, ogType = "website", noindex = false } = Astro.props;
 
 const fullTitle = title.includes(firm.brand)
   ? title
@@ -24,7 +28,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>{fullTitle}</title>
 <meta name="description" content={description} />
-{STAGING && <meta name="robots" content="noindex, nofollow" />}
+{(STAGING || noindex) && <meta name="robots" content="noindex, nofollow" />}
 <link rel="canonical" href={canonical} />
 <link rel="icon" href={href("/favicon.svg")} type="image/svg+xml" />
 <link rel="icon" href={href("/favicon-32.png")} type="image/png" sizes="32x32" />

@@ -24,6 +24,11 @@ everything here passes. Do these in order.
       `grep -rn "CONFIRM\|PENDING" packages/site/src` comes back clean
       (or exceptions are consciously accepted).
 - [ ] Bio credentials all verified; contact/NAP final.
+- [x] Draft/unreviewed pages now emit their own `noindex` (not just the
+      site-wide STAGING flag), so flipping STAGING=false will NOT expose
+      any page still marked `draft: true` or the bio while its credentials
+      are unconfirmed (added 2026-09-02). Each page indexes only when its
+      own review clears it.
 
 ## 3. Domain cutover (DNS currently points at a private Squarespace site)
 
@@ -32,29 +37,37 @@ everything here passes. Do these in order.
 - [ ] DNS: apex A records to GitHub Pages IPs (185.199.108–111.153)
       + `www` CNAME to `jason-meyers-law.github.io`, or the reverse
       with the preferred host — pick ONE canonical host.
-- [ ] Repo: set the custom domain in Pages settings (writes CNAME),
-      then in `packages/site/astro.config.mjs` set
-      `site: "https://deniedorinjured.com"` and `base: "/"`.
+- [x] Repo: `astro.config.mjs` already set — `site:
+      "https://deniedorinjured.com"`, `base: "/"`, `trailingSlash:
+      "always"`. Custom domain lives in Pages settings (Actions deploy
+      needs no CNAME file — see astro.config comment). CONFIRM the Pages
+      setting + HTTPS enforcement are actually on.
 - [ ] Enforce HTTPS in Pages settings once the cert issues.
 - [ ] `STAGING = false` in `packages/site/src/lib/site.ts` (removes
       noindex + banner). This is the very last switch.
 
 ## 4. Technical verification
 
-- [ ] Canonical URLs self-referencing on the real domain; one host,
-      trailing-slash policy consistent.
+- [x] Canonical URLs self-referencing on the real domain; one host,
+      trailing-slash policy consistent (verified 2026-09-02:
+      trailingSlash "always", canonical = self on deniedorinjured.com).
 - [ ] Sitemap generated and submitted; robots.txt deliberate
       (allow Googlebot/Bingbot/OAI-SearchBot; GPTBot per owner).
 - [ ] Search Console + Bing Webmaster verified; GA4 (or equivalent)
       installed and events tested.
+- [x] Structured data re-verified 2026-09-02 (homepage LegalService
+      has real firm fields only — no fabricated rating/price/hours;
+      Person LD is Bar-verified fields only). Re-check if facts change.
+      Original note follows.
 - [ ] Structured data re-verified against final confirmed facts.
       Shipped today: LegalService+WebSite (homepage), Person (bio,
       Bar-verified fields only), Article+BreadcrumbList (content
       pages). Every field must stay Bar/owner-verified and match
       visible content — never carry over the old site's empty
       LocalBusiness fields (docs/site-audit.md).
-- [ ] 404 works; old-domain redirect map (docs/redirect-map.md)
-      implemented per the owner's old-domain decision and tested.
+- [ ] 404 works. Old-domain redirects: N/A — owner decided NOT to
+      redirect JasonMeyersLaw.com (it stays live; DECISIONS.md §1,
+      docs/redirect-map.md). No redirects to implement or test.
 - [ ] Accessibility pass (headings, contrast, alt text, keyboard nav).
 - [ ] Core Web Vitals spot-check on mobile.
 

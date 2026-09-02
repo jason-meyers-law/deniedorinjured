@@ -95,7 +95,7 @@ Choose:
 
 ```text
 [ ] Fully replace JasonMeyersLaw.com with DeniedOrInjured.com
-[ ] Keep JasonMeyersLaw.com for other practice areas
+[x] Keep JasonMeyersLaw.com for other practice areas
 [ ] Keep JasonMeyersLaw.com temporarily, then retire it
 [ ] Maintain both long term with clearly separated practice areas
 ```
@@ -112,7 +112,10 @@ Owner decision:
 
 ```text
 OLD DOMAIN STRATEGY:
-[CONFIRM]
+No redirect. JasonMeyersLaw.com stays live as-is (it still carries the
+general civil-practice content); DeniedOrInjured.com launches as a
+separate PI-focused site. No 301s from the old domain. Do not duplicate
+PI articles across the two. (Directed 2026-09-02.)
 ```
 
 ---
@@ -1679,7 +1682,7 @@ The implementing AI may begin information architecture, wireframes, technical pl
 ```text
 [ ] Legal entity
 [ ] Brand relationship
-[ ] Old domain strategy
+[x] Old domain strategy
 [ ] Canonical office
 [ ] Primary phone
 [ ] Primary geography
@@ -1712,7 +1715,7 @@ Do not launch until all of the following are confirmed:
 [ ] Testimonials approved
 [ ] Results approved
 [ ] Florida advertising review completed
-[ ] Old-domain redirects tested
+[x] Old-domain redirects tested (N/A — no redirects, see §1)
 [ ] Google Business Profile naming aligned
 [ ] Structured data aligned with visible facts
 ```

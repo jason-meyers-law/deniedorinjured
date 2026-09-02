@@ -1,0 +1,60 @@
+---
+/** Privacy policy. DRAFT scaffold (DECISIONS.md §34, §42) — describes
+ * the site's ACTUAL data practices only (GA4 analytics; phone/email
+ * contact; no form backend). No invented terms. noindex until an
+ * attorney reviews and sets this live. */
+import Base from "../layouts/Base.astro";
+import { firm } from "../lib/site";
+---
+
+<Base
+  title="Privacy Policy"
+  description="How Jason Meyers Law, PLLC handles information on this website."
+  noindex={true}
+>
+  <h1>Privacy Policy</h1>
+  <p class="draft-notice">
+    Draft — pending attorney review before it is indexed. It describes
+    the site's current, actual practices; confirm and adjust before launch.
+  </p>
+
+  <p>
+    This policy explains what information {firm.entity} collects through
+    this website and how it is used. It covers this website only.
+  </p>
+
+  <h2>Information collected automatically</h2>
+  <p>
+    This site uses Google Analytics (GA4) to understand aggregate,
+    anonymous usage — pages viewed and whether visitors tapped a phone or
+    email link. GA4 anonymizes IP addresses by default. This data is
+    aggregate and is not used to identify individual visitors. The site
+    loads no other third-party tracking scripts.
+  </p>
+
+  <h2>Information you provide</h2>
+  <p>
+    This site has no contact form. If you choose to call or email the
+    firm, we receive what you send us. Do not include confidential or
+    sensitive details in a first email — see the
+    <a href="/disclaimer/">disclaimer</a>.
+  </p>
+
+  <h2>Cookies</h2>
+  <p>
+    Google Analytics sets cookies to measure usage. You can block or
+    delete cookies in your browser; the site remains usable without them.
+  </p>
+
+  <h2>Sharing</h2>
+  <p>
+    The firm does not sell your information. Analytics data is processed
+    by Google; email sent to the firm is handled by its email provider.
+  </p>
+
+  <h2>Contact</h2>
+  <p>
+    Questions about this policy: <a href={`mailto:${firm.email}`}>{firm.email}</a>
+    or {firm.phone}.
+  </p>
+</Base>

@@ -1,5 +1,21 @@
 # Changelog
 
+## 2026-09-02 (launch prep: legal pages + draft noindex)
+
+- Draft/unreviewed pages now emit their own `noindex` meta, independent
+  of the site-wide `STAGING` flag. Flipping `STAGING=false` no longer
+  risks exposing a page still marked `draft: true` (the practice-area and
+  answer content) or the attorney bio while its credentials are
+  unconfirmed — each page indexes only once its own review clears it.
+- Added Privacy Policy and Disclaimer pages (both `noindex` until
+  attorney review) and linked them in the footer. The privacy copy
+  describes the site's actual data practices only (GA4 analytics,
+  phone/email contact, no form backend) — nothing invented.
+- Old-domain decision recorded: NO redirects. JasonMeyersLaw.com stays
+  live; DeniedOrInjured.com is a separate PI site (DECISIONS.md §1,
+  docs/redirect-map.md).
+
+
 ## 2026-09-01 (contact email)
 
 - Public intake email set to `intake@deniedorinjured.com` and rendered
