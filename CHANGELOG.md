@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-09-02 (michael@ mailbox)
+
+- `michael@deniedorinjured.com` created as an M365 shared mailbox
+  (Michael has Full Access + Send As), so the address on his vCard
+  delivers. docs/email-setup.md updated.
+
 ## 2026-09-02 (vCards)
 
 - Hosted the attorneys' vCard files, verbatim as supplied, at

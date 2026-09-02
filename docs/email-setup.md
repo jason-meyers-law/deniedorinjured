@@ -77,9 +77,10 @@ the website, not mail. Email added on top of the same tenant.
 |---------|------|-------|
 | `intake@deniedorinjured.com` | Shared mailbox (unlicensed) | Public intake address on the website. Jason gets Full Access + Send As. |
 | `jason@deniedorinjured.com` | Shared mailbox (unlicensed) | Same shape as intake@. Internal alias `jason-deniedorinjured`, display name "Jason O. Meyers". Jason gets Full Access + Send As. |
+| `michael@deniedorinjured.com` | Shared mailbox (unlicensed) | Internal alias `michael-deniedorinjured`, display name "Michael Onatsko". `michael@jasonmeyerslaw.com` gets Full Access + Send As. Address is on his vCard (`/vcard/michael-onatsko.vcf`). |
 
-`jasonmeyerslaw.com` stays Jason's primary SMTP address. Both new
-addresses auto-map into his Outlook as separate mailboxes; he picks
+`jasonmeyerslaw.com` stays everyone's primary SMTP address. The new
+addresses auto-map into the owner's Outlook as separate mailboxes; pick
 them in the **From** field to reply as them.
 
 History (2026-09-02): `jason@` started as an alias on Jason's mailbox,
