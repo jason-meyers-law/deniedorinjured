@@ -1,22 +1,28 @@
 ---
-/** Attorney biography skeleton. Every credential slot renders as
- * visibly unconfirmed until DECISIONS.md §9 supplies verified facts —
- * publishing an unverified credential is prohibited (PLAN.md §35). */
+/** Attorneys page. Bios are the firm's own published content, adapted
+ * from jasonmeyerslaw.com (retrieved 2026-09-02) — not invented. Bar
+ * facts for Jason are verified against the Florida Bar profile (No.
+ * 106509). Michael Onatsko's Bar number is not published on the old
+ * site, so it is intentionally omitted rather than guessed. Kept
+ * `noindex` until the attorneys review this combined page; remove the
+ * flag below once cleared. */
 import Base from "../../layouts/Base.astro";
 import JsonLd from "../../components/JsonLd.astro";
 import { firm, href, barProfileUrl } from "../../lib/site";
 
-/** Every field below is Bar-verified and visible on this page. */
-const personLd = {
+const aboutUrl = new URL(href("/about/jason-meyers/"), Astro.site).toString();
+
+/** Jason — fields verified against the Florida Bar member profile. */
+const jasonLd = {
   "@type": "Person",
   name: firm.attorney,
   jobTitle: "Attorney",
-  url: new URL(href("/about/jason-meyers/"), Astro.site).toString(),
+  url: aboutUrl,
   worksFor: { "@type": "LegalService", name: firm.entity },
-  alumniOf: {
-    "@type": "CollegeOrUniversity",
-    name: "Stetson University College of Law",
-  },
+  alumniOf: [
+    { "@type": "CollegeOrUniversity", name: "Florida State University" },
+    { "@type": "CollegeOrUniversity", name: "Stetson University College of Law" },
+  ],
   telephone: firm.phone,
   address: {
     "@type": "PostalAddress",
@@ -28,34 +34,40 @@ const personLd = {
   sameAs: [barProfileUrl],
 };
 
-/** The first block is verified against the Florida Bar member profile
- * for Bar #106509 (retrieved 2026-08-30); the rest awaits DECISIONS.md
- * §9 facts from the attorney. */
-const verified: [string, string][] = [
+/** Michael — from his published bio only (no Bar number available). */
+const michaelLd = {
+  "@type": "Person",
+  name: "Michael Onatsko",
+  jobTitle: "Attorney",
+  url: aboutUrl,
+  worksFor: { "@type": "LegalService", name: firm.entity },
+  alumniOf: [
+    { "@type": "CollegeOrUniversity", name: "University of Central Florida" },
+    { "@type": "CollegeOrUniversity", name: "Nova Southeastern University" },
+  ],
+};
+
+const jasonCredentials: [string, string][] = [
   ["Florida Bar admission", "September 2013 (Bar No. 106509)"],
   ["Standing", "Member in Good Standing, eligible to practice"],
   ["Law school", "Stetson University College of Law, J.D. 2013"],
+  ["Undergraduate", "Florida State University (Philosophy and Religion)"],
   ["Location", "Brevard County, Florida (18th Judicial Circuit)"],
 ];
-const pending: [string, string][] = [
-  ["Federal court admissions", "[CONFIRM — DECISIONS.md §9]"],
-  ["Insurance-defense experience", "[CONFIRM]"],
-  ["Trial experience", "[CONFIRM]"],
-  ["Professional memberships", "[CONFIRM]"],
+const michaelCredentials: [string, string][] = [
+  ["Law school", "Nova Southeastern University (J.D.)"],
+  ["Undergraduate", "University of Central Florida (Legal Studies)"],
 ];
 ---
 
 <Base
-  title="Jason O. Meyers — Florida Attorney"
-  description="Biography of Jason O. Meyers, Florida attorney at Jason Meyers Law, PLLC."
+  title="Attorneys"
+  description="The attorneys of Jason Meyers Law, PLLC — Jason O. Meyers and Michael Onatsko, serving Brevard County, Florida."
   noindex={true}
 >
-  <h1>{firm.attorney}</h1>
-  <p class="draft-notice">
-    Draft biography — bar facts below are verified against the Florida
-    Bar member profile; the highlighted items are placeholders awaiting
-    the attorney, and the page needs his review before it can be indexed.
-  </p>
+  <h1>Attorneys</h1>
+
+  <h2>{firm.attorney}</h2>
   <div class="staff-details">
     <img
       class="staff-photo"
@@ -65,32 +77,52 @@ const pending: [string, string][] = [
       height="204"
     />
     <p>
-      {firm.attorney} is a Florida attorney practicing in Brevard County.
-      Before representing injured people, he spent years on the insurance
-      side of injury litigation — experience that shapes how he evaluates
-      and works up claims for injured clients.
+      {firm.attorney} studied Philosophy and Religion at Florida State
+      University, then spent three years as a discrimination investigator at
+      the Florida Commission on Human Relations before attending law school at
+      Stetson University near St. Petersburg. His legal background is in civil
+      litigation — personal injury, insurance disputes, property damage, and
+      breach-of-contract claims — primarily representing large corporations.
+      In March 2024 he established his own practice to serve individuals and
+      small business owners. He has tried multiple cases to verdict and brings
+      that courtroom experience to how he advises clients.
     </p>
   </div>
 
-  <h2>Credentials</h2>
   <ul>
-    {verified.map(([label, value]) => (
+    {jasonCredentials.map(([label, value]) => (
       <li>{label}: {value}</li>
-    ))}
-    {pending.map(([label, value]) => (
-      <li>{label}: <span class="unconfirmed">{value}</span></li>
     ))}
   </ul>
 
-  <h2>Why former insurance-defense experience matters to an injured client</h2>
+  <h3>Why representing the other side matters to an injured client</h3>
   <p>
-    Insurers do not evaluate claims the way injured people expect. An
-    attorney who has worked inside that process knows what adjusters
-    investigate, what defense lawyers look for in medical records and
-    depositions, and what actually moves a claim's evaluation. The
-    specifics of this section will be written from {firm.attorney}'s
-    verified experience — not generic speculation.
+    Having represented large corporations and insurers in personal-injury and
+    coverage disputes, {firm.attorney} knows how the other side investigates,
+    evaluates, and defends claims — and brings that perspective to the injured
+    people he now represents.
   </p>
+
+  <h2>Michael Onatsko</h2>
+  <div class="staff-details">
+    <p>
+      Michael Onatsko is a first-generation American whose parents immigrated
+      to the United States seeking religious freedom. He earned his bachelor's
+      degree in Legal Studies from the University of Central Florida and his
+      J.D. from Nova Southeastern University. He began his career in civil
+      litigation defense at two large insurance-defense firms, representing
+      clients ranging from individuals in motor-vehicle accidents to major
+      insurance carriers, trucking companies, and Fortune 500 corporations. He
+      now focuses on civil litigation, representing individuals and businesses
+      across Florida.
+    </p>
+  </div>
+
+  <ul>
+    {michaelCredentials.map(([label, value]) => (
+      <li>{label}: {value}</li>
+    ))}
+  </ul>
 
   <h2>Verify</h2>
   <p>
@@ -98,5 +130,7 @@ const pending: [string, string][] = [
     <a href={barProfileUrl} rel="noopener">
       Florida Bar member profile, Bar No. {firm.barNumber}</a>.
   </p>
-  <JsonLd data={personLd} />
+
+  <JsonLd data={jasonLd} />
+  <JsonLd data={michaelLd} />
 </Base>
