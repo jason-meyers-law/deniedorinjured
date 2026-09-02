@@ -71,22 +71,37 @@ the website, not mail. Email added on top of the same tenant.
   `p=reject`, null DKIM) which had declared "this domain never sends mail."
 - Keep the existing `google-site-verification` TXT (Search Console).
 
-### Addresses (DECISIONS.md §4.3)
+### Addresses
 
 | Address | Type | Notes |
 |---------|------|-------|
 | `intake@deniedorinjured.com` | Shared mailbox (unlicensed) | Public intake address on the website. Jason gets Full Access + Send As. |
-| `jason@deniedorinjured.com` | Alias on Jason's mailbox | Lands in his existing Outlook. Send-as enabled. |
+| `jason@deniedorinjured.com` | Shared mailbox (unlicensed) | Same shape as intake@. Internal alias `jason-deniedorinjured`, display name "Jason O. Meyers". Jason gets Full Access + Send As. |
 
-`jasonmeyerslaw.com` stays Jason's primary SMTP address; the new domain
-is a send-capable alias, not a replacement.
+`jasonmeyerslaw.com` stays Jason's primary SMTP address. Both new
+addresses auto-map into his Outlook as separate mailboxes; he picks
+them in the **From** field to reply as them.
 
-### DEFERRED: enable send-from-alias
+History (2026-09-02): `jason@` started as an alias on Jason's mailbox,
+then was split into its own shared mailbox so its mail is separated
+from his personal inbox. Creating it with the default alias ("Jason")
+collided with the tenant's email-address policy (`Jason@jasonmeyerslaw.com`
+already exists), hence the explicit `-Alias jason-deniedorinjured`:
 
-**Status: not yet done.** Needed only so Jason can *reply as* the
-`jason@deniedorinjured.com` **alias**. Everything else already works
-without it — the `intake@` shared mailbox sends via its "Send As"
-permission, and `jason@` receives fine as an alias. Safe to do anytime.
+```powershell
+New-Mailbox -Shared -Name "Jason (deniedorinjured.com)" -DisplayName "Jason O. Meyers" `
+  -Alias jason-deniedorinjured -PrimarySmtpAddress jason@deniedorinjured.com
+Add-MailboxPermission "jason@deniedorinjured.com" -User Jason@jasonmeyerslaw.com -AccessRights FullAccess -AutoMapping $true
+Add-RecipientPermission "jason@deniedorinjured.com" -Trustee Jason@jasonmeyerslaw.com -AccessRights SendAs -Confirm:$false
+```
+
+### Send-from-alias (done 2026-09-01, now moot)
+
+`Set-OrganizationConfig -SendFromAliasEnabled $true` was applied so Jason
+could reply as the `jason@` alias. With `jason@` now a shared mailbox it
+is no longer needed, but it is harmless and remains on. Kept below for
+the record and for the no-sudo PowerShell setup, which is still how any
+future Exchange Online change gets run from this box.
 
 It is **one tenant-wide setting**, run **once** from any admin machine —
 not per-user, not per-device, nothing installed on Jason's computers.

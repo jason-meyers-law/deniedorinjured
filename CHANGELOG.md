@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-09-02 (jason@ mailbox)
+
+- `jason@deniedorinjured.com` is now its own M365 shared mailbox (same
+  shape as `intake@`), no longer an alias on Jason's personal mailbox.
+  Jason has Full Access + Send As on both. No site content change;
+  docs/email-setup.md updated.
+
 ## 2026-09-02 (site launch)
 
 - `STAGING = false` — the site is live and indexable at
