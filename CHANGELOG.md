@@ -2,9 +2,12 @@
 
 ## 2026-09-02 (vCard photo crop)
 
-- Embedded vCard headshots are now square crops anchored at the top of
-  each portrait, so the face sits centered in the circular contact
-  photo on iOS/Android instead of being pushed up by the center crop.
+- Embedded vCard headshots are now square, so the face sits centered in
+  the circular contact photo on iOS/Android instead of being pushed up
+  by the center crop. Michael's is a top-anchored crop of his portrait.
+  Jason's source photo (146x204, the only size that exists) is padded
+  to square by extending its edges so the whole photo — head through
+  shoulders and tie — stays in frame.
 
 ## 2026-09-02 (vCard photos)
 
