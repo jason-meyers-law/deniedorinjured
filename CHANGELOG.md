@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-09-02 (vCard QR codes)
+
+- Added replacement QR codes for the business cards at
+  `/vcard/qr-jason-meyers.{png,svg}` and `/vcard/qr-michael-onatsko.{png,svg}`.
+  The printed proofs' QR codes had the vCard text embedded directly (an
+  older version, with the Squarespace photo URL that iOS ignores) rather
+  than linking to the hosted `.vcf`. These encode only the https URL —
+  version 6, error-correction H, 2000px PNG plus SVG for print — so the
+  contact always reflects the current hosted file.
+
 ## 2026-09-02 (vCard photo crop)
 
 - Embedded vCard headshots are now square, so the face sits centered in
