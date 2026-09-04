@@ -1,0 +1,26 @@
+---
+/** Chrome for a fixed page whose words come from src/content/pages:
+ * head metadata, H1, optional notice, the markdown body, then whatever
+ * the route adds (grids, contact details, ...) in the slot. */
+import type { CollectionEntry } from "astro:content";
+import Base from "./Base.astro";
+
+interface Props {
+  page: CollectionEntry<"pages">["data"];
+  Content: any;
+  hero?: boolean;
+}
+const { page, Content, hero = false } = Astro.props;
+---
+
+<Base
+  title={page.searchTitle ?? page.title}
+  description={page.description}
+  noindex={page.noindex}
+  hero={hero}
+>
+  <h1>{page.title}</h1>
+  {page.notice && <p class="draft-notice">{page.notice}</p>}
+  <Content />
+  <slot />
+</Base>

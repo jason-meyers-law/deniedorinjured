@@ -1,6 +1,13 @@
 ---
 title: "Should I Give the Insurance Company a Recorded Statement After a Florida Car Accident?"
 question: "Should I give an insurance adjuster a recorded statement?"
+directAnswer: |
+  You generally are not required to give a recorded statement to the
+  **other** driver's insurance company, and there is rarely a reason to
+  do so before speaking with a lawyer. Your **own** policy is different:
+  it typically contains a cooperation clause, so refusing your own
+  insurer outright can jeopardize your coverage — the answer there is
+  preparation, not refusal.
 description: "Whether you must give a recorded statement after a Florida crash — and the difference between your insurer and the other driver's."
 draft: true
 cluster: adjusters
@@ -8,17 +15,6 @@ related:
   - /florida-injury-answers/what-to-do-after-a-florida-car-accident/
   - /personal-injury/car-accidents/
 ---
-
-<div class="direct-answer">
-
-You generally are not required to give a recorded statement to the
-**other** driver's insurance company, and there is rarely a reason to
-do so before speaking with a lawyer. Your **own** policy is different:
-it typically contains a cooperation clause, so refusing your own
-insurer outright can jeopardize your coverage — the answer there is
-preparation, not refusal.
-
-</div>
 
 ## The two insurers are not the same
 

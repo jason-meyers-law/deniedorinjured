@@ -1,0 +1,419 @@
+# Pages CMS (app.pagescms.org) editor configuration — docs/editing.md.
+#
+# What is editable here is the words: page prose, practice-area and
+# answer articles, attorney bios, the firm record. Routes, layout,
+# navigation, and build flags stay in code. Every save is a commit to
+# `main`, which deploys the live site within a few minutes.
+
+media:
+  input: packages/site/public/images
+  output: /images
+  categories: [image]
+  rename: safe
+
+settings:
+  commit:
+    identity: user
+    templates:
+      create: "Create {path} (via Pages CMS)"
+      update: "Update {path} (via Pages CMS)"
+      delete: "Delete {path} (via Pages CMS)"
+      rename: "Rename {oldPath} to {newPath} (via Pages CMS)"
+
+components:
+  # Shared by practice areas and answer pages.
+  searchTitle:
+    type: string
+    label: Search title
+    description: Shown in the browser tab and in Google results.
+    required: true
+  searchDescription:
+    type: text
+    label: Search description
+    description: One or two sentences shown under the title in Google results (about 150 characters).
+    required: true
+    options:
+      maxlength: 200
+  draft:
+    type: boolean
+    label: Draft (not published)
+    description: While checked, the page is not built and does not exist on the live site. Uncheck only after attorney legal review.
+    default: true
+  publishDate:
+    type: date
+    label: Publish date
+    default: ""
+    options:
+      format: yyyy-MM-dd
+  legalReviewDate:
+    type: date
+    label: Last legally reviewed
+    description: Set by the reviewing attorney; shown on the page as "Last legally reviewed".
+    default: ""
+    options:
+      format: yyyy-MM-dd
+  related:
+    type: string
+    label: Related pages
+    description: Site paths, one per line — e.g. /personal-injury/car-accidents/
+    list: true
+    pattern:
+      regex: "^/.*/$"
+      message: "Site path starting and ending with / (e.g. /personal-injury/car-accidents/)"
+  body:
+    type: rich-text
+    label: Body
+    options:
+      format: markdown
+
+content:
+  - name: pages
+    label: Pages
+    type: collection
+    path: packages/site/src/content/pages
+    format: yaml-frontmatter
+    exclude: [home.md]
+    view:
+      fields: [title, noindex]
+      primary: title
+    # Each file matches a route in code; new/renamed/deleted files would
+    # be ignored or break the build.
+    operations:
+      create: false
+      rename: false
+      delete: false
+    fields:
+      - name: title
+        type: string
+        label: Page heading
+        required: true
+      - name: searchTitle
+        type: string
+        label: Search title
+        description: Optional. Browser-tab / Google title when it should differ from the heading.
+      - name: description
+        component: searchDescription
+      - name: noindex
+        type: boolean
+        label: Hide from search engines
+        description: Keep checked while the page is pending review. The page is still live at its address.
+        default: false
+      - name: notice
+        type: text
+        label: Notice
+        description: Optional. Shown in a highlighted box above the text (e.g. "Draft — pending attorney review").
+      - name: body
+        component: body
+
+  - name: home
+    label: Homepage
+    type: file
+    path: packages/site/src/content/pages/home.md
+    format: yaml-frontmatter
+    operations:
+      delete: false
+    fields:
+      - name: title
+        type: string
+        label: Page heading
+        required: true
+      - name: searchTitle
+        type: string
+        label: Search title
+        description: Browser-tab / Google title.
+      - name: description
+        component: searchDescription
+      - name: body
+        component: body
+        label: Introduction
+      - name: gateway
+        type: object
+        label: Two-path cards
+        list:
+          min: 2
+          max: 2
+          collapsible:
+            summary: "{heading}"
+        fields:
+          - name: heading
+            type: string
+            required: true
+          - name: text
+            type: text
+            required: true
+          - name: link
+            type: string
+            label: Link (site path)
+            required: true
+            pattern:
+              regex: "^/.*/$"
+              message: "Site path starting and ending with / (e.g. /personal-injury/)"
+      - name: casesHeading
+        type: string
+        label: Heading over the practice-area list
+        required: true
+      - name: answers
+        type: object
+        label: Answer-library section
+        fields:
+          - name: heading
+            type: string
+            required: true
+          - name: text
+            type: rich-text
+            required: true
+            options:
+              format: markdown
+              media: false
+
+  - name: practice-areas
+    label: Practice areas
+    type: collection
+    path: packages/site/src/content/practice-areas
+    format: yaml-frontmatter
+    filename:
+      template: "{title}.md"
+      field: create
+    view:
+      fields: [title, draft, order, legalReviewDate]
+      primary: title
+      sort: [order, title]
+      default:
+        sort: order
+        order: asc
+    # The filename is the page address (/personal-injury/<filename>/).
+    # Unpublish with the Draft box; never rename or delete a live page.
+    operations:
+      rename: false
+      delete: false
+    fields:
+      - name: title
+        component: searchTitle
+        label: Title
+        description: Page heading; also the browser-tab and Google title.
+      - name: description
+        component: searchDescription
+      - name: draft
+        component: draft
+      - name: order
+        type: number
+        label: Order
+        description: Position on the Personal Injury page and in the footer; lower first.
+        default: 100
+      - name: image
+        type: image
+        label: Illustration
+        description: Optional. Themed illustration shown under the heading.
+        options:
+          extensions: [svg, png, jpg, webp]
+      - name: imageAlt
+        type: string
+        label: Illustration description
+        description: Read aloud by screen readers; describe the picture in a few words.
+      - name: publishDate
+        component: publishDate
+      - name: legalReviewDate
+        component: legalReviewDate
+      - name: related
+        component: related
+      - name: body
+        component: body
+
+  - name: answers
+    label: Injury answers
+    type: collection
+    path: packages/site/src/content/answers
+    format: yaml-frontmatter
+    filename:
+      template: "{question}.md"
+      field: create
+    view:
+      fields: [question, draft, cluster, legalReviewDate]
+      primary: question
+      sort: [question]
+    # Filename = page address (/florida-injury-answers/<filename>/).
+    operations:
+      rename: false
+      delete: false
+    fields:
+      - name: question
+        type: string
+        label: Question
+        description: The question exactly as a reader would ask it; used as the link text on the answers page.
+        required: true
+      - name: title
+        component: searchTitle
+        label: Title
+        description: Page heading; also the browser-tab and Google title.
+      - name: description
+        component: searchDescription
+      - name: draft
+        component: draft
+      - name: directAnswer
+        type: rich-text
+        label: Direct answer
+        description: The short answer, shown in a highlighted box at the top of the page.
+        required: true
+        options:
+          format: markdown
+          media: false
+      - name: cluster
+        type: string
+        label: Topic
+        description: Optional grouping keyword (e.g. aftermath, pip, adjusters). Not shown on the page.
+      - name: publishDate
+        component: publishDate
+      - name: legalReviewDate
+        component: legalReviewDate
+      - name: related
+        component: related
+      - name: body
+        component: body
+
+  - name: attorneys
+    label: Attorneys
+    type: collection
+    path: packages/site/src/content/attorneys
+    format: yaml-frontmatter
+    filename: "{name}.md"
+    view:
+      fields: [name, title, order]
+      primary: name
+      sort: [order, name]
+    operations:
+      rename: false
+      delete: false
+    fields:
+      - name: name
+        type: string
+        label: Name
+        required: true
+      - name: title
+        type: string
+        label: Title
+        default: Attorney
+      - name: photo
+        type: image
+        label: Photo
+        required: true
+      - name: photoAlt
+        type: string
+        label: Photo description
+        description: Read aloud by screen readers, e.g. "Portrait of Jane Doe".
+        required: true
+      - name: barNumber
+        type: string
+        label: Florida Bar number
+        description: Optional. Adds a link to the Florida Bar profile in the page's structured data.
+        pattern:
+          regex: "^[0-9]*$"
+          message: "Digits only"
+      - name: phone
+        type: string
+        label: Phone
+        description: Optional. Included in the page's structured data.
+      - name: alumni
+        type: string
+        label: Schools
+        description: One per line, for the page's structured data.
+        list: true
+      - name: order
+        type: number
+        label: Order
+        description: Position on the page; lower first.
+        default: 100
+      - name: body
+        component: body
+        label: Biography
+
+  - name: firm
+    label: Firm details
+    type: file
+    path: packages/site/src/data/firm.json
+    format: json
+    operations:
+      delete: false
+    fields:
+      - name: brand
+        type: string
+        label: Site name
+        description: "Shown in the header and browser tab (\"Denied or Injured\")."
+        required: true
+      - name: brandLine
+        type: string
+        label: Tagline
+        description: The line under the site name.
+        required: true
+      - name: entity
+        type: string
+        label: Firm legal name
+        required: true
+      - name: attorney
+        type: string
+        label: Principal attorney
+        description: Named as the author of every article and as the firm's founder.
+        required: true
+      - name: barNumber
+        type: string
+        label: Principal attorney's Florida Bar number
+        required: true
+        pattern:
+          regex: "^[0-9]+$"
+          message: "Digits only"
+      - name: phone
+        type: string
+        label: Phone
+        description: "Format: (321) 555-0100. Used everywhere the number appears, including tap-to-call links."
+        required: true
+        pattern:
+          regex: "^\\([0-9]{3}\\) [0-9]{3}-[0-9]{4}$"
+          message: "Use the form (321) 555-0100"
+      - name: email
+        type: string
+        label: Intake email
+        required: true
+        pattern:
+          regex: "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$"
+          message: "Must be an email address"
+      - name: address
+        type: object
+        label: Office address
+        fields:
+          - name: street
+            type: string
+            required: true
+          - name: city
+            type: string
+            required: true
+          - name: region
+            type: string
+            label: State
+            required: true
+          - name: zip
+            type: string
+            label: ZIP
+            required: true
+      - name: geography
+        type: string
+        label: Area served
+        description: Shown in the footer and on the contact page.
+        required: true
+
+  - name: snippets
+    label: Site-wide text
+    type: file
+    path: packages/site/src/data/snippets.json
+    format: json
+    operations:
+      delete: false
+    fields:
+      - name: articleCta
+        type: text
+        label: Article call-to-action
+        description: The paragraph at the end of every practice-area and answer page, above the phone number.
+        required: true
+      - name: footerNotice
+        type: text
+        label: Footer notice
+        description: The not-legal-advice line at the bottom of every page.
+        required: true

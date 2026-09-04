@@ -1,22 +1,18 @@
 ---
 /** Contact page. Static site: no form backend yet — phone/email only
- * until the intake workflow (DECISIONS.md §16) and a form processor
- * are chosen. Details render as visibly unconfirmed until then. */
-import Base from "../layouts/Base.astro";
+ * until an intake workflow and a form processor are chosen. The
+ * details come from the firm record; the intro from content/pages. */
+import Page from "../layouts/Page.astro";
 import { firm } from "../lib/site";
+import { pageContent } from "../lib/pages";
+
+const { data: page, Content } = await pageContent("contact");
 ---
 
-<Base
-  title="Contact"
-  description="Contact Jason Meyers Law, PLLC in Brevard County, Florida."
->
-  <h1>Contact</h1>
-  <p>
-    {firm.entity} — {firm.geography}.
-  </p>
+<Page page={page} Content={Content}>
   <ul>
     <li>Phone: <a href={firm.phoneHref}>{firm.phone}</a></li>
     <li>Email: <a href={`mailto:${firm.email}`}>{firm.email}</a></li>
     <li>Office: {firm.address}</li>
   </ul>
-</Base>
+</Page>

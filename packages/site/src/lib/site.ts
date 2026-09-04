@@ -1,10 +1,12 @@
 /** Site-wide constants and the canonical firm record.
  *
- * This module owns the single source of truth for firm identity on the
- * site. It never guesses: values the owner has not confirmed are the
- * literal string "[CONFIRM]" and render as visibly unconfirmed. See
- * DECISIONS.md for the pending items.
+ * Firm identity (name, phone, address, ...) is edited in
+ * `src/data/firm.json` — through Pages CMS or by hand — and derived
+ * forms (tel: href, one-line address, PostalAddress parts) are built
+ * here so templates never re-derive them. Build flags stay in code.
  */
+import firmData from "../data/firm.json";
+import snippetsData from "../data/snippets.json";
 
 /** While true, every page carries <meta name="robots" content="noindex">.
  * Flip to false only when the launch QA checklist (docs/launch-qa.md)
@@ -23,33 +25,36 @@ export function href(path: string): string {
  * Confirmed by the owner as the canonical bona fide office 2026-09-02
  * (the Bar's Melbourne address is mailing-only). */
 export const firm = {
-  brand: "Denied or Injured",
-  // Provisional formulation from PLAN.md §2 — pending DECISIONS.md §1.
-  brandLine: "A personal-injury and insurance-law practice of Jason Meyers Law, PLLC",
-  entity: "Jason Meyers Law, PLLC",
-  attorney: "Jason O. Meyers",
-  barNumber: "106509",
-  phone: "(321) 382-0403",
-  phoneHref: "tel:+13213820403",
+  brand: firmData.brand,
+  brandLine: firmData.brandLine,
+  entity: firmData.entity,
+  attorney: firmData.attorney,
+  barNumber: firmData.barNumber,
+  phone: firmData.phone,
+  phoneHref: "tel:+1" + firmData.phone.replace(/\D/g, ""),
   // Public intake — M365 shared mailbox on the JasonMeyersLaw tenant
   // (docs/email-setup.md). jason@ is a second shared mailbox, same shape.
-  email: "intake@deniedorinjured.com",
-  address: "653 Brevard Ave, Cocoa, FL 32922",
+  email: firmData.email,
+  address: `${firmData.address.street}, ${firmData.address.city}, ${firmData.address.region} ${firmData.address.zip}`,
   /** Split form of the office address, for PostalAddress JSON-LD. */
-  postal: {
-    street: "653 Brevard Ave",
-    city: "Cocoa",
-    region: "FL",
-    zip: "32922",
-  },
-  geography: "Brevard County / Space Coast, Florida",
+  postal: firmData.address,
+  geography: firmData.geography,
 } as const;
+
+/** Short site-wide passages (article CTA, footer notice) — editable
+ * text that is not a page of its own. */
+export const snippets = snippetsData;
 
 /** GA4 measurement ID (G-XXXXXXXXXX). Empty string = analytics fully
  * disabled and no script is emitted. Create the property under the
  * same Google account as Search Console, then set the ID here. */
 export const analyticsId = "G-FPRJ701RX1";
 
-/** Primary-source profile backing the bio's verified facts. */
-export const barProfileUrl =
-  "https://www.floridabar.org/directories/find-mbr/profile/?num=106509";
+/** Florida Bar member profile for a Bar number — the primary source
+ * backing a bio's verified facts. */
+export function barProfile(barNumber: string): string {
+  return `https://www.floridabar.org/directories/find-mbr/profile/?num=${barNumber}`;
+}
+
+/** Primary-source profile backing the principal attorney's bio. */
+export const barProfileUrl = barProfile(firmData.barNumber);

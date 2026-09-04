@@ -1,6 +1,12 @@
 ---
 title: "What Should I Do After a Florida Car Accident?"
 question: "What should I do after a Florida car accident?"
+directAnswer: |
+  Get to safety, call 911, and get medical attention the same day if you
+  may be hurt — even if you feel "mostly fine." Photograph the scene and
+  vehicles, get witness contacts, and report the crash to your own
+  insurer. Hold off on giving the other driver's insurer a recorded
+  statement or signing anything until you understand your claim.
 description: "The immediate steps after a Florida crash: safety, reporting, documentation, medical care, and what to hold off on."
 draft: true
 cluster: aftermath
@@ -8,16 +14,6 @@ related:
   - /florida-injury-answers/recorded-statement-after-car-accident/
   - /personal-injury/car-accidents/
 ---
-
-<div class="direct-answer">
-
-Get to safety, call 911, and get medical attention the same day if you
-may be hurt — even if you feel "mostly fine." Photograph the scene and
-vehicles, get witness contacts, and report the crash to your own
-insurer. Hold off on giving the other driver's insurer a recorded
-statement or signing anything until you understand your claim.
-
-</div>
 
 ## Action checklist
 

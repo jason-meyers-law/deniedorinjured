@@ -8,7 +8,17 @@ Meyers Law, PLLC. Structure mirrors chrismeyersfsu/python-monorepo-template
   Hooks: `git config core.hooksPath .githooks`.
 - One concern per package. A new concern gets a new package under
   `packages/`, not a subdirectory of an existing one.
-- `CHANGELOG.md` entry with every user-facing change, same commit.
+- `CHANGELOG.md` entry with every user-facing code change, same
+  commit. Content-only commits made through Pages CMS ("via Pages
+  CMS" in the message) are exempt — the commit itself is the record.
+
+## Content vs. code
+
+Prose is edited through Pages CMS (`.pages.yml`, docs/editing.md).
+Words go in `packages/site/src/content/**` and `src/data/*.json`, not
+in `.astro` templates — a new page gets a content file plus a thin
+route that renders it. Keep `.pages.yml` in step with
+`src/content.config.ts` when a schema changes.
 
 ## Deploy
 

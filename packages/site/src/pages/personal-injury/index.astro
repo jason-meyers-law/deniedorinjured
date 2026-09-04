@@ -1,26 +1,18 @@
 ---
-/** Personal-injury hub: lists the practice-area collection. */
-import Base from "../../layouts/Base.astro";
+/** Personal-injury hub: intro from content/pages, then the
+ * practice-area collection. */
+import Page from "../../layouts/Page.astro";
 import { href } from "../../lib/site";
+import { pageContent } from "../../lib/pages";
 import { getCollection } from "astro:content";
 
+const { data: page, Content } = await pageContent("personal-injury");
 const areas = (await getCollection("practiceAreas"))
   .filter((a) => !a.data.draft)
   .sort((a, b) => a.data.order - b.data.order);
 ---
 
-<Base
-  title="Florida Personal Injury"
-  description="Personal-injury representation in Brevard County and across Florida: car, bicycle, and pedestrian accidents, premises liability, wrongful death."
->
-  <h1>Florida Personal Injury</h1>
-  <p>
-    An injury claim is, in practice, an insurance claim: the outcome
-    turns on liability, damages, and the coverage actually available.
-    These pages explain each case type — when another party can be
-    legally responsible, what evidence matters, what insurance may
-    apply, and what the process looks like.
-  </p>
+<Page page={page} Content={Content}>
   <ul class="card-grid">
     {areas.map((a) => (
       <li class="card">
@@ -29,4 +21,4 @@ const areas = (await getCollection("practiceAreas"))
       </li>
     ))}
   </ul>
-</Base>
+</Page>

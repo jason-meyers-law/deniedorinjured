@@ -1,22 +1,16 @@
 ---
-/** Answer-library hub: the informational / AI-retrieval layer. */
-import Base from "../../layouts/Base.astro";
+/** Answer-library hub: the informational / AI-retrieval layer. Intro
+ * from content/pages, list from the answers collection. */
+import Page from "../../layouts/Page.astro";
 import { href } from "../../lib/site";
+import { pageContent } from "../../lib/pages";
 import { getCollection } from "astro:content";
 
+const { data: page, Content } = await pageContent("florida-injury-answers");
 const answers = (await getCollection("answers")).filter((a) => !a.data.draft);
 ---
 
-<Base
-  title="Florida Injury Answers"
-  description="Direct, lawyer-reviewed answers to common Florida personal-injury questions."
->
-  <h1>Florida Injury Answers</h1>
-  <p>
-    One question per page, answered directly, with the Florida legal
-    rule and its sources. Each page shows who wrote it and when it was
-    last legally reviewed.
-  </p>
+<Page page={page} Content={Content}>
   <ul class="card-grid">
     {answers.map((a) => (
       <li class="card">
@@ -25,4 +19,4 @@ const answers = (await getCollection("answers")).filter((a) => !a.data.draft);
       </li>
     ))}
   </ul>
-</Base>
+</Page>

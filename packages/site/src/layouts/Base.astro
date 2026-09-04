@@ -4,7 +4,7 @@
  * section, dark contact band, columned footer. Staging noindex and
  * banner ride along on every page. */
 import { getCollection } from "astro:content";
-import { STAGING, firm, href } from "../lib/site";
+import { STAGING, firm, href, snippets } from "../lib/site";
 import Analytics from "../components/Analytics.astro";
 import BaseHead from "../components/BaseHead.astro";
 import "../styles/global.css";
@@ -109,12 +109,7 @@ const isActive = (path: string) => current.startsWith(href(path));
         </ul>
       </div>
       <div class="legal-line">
-        <p>
-          The information on this website is general information, not legal
-          advice, and reading it does not create an attorney–client
-          relationship. Contacting the firm does not by itself create an
-          attorney–client relationship.
-        </p>
+        <p>{snippets.footerNotice}</p>
         <p>
           <a href={href("/disclaimer/")}>Disclaimer</a>
           &bull; <a href={href("/privacy/")}>Privacy</a>

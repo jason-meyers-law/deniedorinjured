@@ -1,0 +1,8 @@
+---
+/** Renders a markdown string from frontmatter (see lib/markdown.ts). */
+import { renderMarkdown } from "../lib/markdown";
+interface Props { text: string }
+const html = await renderMarkdown(Astro.props.text);
+---
+
+<Fragment set:html={html} />

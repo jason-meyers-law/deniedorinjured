@@ -2,6 +2,7 @@
 /** Renders one answer page from the collection. */
 import { getCollection, render } from "astro:content";
 import Article from "../../layouts/Article.astro";
+import Markdown from "../../components/Markdown.astro";
 
 export async function getStaticPaths() {
   // Draft pages are not built at all — see personal-injury/[...slug].astro
@@ -34,5 +35,6 @@ const related = entry.data.related.map((path) => ({
     { label: entry.data.question, path: `/florida-injury-answers/${entry.id}/` },
   ]}
 >
+  <div class="direct-answer"><Markdown text={entry.data.directAnswer} /></div>
   <Content />
 </Article>

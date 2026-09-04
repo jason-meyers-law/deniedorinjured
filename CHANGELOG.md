@@ -1,5 +1,26 @@
 # Changelog
 
+## 2026-09-04 (Pages CMS)
+
+- The site's words moved out of the templates into content files so
+  they can be edited in a visual editor (Pages CMS, `.pages.yml` at
+  the repo root; docs/editing.md): a `pages` collection for the fixed
+  pages (home, hubs, contact, insurance-denied, privacy, disclaimer,
+  404), an `attorneys` collection for the bios, and JSON data files
+  for the firm record (`src/data/firm.json`: name, phone, address,
+  email) and the two site-wide passages (article CTA, footer
+  notice). Practice-area and answer articles were already files; the
+  answer pages' highlighted direct answer is now its own frontmatter
+  field instead of a raw `<div>` in the body.
+- No visible change: the built HTML is identical before and after,
+  apart from typographic apostrophes and heading anchor ids that the
+  markdown pipeline adds (both already the case on article pages).
+  Sitemap and page set unchanged.
+- Editor guard rails: rename/delete disabled for every collection
+  (URLs can't be broken from the editor), Draft defaults on for new
+  articles, search title/description labeled as such, commits carry
+  the editor's identity.
+
 ## 2026-09-02 (vCard QR codes)
 
 - Added replacement QR codes for the business cards at

@@ -1,145 +1,59 @@
 ---
-/** Attorneys page. Bios are copied verbatim from the firm's own site,
- * jasonmeyerslaw.com/about (retrieved 2026-09-02) — first person, as
- * written, not summarized. Photos are the firm's own. Kept `noindex`
- * until the attorneys review this combined page; remove the flag then. */
-import Base from "../../layouts/Base.astro";
+/** Attorneys page. Each bio is a file in content/attorneys (first
+ * person, as written on the firm's own site — not summarized), shown
+ * in `order`. Heading/metadata from content/pages/about.md, which
+ * keeps the page `noindex` until the attorneys review it. */
+import Page from "../../layouts/Page.astro";
 import JsonLd from "../../components/JsonLd.astro";
-import { firm, href, barProfileUrl } from "../../lib/site";
+import { firm, href, barProfile } from "../../lib/site";
+import { pageContent } from "../../lib/pages";
+import { imageSize } from "../../lib/images";
+import { getCollection, render } from "astro:content";
 
+const { data: page, Content } = await pageContent("about");
 const aboutUrl = new URL(href("/about/jason-meyers/"), Astro.site).toString();
 
-const jasonLd = {
-  "@type": "Person",
-  name: firm.attorney,
-  jobTitle: "Attorney",
-  url: aboutUrl,
-  worksFor: { "@type": "LegalService", name: firm.entity },
-  alumniOf: [
-    { "@type": "CollegeOrUniversity", name: "Florida State University" },
-    { "@type": "CollegeOrUniversity", name: "Stetson University College of Law" },
-  ],
-  telephone: firm.phone,
-  image: new URL(href("/images/jason-meyers.png"), Astro.site).toString(),
-  sameAs: [barProfileUrl],
-};
-
-const michaelLd = {
-  "@type": "Person",
-  name: "Michael Onatsko",
-  jobTitle: "Attorney",
-  url: aboutUrl,
-  worksFor: { "@type": "LegalService", name: firm.entity },
-  alumniOf: [
-    { "@type": "CollegeOrUniversity", name: "University of Central Florida" },
-    { "@type": "CollegeOrUniversity", name: "Nova Southeastern University" },
-  ],
-  image: new URL(href("/images/michael-onatsko.webp"), Astro.site).toString(),
-};
+const attorneys = await Promise.all(
+  (await getCollection("attorneys"))
+    .sort((a, b) => a.data.order - b.data.order)
+    .map(async (entry) => ({
+      ...entry.data,
+      Bio: (await render(entry)).Content,
+      size: await imageSize(entry.data.photo),
+      ld: {
+        "@type": "Person",
+        name: entry.data.name,
+        jobTitle: entry.data.title,
+        url: aboutUrl,
+        worksFor: { "@type": "LegalService", name: firm.entity },
+        alumniOf: entry.data.alumni.map((name) => ({ "@type": "CollegeOrUniversity", name })),
+        ...(entry.data.phone && { telephone: entry.data.phone }),
+        image: new URL(href(entry.data.photo), Astro.site).toString(),
+        ...(entry.data.barNumber && { sameAs: [barProfile(entry.data.barNumber)] }),
+      },
+    })),
+);
 ---
 
-<Base
-  title="Attorneys"
-  description="The attorneys of Jason Meyers Law, PLLC — Jason O. Meyers and Michael Onatsko, serving Brevard County, Florida."
-  noindex={true}
->
-  <h1>Attorneys</h1>
+<Page page={page} Content={Content}>
+  {attorneys.map((a) => (
+    <>
+      <h2>{a.name}</h2>
+      <p class="staff-title">{a.title}</p>
+      <div class="staff-details">
+        <img
+          class="staff-photo"
+          src={href(a.photo)}
+          alt={a.photoAlt}
+          width={a.size.width}
+          height={a.size.height}
+        />
+        <div class="staff-bio">
+          <a.Bio />
+        </div>
+      </div>
+    </>
+  ))}
 
-  <h2>{firm.attorney}</h2>
-  <p class="staff-title">Attorney</p>
-  <div class="staff-details">
-    <img
-      class="staff-photo"
-      src={href("/images/jason-meyers.png")}
-      alt="Portrait of Jason O. Meyers"
-      width="146"
-      height="204"
-    />
-    <div class="staff-bio">
-      <p>
-        I am the son of Jeff and Lillian Meyers. My father, Jeff, was a F-15
-        flight mechanic in the Airforce. My mother stayed home with me and my
-        brother and sister. My mother attended school at night and obtained a
-        master's degree in education. She went on to be a teacher as me and my
-        siblings entered our teenage years.
-      </p>
-      <p>
-        My parents instilled the values of hard work and education in me. I
-        attended Florida State University where I studied Philosophy and
-        Religion. After graduating, I worked as a discrimination investigator
-        at the Florida Commission on Human Relations for three years. I was
-        encouraged by the staff attorneys at FCHR to attend law school.
-      </p>
-      <p>
-        I attended law school at Stetson University in Gulfport, located near
-        St. Petersburg in the Tampa Bay area. After graduating, I began working
-        as an attorney in Civil Litigation in the area of personal injury,
-        insurance disputes, property damage, and breach of contract claims. My
-        practice consisted mostly of representing large corporations. In March
-        2024, I left the big firm practice to establish a practice in the
-        community to assist small business owners and individuals with their
-        legal needs.
-      </p>
-      <p>
-        I have tried several cases to verdict. I pride myself on my courtroom
-        experience because it educates and informs the advice that I give to my
-        clients. I take the time to educate my clients on the litigation
-        process and what could happen with the understanding that I am capable
-        and willing to go to trial to see their case through. This is important
-        when negotiating a result because the other side knows that you are
-        represented by an attorney that will take the case to trial and thus is
-        more likely to give you full value during negotiations and potentially
-        avoiding the costs of litigation.
-      </p>
-      <p>
-        When I am not practicing law, I am with my wife and two children or on
-        the tennis court.
-      </p>
-    </div>
-  </div>
-
-  <h2>Michael Onatsko</h2>
-  <p class="staff-title">Attorney</p>
-  <div class="staff-details">
-    <img
-      class="staff-photo"
-      src={href("/images/michael-onatsko.webp")}
-      alt="Portrait of Michael Onatsko"
-      width="750"
-      height="938"
-    />
-    <div class="staff-bio">
-      <p>
-        I am a first-generation American whose parents came to the United
-        States of America seeking freedom from religious persecution. Growing
-        up, I watched my parents build a new life in the States with me and my
-        four siblings. This instilled a strong work ethic that I carry with me
-        to this day through discipline and perseverance.
-      </p>
-      <p>
-        I obtained my bachelor's degree in Legal Studies at the University of
-        Central Florida and completed my J.D. at Nova Southeastern University.
-        After graduating law school, I returned to Central Florida and began my
-        legal career in civil litigation, focusing on defense work. At two
-        large insurance defense firms, I had the opportunity to represent a
-        wide range of clients, from individuals involved in motor vehicle
-        accidents to major insurance carriers, trucking companies, and Fortune
-        500 corporations. These early years provided invaluable courtroom
-        experience and sharpened my ability to think strategically.
-      </p>
-      <p>
-        Since leaving the defense firms, I continue to focus on civil
-        litigation. I have dedicated my career to representing individuals and
-        businesses across Florida, both plaintiffs and defendants, in a variety
-        of legal disputes.
-      </p>
-      <p>
-        When I am not in the office or the courtroom, I spend my time outdoors
-        boating with my fiancée and our three dogs.
-      </p>
-    </div>
-  </div>
-
-  <JsonLd data={jasonLd} />
-  <JsonLd data={michaelLd} />
-</Base>
+  {attorneys.map((a) => <JsonLd data={a.ld} />)}
+</Page>
