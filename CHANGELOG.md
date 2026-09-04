@@ -2,6 +2,8 @@
 
 ## 2026-09-04 (redesign to the Meyers & Onatsko mockup)
 
+- About page is now indexable: the `noindex, nofollow` left over from
+  its stub days is lifted.
 - Site rebuilt to the homepage mockup the firm supplied, with
   Michael's corrections applied: the icon row says "Proudly serving
   Florida" (not Brevard County); the About checkmarks are Insurance
