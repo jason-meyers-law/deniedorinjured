@@ -53,4 +53,4 @@ cta:
   image: /images/home/launch.jpg
   imageAlt: Space shuttle Endeavour lifting off at night from Kennedy Space Center
 ---
-We represent individuals and families in insurance coverage disputes and personal injury matters throughout Brevard County, Florida.
+We represent individuals and families in insurance coverage disputes and personal injury matters throughout Florida.
