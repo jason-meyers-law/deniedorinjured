@@ -43,6 +43,12 @@
   THIRD_PARTY_LICENSES; `public/images/building.jpg` (unused stock)
   removed. Practice-page SVGs recolored to the new palette (cream /
   ink / burnt orange).
+- Logo: the real Meyers & Onatsko mark, traced to SVG from the
+  business-card artwork, replaces the placeholder monogram and the
+  text lockup in the header and footer. Reusable files in
+  `public/brand/` (lockup, monogram, wordmark); favicon, touch icon and
+  share image regenerated from them. Site accent colour moved from the
+  mockup's orange to the logo's brown (#9d6c44).
 - Firm legal name is now "Meyers & Onatsko" everywhere the site named
   "Jason Meyers Law, PLLC" (disclaimer, privacy policy, insurance
   overview, article CTA, structured data).

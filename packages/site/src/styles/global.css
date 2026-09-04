@@ -1,5 +1,6 @@
-/* Visual identity from the firm's 2026-09 homepage mockup: cream page
-   ground, near-black ink, burnt-orange accent, dark footer. Serif
+/* Visual identity from the firm's 2026-09 homepage mockup and the
+   business-card logo: cream page ground, near-black ink, the logo's
+   brown as the accent, dark footer. Serif
    throughout — Vollkorn for body and headings, Quattrocento for the
    small uppercase labels (nav, eyebrows, footer). Fonts self-hosted
    (SIL OFL, see THIRD_PARTY_LICENSES). */
@@ -30,8 +31,8 @@
   --ink-soft: #5b6270;
   --paper: #ffffff;
   --cream: #f7f4ef;
-  --accent: #b8642f;
-  --accent-dark: #9a5124;
+  --accent: #9d6c44; /* the brown in the logo */
+  --accent-dark: #7f5636;
   --footer: #151a24;
   --footer-text: #c9cdd6;
   --rule: #e3ded5;
@@ -153,21 +154,7 @@ img { max-width: 100%; height: auto; }
   color: var(--ink);
 }
 .brand:hover { color: var(--ink); }
-.brand-mark { flex-shrink: 0; }
-.brand-text { display: flex; flex-direction: column; line-height: 1.15; }
-.brand-title {
-  font-family: var(--serif);
-  font-weight: 600;
-  font-size: 1.35rem;
-}
-.brand-line {
-  font-family: var(--label);
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  font-size: 0.68rem;
-  color: var(--ink-soft);
-  margin-top: 0.2rem;
-}
+.brand svg { flex-shrink: 0; display: block; }
 .site-nav { margin-left: auto; }
 .site-nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.2rem 1.5rem; }
 .site-nav a { color: var(--ink); padding: 0.3rem 0; border-bottom: 2px solid transparent; }
@@ -177,8 +164,9 @@ img { max-width: 100%; height: auto; }
   .site-nav { order: 3; flex-basis: 100%; margin-left: 0; }
   .site-nav ul { justify-content: center; gap: 0.2rem 1.1rem; }
   .header-cta { padding: 0.6rem 0.9rem; font-size: 0.85rem; }
-  .brand-mark { width: 44px; height: 44px; }
-  .brand-title { font-size: 1.15rem; }
+  .brand { gap: 0.6rem; }
+  .brand-mark { width: 40px; height: 45px; }
+  .brand-word { width: 200px; height: 30px; }
 }
 /* Narrow phones: the hero carries the consultation button. */
 @media (max-width: 559px) {
@@ -492,7 +480,6 @@ img { max-width: 100%; height: auto; }
   align-items: start;
 }
 .footer-brand .brand { color: #fff; }
-.footer-brand .brand-line { color: var(--footer-text); }
 .footer-areas { margin: 1.4rem 0 0.3rem; color: #fff; font-weight: 600; }
 .footer-place { margin: 0; }
 .footer-nav, .footer-contact { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }

@@ -517,12 +517,12 @@ content:
       - name: brand
         type: string
         label: Firm name
-        description: "Shown next to the logo, in the copyright line and in the browser tab (\"Meyers & Onatsko\")."
+        description: "Used in the copyright line, the browser tab and the logo's alt text (\"Meyers & Onatsko\"). The logo artwork itself is not editable here."
         required: true
       - name: brandLine
         type: string
         label: Line under the firm name
-        description: "\"Attorneys at Law\" in the header and footer."
+        description: "\"Attorneys at Law\" — the logo's alt text and the share image."
         required: true
       - name: tagline
         type: string

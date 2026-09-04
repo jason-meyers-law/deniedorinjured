@@ -1,34 +1,24 @@
 ---
-/** The MO monogram: a thin square with the two letters overlapping,
- * drawn with the site's serif so it matches the wordmark. */
-interface Props { size?: number; class?: string }
-const { size = 56, class: cls } = Astro.props;
+/** The firm's logo, drawn from the sprite in public/brand/logo.svg
+ * (traced from the business-card artwork; see docs/editing.md
+ * "Brand assets"). The ink follows `currentColor`, so the same art
+ * works on the cream header and the dark footer; the brown stays the
+ * brand brown. Decorative — the surrounding link carries the name. */
+import { href } from "../lib/site";
+
+interface Props {
+  part: "monogram" | "wordmark";
+  /** Rendered height in CSS pixels; width follows the artwork's ratio. */
+  height: number;
+  class?: string;
+}
+const { part, height, class: cls } = Astro.props;
+
+// viewBox sizes of the sprite symbols
+const ratio = { monogram: 162.3 / 182.3, wordmark: 667.3 / 99.8 }[part];
+const width = Math.round(height * ratio * 10) / 10;
 ---
 
-<svg
-  class={cls}
-  width={size}
-  height={size}
-  viewBox="0 0 64 64"
-  aria-hidden="true"
->
-  <rect x="2" y="2" width="60" height="60" fill="none" stroke="currentColor" stroke-width="1.5" />
-  <text
-    x="10"
-    y="42"
-    font-family="Vollkorn, Georgia, serif"
-    font-size="38"
-    font-weight="500"
-    fill="currentColor"
-  >M</text>
-  <text
-    x="31"
-    y="52"
-    font-family="Vollkorn, Georgia, serif"
-    font-size="30"
-    font-weight="400"
-    fill="none"
-    stroke="var(--accent, #b8642f)"
-    stroke-width="1.6"
-  >O</text>
+<svg class={cls} width={width} height={height} aria-hidden="true">
+  <use href={`${href("/brand/logo.svg")}#${part}`} />
 </svg>

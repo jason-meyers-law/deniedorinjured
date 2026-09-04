@@ -30,8 +30,27 @@ add its credit to the Photo Credits page.
 
 Not editable in the CMS (code): navigation labels and the "Free
 Consultation" header button, layout, JSON-LD shape, `STAGING`, the
-GA4 ID, the contact-form processor address (`formEndpoint`), and the
-vCards.
+GA4 ID, the contact-form processor address (`formEndpoint`), the
+vCards, and the logo.
+
+## Brand assets
+
+The logo lives in `packages/site/public/brand/` as SVG, traced from
+the business-card artwork (the card file is a raster, so the trace is
+the vector source of record):
+
+| File | Use |
+|---|---|
+| `lockup.svg` | Monogram over the name — the full logo. |
+| `monogram.svg` | The framed MO alone (favicon, avatars, app icons). |
+| `wordmark.svg` | "Meyers & Onatsko / Attorneys at Law" alone. |
+| `logo.svg` | Sprite the site draws the header and footer from; not for reuse elsewhere. |
+
+The three standalone files carry the brand colours (ink `#262626`,
+brown `#9d6c44`) and scale to any size, so they are the ones to send
+to a printer, a directory listing, or an email-signature tool. The
+favicon, Apple touch icon, and share image in `public/` are rendered
+from them.
 
 ## Rules the config enforces
 
