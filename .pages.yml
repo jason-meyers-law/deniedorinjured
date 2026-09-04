@@ -524,11 +524,6 @@ content:
         label: Line under the firm name
         description: "\"Attorneys at Law\" — the logo's alt text and the share image."
         required: true
-      - name: tagline
-        type: string
-        label: Tagline
-        description: Shown at the bottom of the footer.
-        required: true
       - name: entity
         type: string
         label: Firm legal name

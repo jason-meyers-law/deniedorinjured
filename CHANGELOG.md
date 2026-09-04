@@ -43,6 +43,10 @@
   THIRD_PARTY_LICENSES; `public/images/building.jpg` (unused stock)
   removed. Practice-page SVGs recolored to the new palette (cream /
   ink / burnt orange).
+- Footer: full street address, linked to Google Maps directions,
+  instead of "Cocoa, FL"; site address shown without "www."; the
+  "Justice Today. A Stronger Tomorrow." tagline is gone (and its Firm
+  details field with it).
 - Header keeps the logo, links and Free Consultation button on one
   line at every desktop width (it wrapped between about 900 and
   1200px); the nav tightens instead.

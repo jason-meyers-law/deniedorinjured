@@ -1,9 +1,9 @@
 ---
 /** Base HTML shell: logo + nav bar with the consultation button, the
  * page in the slot, then the dark footer (brand block, nav, contact
- * details, copyright/tagline, legal line). Staging noindex and banner
+ * details, copyright, legal line). Staging noindex and banner
  * ride along on every page. */
-import { STAGING, firm, href, practiceAreas, snippets } from "../lib/site";
+import { STAGING, firm, href, mapDirectionsUrl, practiceAreas, snippets } from "../lib/site";
 import Analytics from "../components/Analytics.astro";
 import BaseHead from "../components/BaseHead.astro";
 import Icon from "../components/Icon.astro";
@@ -83,12 +83,11 @@ const isActive = (path: string) =>
           <li><Icon name="phone" size={18} /><a href={firm.phoneHref}>{firm.phone}</a></li>
           <li><Icon name="mail" size={18} /><a href={`mailto:${firm.email}`}>{firm.email}</a></li>
           <li><Icon name="globe" size={18} /><a href={href("/")}>{firm.website}</a></li>
-          <li><Icon name="pin" size={18} /><span>{firm.postal.city}, {firm.postal.region}</span></li>
+          <li><Icon name="pin" size={18} /><a href={mapDirectionsUrl} target="_blank" rel="noopener">{firm.address}</a></li>
         </ul>
       </div>
       <div class="wrap footer-bottom">
         <p class="copyright">&copy; {new Date().getFullYear()} {firm.brand}. All rights reserved.</p>
-        <p class="tagline">{firm.tagline}</p>
       </div>
       <div class="wrap legal-line">
         <p>{snippets.footerNotice}</p>

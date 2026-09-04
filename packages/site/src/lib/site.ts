@@ -28,7 +28,6 @@ export function href(path: string): string {
 export const firm = {
   brand: firmData.brand,
   brandLine: firmData.brandLine,
-  tagline: firmData.tagline,
   entity: firmData.entity,
   attorney: firmData.attorney,
   barNumber: firmData.barNumber,
@@ -43,7 +42,7 @@ export const firm = {
   /** Area-served line under the footer brand block. */
   geography: firmData.geography,
   /** Display form of the site's own address (footer contact block). */
-  website: "www.deniedorinjured.com",
+  website: "deniedorinjured.com",
 } as const;
 
 const mapQuery = encodeURIComponent(`${firm.address}`);

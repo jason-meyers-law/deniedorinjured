@@ -19,7 +19,7 @@ few minutes. Nothing about how pages are built or indexed changes
 | Practice areas | `.../content/practice-areas/*.md` | One article per file; the filename is the URL. Draft checkbox = publish gate. |
 | Injury answers | `.../content/answers/*.md` | Same, plus the question and the highlighted direct answer. |
 | Attorneys | `.../content/attorneys/*.md` | Bio, photo, title, schools, Bar number (optional), display order. |
-| Firm details | `packages/site/src/data/firm.json` | Firm name and the line under it, tagline, legal name, principal attorney, phone, email, office address, area served. Drives the header, footer, contact page (including the map), and structured data. |
+| Firm details | `packages/site/src/data/firm.json` | Firm name and the line under it, legal name, principal attorney, phone, email, office address, area served. Drives the header, footer, contact page (including the map), and structured data. |
 | Site-wide text | `packages/site/src/data/snippets.json` | The article call-to-action paragraph and the footer not-legal-advice line. |
 
 Photos: pick **Upload** in any photo field; files land in
