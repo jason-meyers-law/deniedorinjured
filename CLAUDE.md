@@ -6,6 +6,9 @@ Meyers Law, PLLC. Structure mirrors chrismeyersfsu/python-monorepo-template
 
 - `./packages/site/ci.sh` is the CI entry; run it before pushing.
   Hooks: `git config core.hooksPath .githooks`.
+- `assets/` is a submodule (jason-meyers-law/assets: logo SVGs and
+  exports). `packages/site/public/brand` symlinks into it. Logo
+  changes go there first; bump the submodule pointer here.
 - One concern per package. A new concern gets a new package under
   `packages/`, not a subdirectory of an existing one.
 - `CHANGELOG.md` entry with every user-facing code change, same

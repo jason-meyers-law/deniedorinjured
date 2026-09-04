@@ -35,22 +35,17 @@ vCards, and the logo.
 
 ## Brand assets
 
-The logo lives in `packages/site/public/brand/` as SVG, traced from
-the business-card artwork (the card file is a raster, so the trace is
-the vector source of record):
+The logo lives in its own repo, [jason-meyers-law/assets](https://github.com/jason-meyers-law/assets),
+checked out here as the `assets/` submodule (`git submodule update
+--init` after cloning; `ci.sh` does it too). Its README says which
+file to send for Google Business Profile, Facebook, LinkedIn, Avvo,
+email signatures, printers, and so on — every size is pre-rendered.
 
-| File | Use |
-|---|---|
-| `lockup.svg` | Monogram over the name — the full logo. |
-| `monogram.svg` | The framed MO alone (favicon, avatars, app icons). |
-| `wordmark.svg` | "Meyers & Onatsko / Attorneys at Law" alone. |
-| `logo.svg` | Sprite the site draws the header and footer from; not for reuse elsewhere. |
-
-The three standalone files carry the brand colours (ink `#262626`,
-brown `#9d6c44`) and scale to any size, so they are the ones to send
-to a printer, a directory listing, or an email-signature tool. The
-favicon, Apple touch icon, and share image in `public/` are rendered
-from them.
+The site serves `assets/logo/` at `/brand/` (`packages/site/public/brand`
+is a symlink) and draws the header and footer from
+`site-sprite.svg`. The favicon, Apple touch icon, and share image in
+`public/` are rendered from the same SVGs. To change the logo, change
+it in the assets repo, run its build, then bump the submodule here.
 
 ## Rules the config enforces
 

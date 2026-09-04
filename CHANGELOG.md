@@ -43,6 +43,10 @@
   THIRD_PARTY_LICENSES; `public/images/building.jpg` (unused stock)
   removed. Practice-page SVGs recolored to the new palette (cream /
   ink / burnt orange).
+- Logo files moved to the new `jason-meyers-law/assets` repo (public),
+  pulled in as the `assets/` submodule; `/brand/` now serves its
+  `logo/` folder, which adds a side-by-side lockup and white-on-dark
+  versions. The deploy checks out submodules.
 - Footer: full street address, linked to Google Maps directions,
   instead of "Cocoa, FL"; site address shown without "www."; the
   "Justice Today. A Stronger Tomorrow." tagline is gone (and its Firm

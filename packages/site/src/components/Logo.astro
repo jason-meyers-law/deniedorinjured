@@ -1,5 +1,5 @@
 ---
-/** The firm's logo, drawn from the sprite in public/brand/logo.svg
+/** The firm's logo, drawn from the sprite in public/brand/site-sprite.svg
  * (traced from the business-card artwork; see docs/editing.md
  * "Brand assets"). The ink follows `currentColor`, so the same art
  * works on the cream header and the dark footer; the brown stays the
@@ -20,5 +20,5 @@ const width = Math.round(height * ratio * 10) / 10;
 ---
 
 <svg class={cls} width={width} height={height} aria-hidden="true">
-  <use href={`${href("/brand/logo.svg")}#${part}`} />
+  <use href={`${href("/brand/site-sprite.svg")}#${part}`} />
 </svg>
