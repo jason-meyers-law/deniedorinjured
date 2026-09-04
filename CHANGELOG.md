@@ -43,6 +43,7 @@
   THIRD_PARTY_LICENSES; `public/images/building.jpg` (unused stock)
   removed. Practice-page SVGs recolored to the new palette (cream /
   ink / burnt orange).
+- About page: dropped the "Our attorneys" heading above the bios.
 - Share-card alt text (`og:image:alt`) now follows the firm name in
   Firm details instead of a hardcoded "Denied or Injured" string.
 - Privacy policy now discloses the Google Maps embed and the contact

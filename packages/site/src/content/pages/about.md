@@ -8,5 +8,3 @@ Meyers & Onatsko is a Florida law firm focused on insurance coverage
 disputes and personal injury matters. We work closely with our
 clients, providing clear communication, strategic guidance, and
 dedicated representation from start to finish.
-
-## Our attorneys
