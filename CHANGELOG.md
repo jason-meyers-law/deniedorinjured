@@ -43,6 +43,8 @@
   THIRD_PARTY_LICENSES; `public/images/building.jpg` (unused stock)
   removed. Practice-page SVGs recolored to the new palette (cream /
   ink / burnt orange).
+- Share-card alt text (`og:image:alt`) now follows the firm name in
+  Firm details instead of a hardcoded "Denied or Injured" string.
 - Privacy policy now discloses the Google Maps embed and the contact
   form / form processor; contact address is help@.
 - Pages CMS: Homepage, Contact page and Practice area cards entries
