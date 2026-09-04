@@ -1,6 +1,6 @@
 ---
 title: Denied Coverage or Injured?
-searchTitle: Denied or Injured — Florida Insurance Coverage and Personal Injury Attorneys
+searchTitle: Florida Insurance Denial & Personal Injury Attorneys
 description: Meyers & Onatsko represents individuals and families in insurance
   coverage disputes and personal injury matters in Cocoa, Florida and across the
   state.

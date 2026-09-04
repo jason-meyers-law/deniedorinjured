@@ -8,8 +8,9 @@ import Button from "../components/Button.astro";
 import ContactForm from "../components/ContactForm.astro";
 import Icon from "../components/Icon.astro";
 import JsonLd from "../components/JsonLd.astro";
+import Photo from "../components/Photo.astro";
 import PracticeCards from "../components/PracticeCards.astro";
-import { firm, href } from "../lib/site";
+import { firm, href, mapDirectionsUrl } from "../lib/site";
 import { pageContent } from "../lib/pages";
 
 const { data: page, Content } = await pageContent("home");
@@ -17,15 +18,19 @@ const { hero, practice, values, about, cta } = page;
 
 const homeUrl = new URL(href("/"), Astro.site).toString();
 
-/** Entity facts here are Bar-verified and visible on the site (footer
- * NAP, bio). Anything unconfirmed (hours, logo, geo) stays out. */
+/** Entity facts here are Bar-verified and visible on the site (header
+ * logo, footer NAP + map link, bio). Anything unconfirmed (hours,
+ * price range, geo coordinates) stays out. */
 const legalServiceLd = {
   "@type": "LegalService",
+  "@id": `${homeUrl}#firm`,
   name: firm.brand,
   legalName: firm.entity,
   alternateName: "Denied or Injured",
   url: homeUrl,
-  telephone: firm.phone,
+  logo: new URL(href("/brand/lockup.svg"), Astro.site).toString(),
+  image: new URL(href("/og-image.png"), Astro.site).toString(),
+  telephone: firm.phoneHref.replace("tel:", ""),
   email: firm.email,
   address: {
     "@type": "PostalAddress",
@@ -35,7 +40,8 @@ const legalServiceLd = {
     postalCode: firm.postal.zip,
     addressCountry: "US",
   },
-  areaServed: "Florida",
+  hasMap: mapDirectionsUrl,
+  areaServed: { "@type": "State", name: "Florida" },
   founder: {
     "@type": "Person",
     name: firm.attorney,
@@ -53,7 +59,7 @@ const webSiteLd = {
 <Page page={page} Content={Content} plain>
   {hero && (
     <section class="hero">
-      <img class="hero-img" src={href(hero.image)} alt={hero.imageAlt} width="1600" height="900" fetchpriority="high" />
+      <Photo class="hero-img" src={hero.image} alt={hero.imageAlt} width={1600} height={900} sizes="100vw" loading="eager" fetchpriority="high" />
       <div class="wrap hero-row">
         <div class="hero-copy">
           {hero.eyebrow && <p class="eyebrow">{hero.eyebrow}</p>}
@@ -107,13 +113,13 @@ const webSiteLd = {
         )}
         <p><Button href={about.button.link}>{about.button.label}</Button></p>
       </div>
-      <img class="about-img" src={href(about.image)} alt={about.imageAlt} width="1200" height="900" loading="lazy" />
+      <Photo class="about-img" src={about.image} alt={about.imageAlt} width={1200} height={900} sizes="(min-width: 900px) 50vw, 100vw" loading="lazy" />
     </section>
   )}
 
   {cta && (
     <section class="cta-band">
-      <img class="cta-img" src={href(cta.image)} alt={cta.imageAlt} width="1600" height="700" loading="lazy" />
+      <Photo class="cta-img" src={cta.image} alt={cta.imageAlt} width={1600} height={700} sizes="100vw" loading="lazy" />
       <div class="wrap cta-copy">
         {cta.eyebrow && <p class="eyebrow">{cta.eyebrow}</p>}
         <h2>{cta.heading}</h2>

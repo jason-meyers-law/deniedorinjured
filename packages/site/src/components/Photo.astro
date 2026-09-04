@@ -1,0 +1,45 @@
+---
+/** A content photo referenced by its public path (the form the CMS
+ * stores, e.g. /images/home/hero.jpg), served as responsive AVIF/WebP
+ * with the original as fallback. Anything under public/images/ is
+ * picked up at build time; a path outside it falls back to a plain
+ * <img> so a CMS upload never breaks the build. */
+import { Picture } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import { href } from "../lib/site";
+
+interface Props {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  /** The `sizes` attribute: how wide the photo renders. */
+  sizes: string;
+  class?: string;
+  loading?: "lazy" | "eager";
+  fetchpriority?: "high" | "low" | "auto";
+}
+const { src, alt, width, height, sizes, class: cls, loading, fetchpriority } = Astro.props;
+
+const photos = import.meta.glob<{ default: ImageMetadata }>(
+  "../../public/images/**/*.{jpg,jpeg,png}",
+  { eager: true },
+);
+const found = photos[`../../public${src}`]?.default;
+---
+
+{found ? (
+  <Picture
+    src={found}
+    alt={alt}
+    class={cls}
+    widths={[640, 960, 1280, 1600].filter((w) => w <= found.width)}
+    sizes={sizes}
+    formats={["avif", "webp"]}
+    loading={loading}
+    fetchpriority={fetchpriority}
+    pictureAttributes={{ class: "photo" }}
+  />
+) : (
+  <img class={cls} src={href(src)} alt={alt} width={width} height={height} loading={loading} fetchpriority={fetchpriority} />
+)}

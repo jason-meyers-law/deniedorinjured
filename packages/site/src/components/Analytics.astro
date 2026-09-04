@@ -2,20 +2,27 @@
 /** GA4, emitted only when analyticsId is set — the site ships zero
  * third-party script otherwise. Besides pageviews it reports the two
  * conversions that matter here: phone and email link clicks. IP
- * anonymization is GA4-default; disclose analytics in the privacy
- * policy before launch (DECISIONS.md §34). */
+ * anonymization is GA4-default; analytics is disclosed in the privacy
+ * policy. The library loads after window load (see below). */
 import { analyticsId } from "../lib/site";
 ---
 
 {analyticsId && (
   <>
-    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${analyticsId}`}
-    ></script>
     <script is:inline define:vars={{ analyticsId }}>
       window.dataLayer = window.dataLayer || [];
       function gtag() { dataLayer.push(arguments); }
       gtag("js", new Date());
       gtag("config", analyticsId);
+      // gtag.js is ~75 kB of script the page never needs to render; fetch
+      // it once the page has loaded so it stays off the critical path.
+      // Events queued on dataLayer before then are sent when it arrives.
+      window.addEventListener("load", function () {
+        var s = document.createElement("script");
+        s.async = true;
+        s.src = "https://www.googletagmanager.com/gtag/js?id=" + analyticsId;
+        document.head.appendChild(s);
+      });
       document.addEventListener("click", function (e) {
         var a = e.target && e.target.closest && e.target.closest("a[href]");
         if (!a) return;

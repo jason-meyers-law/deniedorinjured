@@ -4,6 +4,12 @@
 
 - About page is now indexable: the `noindex, nofollow` left over from
   its stub days is lifted.
+- SEO pass: noindexed pages (privacy, disclaimer, credits) drop out of
+  the sitemap and lose `nofollow`; homepage title shortened to
+  "Florida Insurance Denial & Personal Injury Attorneys"; LegalService
+  schema gains logo, image, map link and E.164 phone; homepage photos
+  served as responsive AVIF/WebP (new `Photo` component); GA4 loads
+  after the page has finished loading.
 - Site rebuilt to the homepage mockup the firm supplied, with
   Michael's corrections applied: the icon row says "Proudly serving
   Florida" (not Brevard County); the About checkmarks are Insurance

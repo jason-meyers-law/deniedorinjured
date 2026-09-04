@@ -199,6 +199,9 @@ img { max-width: 100%; height: auto; }
   display: flex;
   align-items: center;
 }
+/* <picture> from Photo.astro: the img alone takes part in layout. */
+.photo { display: contents; }
+
 .hero-img {
   position: absolute;
   inset: 0;
