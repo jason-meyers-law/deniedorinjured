@@ -75,7 +75,8 @@ the website, not mail. Email added on top of the same tenant.
 
 | Address | Type | Notes |
 |---------|------|-------|
-| `intake@deniedorinjured.com` | Shared mailbox (unlicensed) | Public intake address on the website. Jason gets Full Access + Send As. |
+| `help@deniedorinjured.com` | Alias (added by hand in the admin center, 2026-09-04) | Public address on the website (footer, contact page, privacy policy). |
+| `intake@deniedorinjured.com` | Shared mailbox (unlicensed) | Original intake address; still receives. Jason gets Full Access + Send As. |
 | `jason@deniedorinjured.com` | Shared mailbox (unlicensed) | Same shape as intake@. Internal alias `jason-deniedorinjured`, display name "Jason O. Meyers". Jason gets Full Access + Send As. |
 | `michael@deniedorinjured.com` | Shared mailbox (unlicensed) | Internal alias `michael-deniedorinjured`, display name "Michael Onatsko". `michael@jasonmeyerslaw.com` gets Full Access + Send As. Address is on his vCard (`/vcard/michael-onatsko.vcf`). |
 
@@ -178,7 +179,6 @@ automated intake mail gets spam-foldered. Watch the digests for it.
 
 ## Go-live gate
 
-`intake@deniedorinjured.com` renders on the contact page as a `mailto:`
-link but the site stays `noindex` until `STAGING = false`
-(`packages/site/src/lib/site.ts`) per `docs/launch-qa.md`. The shared
-mailbox must exist and receive before that switch.
+`help@deniedorinjured.com` renders on the contact page and in the footer
+as a `mailto:` link; the alias must exist and receive before the site
+is promoted (it does, as of 2026-09-04).
