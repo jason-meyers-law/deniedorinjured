@@ -43,6 +43,9 @@
   THIRD_PARTY_LICENSES; `public/images/building.jpg` (unused stock)
   removed. Practice-page SVGs recolored to the new palette (cream /
   ink / burnt orange).
+- Header keeps the logo, links and Free Consultation button on one
+  line at every desktop width (it wrapped between about 900 and
+  1200px); the nav tightens instead.
 - Logo: the real Meyers & Onatsko mark, traced to SVG from the
   business-card artwork, replaces the placeholder monogram and the
   text lockup in the header and footer. Reusable files in
