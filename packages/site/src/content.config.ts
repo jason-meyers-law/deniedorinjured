@@ -122,6 +122,9 @@ const attorneys = defineCollection({
     barNumber: z.string().optional(),
     /** Direct phone, if published. */
     phone: z.string().optional(),
+    /** Site-relative path to the attorney's vCard under public/vcard/
+     * (e.g. /vcard/jason-meyers.vcf); renders a "Save contact" link. */
+    vcard: z.string().optional(),
     /** Schools, for JSON-LD alumniOf. */
     alumni: z.array(z.string()).default([]),
     /** Order on the page; lower first. */

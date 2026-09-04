@@ -3,6 +3,7 @@
  * per file in content/attorneys (first person, as written on the
  * firm's own site — not summarized), shown in `order`. */
 import Page from "../../layouts/Page.astro";
+import Icon from "../../components/Icon.astro";
 import JsonLd from "../../components/JsonLd.astro";
 import { firm, href, barProfile } from "../../lib/site";
 import { pageContent } from "../../lib/pages";
@@ -39,6 +40,11 @@ const attorneys = await Promise.all(
     <>
       <h2>{a.name}</h2>
       <p class="staff-title">{a.title}</p>
+      {a.vcard && (
+        <p class="staff-contact">
+          <a href={href(a.vcard)} download><Icon name="user" size={18} />Save contact (vCard)</a>
+        </p>
+      )}
       <div class="staff-details">
         <img
           class="staff-photo"

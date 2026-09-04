@@ -2,6 +2,9 @@
 
 ## 2026-09-04 (redesign to the Meyers & Onatsko mockup)
 
+- About page: each attorney has a "Save contact (vCard)" link under
+  their title (`vcard` field on the attorney entry; the .vcf files
+  already lived at `/vcard/`).
 - About page is now indexable: the `noindex, nofollow` left over from
   its stub days is lifted.
 - SEO pass: noindexed pages (privacy, disclaimer, credits) drop out of

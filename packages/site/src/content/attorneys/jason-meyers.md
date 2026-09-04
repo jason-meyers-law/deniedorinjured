@@ -5,6 +5,7 @@ photo: /images/jason-meyers.png
 photoAlt: "Portrait of Jason O. Meyers"
 barNumber: "106509"
 phone: "(321) 382-0403"
+vcard: /vcard/jason-meyers.vcf
 alumni:
   - Florida State University
   - Stetson University College of Law

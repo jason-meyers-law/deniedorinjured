@@ -3,6 +3,7 @@ name: "Michael Onatsko"
 title: "Attorney"
 photo: /images/michael-onatsko.webp
 photoAlt: "Portrait of Michael Onatsko"
+vcard: /vcard/michael-onatsko.vcf
 alumni:
   - University of Central Florida
   - Nova Southeastern University

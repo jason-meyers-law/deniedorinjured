@@ -492,6 +492,10 @@ content:
         type: string
         label: Phone
         description: Optional. Included in the page's structured data.
+      - name: vcard
+        type: string
+        label: vCard
+        description: Optional. Path of the attorney's contact card, e.g. /vcard/jason-meyers.vcf; shows a "Save contact" link under the title. The card files themselves are maintained in code.
       - name: alumni
         type: string
         label: Schools

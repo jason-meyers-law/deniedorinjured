@@ -18,7 +18,7 @@ few minutes. Nothing about how pages are built or indexed changes
 | Practice area cards | `packages/site/src/data/practice-areas.json` | The two cards (heading, text, link, illustration) shown on the homepage and the Practice Areas page; their headings also make the first line of the footer. |
 | Practice areas | `.../content/practice-areas/*.md` | One article per file; the filename is the URL. Draft checkbox = publish gate. |
 | Injury answers | `.../content/answers/*.md` | Same, plus the question and the highlighted direct answer. |
-| Attorneys | `.../content/attorneys/*.md` | Bio, photo, title, schools, Bar number (optional), display order. |
+| Attorneys | `.../content/attorneys/*.md` | Bio, photo, title, schools, Bar number (optional), vCard link (optional), display order. |
 | Firm details | `packages/site/src/data/firm.json` | Firm name and the line under it, legal name, principal attorney, phone, email, office address, area served. Drives the header, footer, contact page (including the map), and structured data. |
 | Site-wide text | `packages/site/src/data/snippets.json` | The article call-to-action paragraph and the footer not-legal-advice line. |
 
