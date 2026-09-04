@@ -9,7 +9,8 @@
   "Florida Insurance Denial & Personal Injury Attorneys"; LegalService
   schema gains logo, image, map link and E.164 phone; homepage photos
   served as responsive AVIF/WebP (new `Photo` component); GA4 loads
-  after the page has finished loading.
+  after the page has finished loading; the stylesheet is inlined and
+  the italic face preloaded (PageSpeed's render-blocking chain).
 - Site rebuilt to the homepage mockup the firm supplied, with
   Michael's corrections applied: the icon row says "Proudly serving
   Florida" (not Brevard County); the About checkmarks are Insurance

@@ -19,6 +19,9 @@ export default defineConfig({
   site: "https://deniedorinjured.com",
   base: "/",
   trailingSlash: "always",
+  // The whole stylesheet is ~4 kB; inlining it removes a render-blocking
+  // round trip (PageSpeed: 480 ms on slow 4G) for one extra kB per page.
+  build: { inlineStylesheets: "always" },
   integrations: [
     // Emits sitemap-index.xml (submitted to Search Console). The 404
     // page, the /about/jason-meyers/ forwarding stub, and noindexed

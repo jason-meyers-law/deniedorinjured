@@ -33,7 +33,7 @@ const found = photos[`../../public${src}`]?.default;
     src={found}
     alt={alt}
     class={cls}
-    widths={[640, 960, 1280, 1600].filter((w) => w <= found.width)}
+    widths={[640, 800, 960, 1280, 1600].filter((w) => w <= found.width)}
     sizes={sizes}
     formats={["avif", "webp"]}
     loading={loading}
