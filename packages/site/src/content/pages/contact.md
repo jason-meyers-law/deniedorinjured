@@ -13,5 +13,4 @@ office:
   directions: "Map & Directions"
 ---
 
-Call or email us and tell us what happened. We'll listen and discuss
-your options.
+Call or email us and tell us what happened. We'll listen and discuss your options.

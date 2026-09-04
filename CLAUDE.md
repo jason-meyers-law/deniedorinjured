@@ -17,7 +17,8 @@ Meyers Law, PLLC. Structure mirrors chrismeyersfsu/python-monorepo-template
 Prose is edited through Pages CMS (`.pages.yml`, docs/editing.md).
 Words go in `packages/site/src/content/**` and `src/data/*.json`, not
 in `.astro` templates — a new page gets a content file plus a thin
-route that renders it. Keep `.pages.yml` in step with
+route that renders it. Write content one line per paragraph, never
+hard-wrapped at a column — the CMS editor shows the raw line breaks. Keep `.pages.yml` in step with
 `src/content.config.ts` when a schema changes.
 
 ## Deploy
