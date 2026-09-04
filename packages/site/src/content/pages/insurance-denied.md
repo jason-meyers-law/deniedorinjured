@@ -10,7 +10,7 @@ when an insurer refuses to defend, defends under a reservation of
 rights, denies indemnity, or lets a claim that could have settled
 within policy limits turn into a judgment above them.
 
-Jason Meyers Law, PLLC represents Florida insureds — individuals, property
+Meyers & Onatsko represents Florida insureds — individuals, property
 owners, contractors, and businesses — in these disputes. Detailed
 pages on denied defenses, reservations of rights, declaratory
 judgment actions, coverage denials, and Florida bad-faith law are in

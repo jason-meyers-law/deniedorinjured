@@ -1,6 +1,6 @@
 # DeniedOrInjured.com
 
-Website for Jason Meyers Law, PLLC — Florida personal injury and
+Website for Meyers & Onatsko — Florida personal injury and
 insurance-coverage disputes. Built with [Astro](https://astro.build),
 deployed to GitHub Pages.
 

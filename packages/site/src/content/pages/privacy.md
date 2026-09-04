@@ -1,11 +1,11 @@
 ---
 title: "Privacy Policy"
-description: "How Jason Meyers Law, PLLC handles information on this website."
+description: "How Meyers & Onatsko handles information on this website."
 noindex: true
 notice: "Draft — pending attorney review before it is indexed. It describes the site's current, actual practices; confirm and adjust before launch."
 ---
 
-This policy explains what information Jason Meyers Law, PLLC collects through
+This policy explains what information Meyers & Onatsko collects through
 this website and how it is used. It covers this website only.
 
 ## Information collected automatically

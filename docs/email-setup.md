@@ -1,4 +1,4 @@
-# Email setup — DeniedOrInjured.com / Jason Meyers Law
+# Email setup — DeniedOrInjured.com / Meyers & Onatsko
 
 How the firm's email authentication and addresses are configured. This
 is **configuration state, not secrets** — every DNS value below is

@@ -1,6 +1,6 @@
 ---
 title: "Disclaimer"
-description: "Legal disclaimer and attorney-advertising notice for Jason Meyers Law, PLLC."
+description: "Legal disclaimer and attorney-advertising notice for Meyers & Onatsko."
 noindex: true
 notice: "Draft — pending attorney review and Florida Bar advertising review before it is indexed."
 ---
@@ -14,7 +14,7 @@ attorney about your specific situation.
 
 ## No attorney–client relationship
 
-Using this website, or contacting Jason Meyers Law, PLLC through it, does not
+Using this website, or contacting Meyers & Onatsko through it, does not
 by itself create an attorney–client relationship. That relationship
 is established only by a signed engagement agreement. Do not send
 confidential or time-sensitive information until the firm has agreed
