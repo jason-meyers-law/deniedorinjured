@@ -10,7 +10,10 @@ export default defineConfig({
   trailingSlash: "always",
   integrations: [
     // Emits sitemap-index.xml; submit to Search Console at launch
-    // (docs/launch-qa.md). The 404 page has no place in it.
-    sitemap({ filter: (page) => !page.includes("/404") }),
+    // (docs/launch-qa.md). The 404 page and the /about/jason-meyers/
+    // forwarding stub have no place in it.
+    sitemap({
+      filter: (page) => !page.includes("/404") && !page.includes("/about/jason-meyers/"),
+    }),
   ],
 });

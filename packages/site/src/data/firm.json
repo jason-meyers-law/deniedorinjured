@@ -1,16 +1,17 @@
 {
-  "brand": "Denied or Injured",
-  "brandLine": "A personal-injury and insurance-law practice of Jason Meyers Law, PLLC",
+  "brand": "Meyers & Onatsko",
+  "brandLine": "Attorneys at Law",
+  "tagline": "Justice Today. A Stronger Tomorrow.",
   "entity": "Jason Meyers Law, PLLC",
   "attorney": "Jason O. Meyers",
   "barNumber": "106509",
   "phone": "(321) 382-0403",
-  "email": "intake@deniedorinjured.com",
+  "email": "help@deniedorinjured.com",
   "address": {
     "street": "653 Brevard Ave",
     "city": "Cocoa",
     "region": "FL",
     "zip": "32922"
   },
-  "geography": "Brevard County / Space Coast, Florida"
+  "geography": "Brevard County • Florida"
 }

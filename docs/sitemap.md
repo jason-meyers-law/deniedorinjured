@@ -27,7 +27,7 @@ URLs are permanent once published (PLAN.md §37).
 | (12 topic hubs under answers per PLAN.md §5) | hub | informational | — | answers hub | 2–3 | no |
 | `/locations/brevard-county/` | location hub | local commercial | Brevard residents | `/` | 2 | no |
 | `/locations/brevard-county/<city>/` | location | local commercial | city residents | Brevard hub | 2–4 | no |
-| `/about/jason-meyers/` | bio | trust | everyone | `/` | 1 | skeleton |
+| `/about/` (was `/about/jason-meyers/`) | bio | trust | everyone | `/` | 1 | skeleton |
 | `/about/our-team/` | trust | trust | everyone | `/` | 2 | no |
 | `/about/trial-experience/` | trust | trust | evaluators | `/` | 2 | no |
 | `/about/former-insurance-defense-perspective/` | trust | differentiation | evaluators | `/` | 2 | no |

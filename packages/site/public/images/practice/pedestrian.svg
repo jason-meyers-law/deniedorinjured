@@ -3,12 +3,12 @@
   <g fill="#cfd8de">
     <path d="M212 246 L246 212 L270 212 L236 246 Z"/>
     <path d="M292 246 L326 212 L350 212 L316 246 Z"/>
-    <path d="M372 246 L406 212 L430 212 L396 246 Z" fill="#4489b1" opacity="0.55"/>
+    <path d="M372 246 L406 212 L430 212 L396 246 Z" fill="#b8642f" opacity="0.55"/>
     <path d="M452 246 L486 212 L510 212 L476 246 Z"/>
     <path d="M532 246 L566 212 L590 212 L556 246 Z"/>
   </g>
-  <circle cx="406" cy="62" r="21" fill="#3a4145"/>
-  <g fill="none" stroke="#3a4145" stroke-width="15" stroke-linecap="round">
+  <circle cx="406" cy="62" r="21" fill="#1c2130"/>
+  <g fill="none" stroke="#1c2130" stroke-width="15" stroke-linecap="round">
     <line x1="402" y1="88" x2="392" y2="142"/>
     <line x1="392" y1="142" x2="358" y2="206"/>
     <line x1="392" y1="142" x2="430" y2="200"/>

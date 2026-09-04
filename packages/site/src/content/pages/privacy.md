@@ -13,14 +13,20 @@ this website and how it is used. It covers this website only.
 This site uses Google Analytics (GA4) to understand aggregate,
 anonymous usage — pages viewed and whether visitors tapped a phone or
 email link. GA4 anonymizes IP addresses by default. This data is
-aggregate and is not used to identify individual visitors. The site
-loads no other third-party tracking scripts.
+aggregate and is not used to identify individual visitors.
+
+The [contact page](/contact/) embeds a Google Map of the office. Google
+may set cookies and collect usage data when that map loads, under
+[Google's privacy policy](https://policies.google.com/privacy). No
+other page loads third-party scripts.
 
 ## Information you provide
 
-This site has no contact form. If you choose to call or email the
-firm, we receive what you send us. Do not include confidential or
-sensitive details in a first email — see the
+If you call, email, or send a message through the website's contact
+form, we receive what you send us — your name, contact details, and
+your message. Form submissions are delivered to the firm by a form
+processing service and used only to respond to you. Do not include
+confidential or sensitive details in a first message — see the
 [disclaimer](/disclaimer/).
 
 ## Cookies
@@ -31,9 +37,10 @@ delete cookies in your browser; the site remains usable without them.
 ## Sharing
 
 The firm does not sell your information. Analytics data is processed
-by Google; email sent to the firm is handled by its email provider.
+by Google; email and contact-form messages are handled by the firm's
+email and form providers.
 
 ## Contact
 
-Questions about this policy: [intake@deniedorinjured.com](mailto:intake@deniedorinjured.com)
+Questions about this policy: [help@deniedorinjured.com](mailto:help@deniedorinjured.com)
 or (321) 382-0403.

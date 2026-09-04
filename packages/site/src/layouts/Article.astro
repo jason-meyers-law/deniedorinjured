@@ -36,7 +36,7 @@ const articleLd = {
   author: {
     "@type": "Person",
     name: firm.attorney,
-    url: new URL(href("/about/jason-meyers/"), Astro.site).toString(),
+    url: new URL(href("/about/"), Astro.site).toString(),
   },
   publisher: { "@type": "Organization", name: firm.entity },
   ...(publishDate && { datePublished: publishDate.toISOString() }),
@@ -45,6 +45,7 @@ const articleLd = {
 ---
 
 <Base title={title} description={description} ogType="article" noindex={draft}>
+  <section class="content-section"><div class="wrap">
   <article>
     {crumbs.length > 0 && <Breadcrumbs items={crumbs} />}
     <h1>{title}</h1>
@@ -72,5 +73,6 @@ const articleLd = {
     <ContactCTA />
     <AuthorBox publishDate={publishDate} legalReviewDate={legalReviewDate} />
   </article>
+  </div></section>
   <JsonLd data={articleLd} />
 </Base>

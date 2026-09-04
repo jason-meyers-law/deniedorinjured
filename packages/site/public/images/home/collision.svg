@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360">
+  <!-- Two cars meeting head-on, in the site palette. -->
+  <rect width="480" height="360" fill="#f7f4ef"/>
+  <defs>
+    <g id="car" fill="none" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M0 230 h40 l30 -50 h95 l40 50 h35 v50 h-240 z"/>
+      <path d="M78 180 l-22 50 M110 180 v50 M165 180 l32 50"/>
+      <circle cx="65" cy="280" r="24" fill="#f7f4ef"/>
+      <circle cx="195" cy="280" r="24" fill="#f7f4ef"/>
+    </g>
+  </defs>
+  <use href="#car" stroke="#1c2130" transform="translate(20 20)"/>
+  <use href="#car" stroke="#b8642f" transform="translate(462 12) rotate(6 0 270) scale(-1 1)"/>
+  <!-- impact mark -->
+  <g stroke="#b8642f" stroke-width="7" stroke-linecap="round">
+    <line x1="238" y1="170" x2="222" y2="135"/>
+    <line x1="256" y1="160" x2="262" y2="120"/>
+    <line x1="275" y1="170" x2="298" y2="140"/>
+  </g>
+  <line x1="30" y1="330" x2="450" y2="330" stroke="#1c2130" stroke-width="6" stroke-linecap="round"/>
+</svg>

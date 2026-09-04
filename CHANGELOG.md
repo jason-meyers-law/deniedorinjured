@@ -1,5 +1,59 @@
 # Changelog
 
+## 2026-09-04 (redesign to the Meyers & Onatsko mockup)
+
+- Site rebuilt to the homepage mockup the firm supplied, with
+  Michael's corrections applied: the icon row says "Proudly serving
+  Florida" (not Brevard County); the About checkmarks are Insurance
+  Coverage Disputes / Personal Injury Matters / Responsive
+  Communication (no "Dedicated to Brevard County" item); the
+  copyright reads "© 2026 Meyers & Onatsko. All rights reserved." (no
+  "P.A."); the footer contact is help@deniedorinjured.com and
+  "Cocoa, FL"; the contact page has a Google Map of the office with
+  the address and a "Map & Directions" link.
+- Brand: the site now presents as "Meyers & Onatsko / Attorneys at
+  Law" with an MO monogram (header, footer, favicon, share card).
+  The legal entity in the disclaimer, privacy policy, and JSON-LD
+  `legalName` stays "Jason Meyers Law, PLLC" — see the note to the
+  owner in the commit/PR.
+- Homepage: photo banner (Cocoa Beach Pier) with "Denied Coverage or
+  Injured?", Free Consultation / Our Practice Areas buttons and the
+  "Local advocacy. Personal attention." aside; two illustrated
+  practice cards; four value icons; About band with the Porcher
+  House photo; "Let's talk about your case." band over a shuttle
+  launch; then the "Discuss your case" form.
+- Navigation: Home / Practice Areas / About / Resources / Contact plus
+  a "Free Consultation" button. New `/practice-areas/` page (the two
+  cards, then published injury articles). The attorneys page moved
+  from `/about/jason-meyers/` to `/about/`; the old address forwards
+  (meta refresh + canonical, noindex, out of the sitemap) and every
+  internal link and JSON-LD `url` now points at `/about/`. Footer:
+  brand block, "Denied Insurance Coverage | Personal Injury",
+  "Brevard County • Florida", nav, phone / email / web / city,
+  copyright + tagline "Justice Today. A Stronger Tomorrow.", then the
+  not-legal-advice line with Disclaimer / Privacy / Photo credits.
+- Contact form ("Discuss your case": name, email, phone, message,
+  consent line, "Get your free consultation"): renders on the
+  homepage and contact page once `formEndpoint` in `src/lib/site.ts`
+  is set to a Formspree form URL; until then no form appears and the
+  pages fall back to phone/email. Submissions post as JSON with a
+  honeypot field and fire a GA4 `form_submit` event.
+- Photos are openly licensed (CC BY 2.0, CC BY-SA 4.0, NASA public
+  domain) and credited on a new noindex `/credits/` page and in
+  THIRD_PARTY_LICENSES; `public/images/building.jpg` (unused stock)
+  removed. Practice-page SVGs recolored to the new palette (cream /
+  ink / burnt orange).
+- Privacy policy now discloses the Google Maps embed and the contact
+  form / form processor; contact address is help@.
+- Pages CMS: Homepage, Contact page and Practice area cards entries
+  rewritten for the new fields; Firm details gains Tagline;
+  docs/editing.md updated.
+- Not applied from the mockup: "© 2024" — the year is generated.
+  Words that may need Florida Bar advertising review before they stay
+  live: "Free Consultation" (header, hero, band), "Get your free
+  consultation", and the tagline; earlier owner decisions had kept
+  consultation/fee wording off the site.
+
 ## 2026-09-04 (Pages CMS)
 
 - The site's words moved out of the templates into content files so

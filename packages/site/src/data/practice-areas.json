@@ -1,0 +1,18 @@
+{
+  "cards": [
+    {
+      "heading": "Denied Insurance Coverage",
+      "text": "We help policyholders navigate complex insurance disputes and pursue the coverage they are entitled to under their policies.",
+      "link": "/insurance-denied/",
+      "image": "/images/home/claim-denied.svg",
+      "imageAlt": "An insurance claim form stamped Claim Denied"
+    },
+    {
+      "heading": "Personal Injury",
+      "text": "We represent individuals injured due to the negligence of others, helping them seek the compensation they deserve for their losses.",
+      "link": "/personal-injury/",
+      "image": "/images/home/collision.svg",
+      "imageAlt": "Line drawing of two cars after a collision"
+    }
+  ]
+}

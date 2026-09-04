@@ -1,59 +1,20 @@
 ---
-/** Attorneys page. Each bio is a file in content/attorneys (first
- * person, as written on the firm's own site — not summarized), shown
- * in `order`. Heading/metadata from content/pages/about.md, which
- * keeps the page `noindex` until the attorneys review it. */
-import Page from "../../layouts/Page.astro";
-import JsonLd from "../../components/JsonLd.astro";
-import { firm, href, barProfile } from "../../lib/site";
-import { pageContent } from "../../lib/pages";
-import { imageSize } from "../../lib/images";
-import { getCollection, render } from "astro:content";
-
-const { data: page, Content } = await pageContent("about");
-const aboutUrl = new URL(href("/about/jason-meyers/"), Astro.site).toString();
-
-const attorneys = await Promise.all(
-  (await getCollection("attorneys"))
-    .sort((a, b) => a.data.order - b.data.order)
-    .map(async (entry) => ({
-      ...entry.data,
-      Bio: (await render(entry)).Content,
-      size: await imageSize(entry.data.photo),
-      ld: {
-        "@type": "Person",
-        name: entry.data.name,
-        jobTitle: entry.data.title,
-        url: aboutUrl,
-        worksFor: { "@type": "LegalService", name: firm.entity },
-        alumniOf: entry.data.alumni.map((name) => ({ "@type": "CollegeOrUniversity", name })),
-        ...(entry.data.phone && { telephone: entry.data.phone }),
-        image: new URL(href(entry.data.photo), Astro.site).toString(),
-        ...(entry.data.barNumber && { sameAs: [barProfile(entry.data.barNumber)] }),
-      },
-    })),
-);
+/** The About page used to live here (/about/jason-meyers/). GitHub
+ * Pages cannot issue a 301, so this stub forwards old links to
+ * /about/ and asks search engines not to index the stub itself. */
+import { href } from "../../lib/site";
+const target = new URL(href("/about/"), Astro.site).toString();
 ---
 
-<Page page={page} Content={Content}>
-  {attorneys.map((a) => (
-    <>
-      <h2>{a.name}</h2>
-      <p class="staff-title">{a.title}</p>
-      <div class="staff-details">
-        <img
-          class="staff-photo"
-          src={href(a.photo)}
-          alt={a.photoAlt}
-          width={a.size.width}
-          height={a.size.height}
-        />
-        <div class="staff-bio">
-          <a.Bio />
-        </div>
-      </div>
-    </>
-  ))}
-
-  {attorneys.map((a) => <JsonLd data={a.ld} />)}
-</Page>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <link rel="canonical" href={target} />
+    <meta name="robots" content="noindex" />
+    <title>Redirecting…</title>
+  </head>
+  <body>
+    <p>This page has moved to <a href={target}>{target}</a>.</p>
+  </body>
+</html>

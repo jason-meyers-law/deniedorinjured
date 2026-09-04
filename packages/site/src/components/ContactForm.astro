@@ -1,0 +1,74 @@
+---
+/** Contact form, posted to the Formspree endpoint in site.ts. Renders
+ * nothing while `formEndpoint` is empty. Progressive: a plain HTML
+ * POST works without JS; with JS the submission is sent as JSON and
+ * the thank-you text replaces the form in place. Wording comes from
+ * content/pages/contact.md (`form`). */
+import Icon from "./Icon.astro";
+import { formEndpoint } from "../lib/site";
+import { getEntry } from "astro:content";
+
+const contact = await getEntry("pages", "contact");
+const form = contact?.data.form;
+---
+
+{formEndpoint && form && (
+  <section class="form-section" id="contact-form">
+    <div class="wrap narrow">
+      <h2 class="section-title">{form.heading}</h2>
+      {form.text && <p class="section-lead">{form.text}</p>}
+      <form class="contact-form" action={formEndpoint} method="POST" data-thanks={form.thanks}>
+        <div class="field-row">
+          <label class="field">
+            <Icon name="user" size={20} /><span class="sr-only">Name</span>
+            <input type="text" name="name" placeholder="Name*" required autocomplete="name" />
+          </label>
+          <label class="field">
+            <Icon name="mail" size={20} /><span class="sr-only">Email</span>
+            <input type="email" name="email" placeholder="Email*" required autocomplete="email" />
+          </label>
+        </div>
+        <label class="field">
+          <Icon name="phone" size={20} /><span class="sr-only">Phone</span>
+          <input type="tel" name="phone" placeholder="Phone*" required autocomplete="tel" />
+        </label>
+        <label class="field">
+          <Icon name="chat" size={20} /><span class="sr-only">Message</span>
+          <textarea name="message" placeholder="How can we help?" rows="5"></textarea>
+        </label>
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="gotcha" aria-hidden="true" />
+        <p class="consent">{form.consent}</p>
+        <button type="submit" class="btn btn-solid">{form.button}</button>
+        <p class="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+)}
+
+<script>
+  document.querySelectorAll<HTMLFormElement>("form.contact-form").forEach((form) => {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const status = form.querySelector<HTMLElement>(".form-status")!;
+      const button = form.querySelector<HTMLButtonElement>("button[type=submit]")!;
+      button.disabled = true;
+      status.textContent = "Sending…";
+      try {
+        const res = await fetch(form.action, {
+          method: "POST",
+          headers: { Accept: "application/json" },
+          body: new FormData(form),
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        form.replaceWith(Object.assign(document.createElement("p"), {
+          className: "form-thanks",
+          textContent: form.dataset.thanks,
+        }));
+        (window as any).gtag?.("event", "form_submit", { form: "contact" });
+      } catch {
+        status.textContent = "Something went wrong. Please call us or try again.";
+        button.disabled = false;
+      }
+    });
+  });
+</script>

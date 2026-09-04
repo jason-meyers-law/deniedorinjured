@@ -65,6 +65,34 @@ components:
     label: Body
     options:
       format: markdown
+  link:
+    type: string
+    label: Link (site path)
+    required: true
+    pattern:
+      regex: "^/.*/$"
+      message: "Site path starting and ending with / (e.g. /contact/)"
+  button:
+    type: object
+    label: Button
+    fields:
+      - name: label
+        type: string
+        label: Button text
+        required: true
+      - name: link
+        component: link
+  photo:
+    type: image
+    label: Photo
+    required: true
+    options:
+      extensions: [jpg, jpeg, png, webp, svg]
+  photoAlt:
+    type: string
+    label: Photo description
+    description: Read aloud by screen readers; describe the picture in a few words.
+    required: true
 
 content:
   - name: pages
@@ -72,7 +100,7 @@ content:
     type: collection
     path: packages/site/src/content/pages
     format: yaml-frontmatter
-    exclude: [home.md]
+    exclude: [home.md, contact.md]
     view:
       fields: [title, noindex]
       primary: title
@@ -115,7 +143,7 @@ content:
     fields:
       - name: title
         type: string
-        label: Page heading
+        label: Main heading
         required: true
       - name: searchTitle
         type: string
@@ -126,9 +154,182 @@ content:
       - name: body
         component: body
         label: Introduction
-      - name: gateway
+        description: The sentence or two under the main heading.
+      - name: hero
         type: object
-        label: Two-path cards
+        label: Top banner
+        fields:
+          - name: eyebrow
+            type: string
+            label: Small line above the heading
+          - name: aside
+            type: string
+            label: Side note
+            description: Short italic line at the right of the banner.
+          - name: primary
+            component: button
+            label: Main button
+          - name: secondary
+            component: button
+            label: Second button
+          - name: image
+            component: photo
+            label: Background photo
+          - name: imageAlt
+            component: photoAlt
+      - name: practice
+        type: object
+        label: Practice Areas section
+        description: The two cards themselves are edited under "Practice area cards".
+        fields:
+          - name: heading
+            type: string
+            required: true
+          - name: subheading
+            type: string
+      - name: values
+        type: object
+        label: Four values
+        list:
+          min: 4
+          max: 4
+          collapsible:
+            summary: "{label}"
+        fields:
+          - name: icon
+            type: select
+            required: true
+            options:
+              values:
+                - value: shield
+                  label: Shield
+                - value: scales
+                  label: Scales
+                - value: people
+                  label: People
+                - value: florida
+                  label: Florida
+          - name: label
+            type: string
+            required: true
+      - name: about
+        type: object
+        label: About section
+        fields:
+          - name: eyebrow
+            type: string
+            label: Small line above the heading
+          - name: heading
+            type: string
+            required: true
+          - name: text
+            type: text
+            required: true
+          - name: points
+            type: string
+            label: Checkmark points
+            list: true
+          - name: button
+            component: button
+          - name: image
+            component: photo
+          - name: imageAlt
+            component: photoAlt
+      - name: cta
+        type: object
+        label: Consultation band
+        fields:
+          - name: eyebrow
+            type: string
+            label: Small line above the heading
+          - name: heading
+            type: string
+            required: true
+          - name: text
+            type: text
+          - name: button
+            component: button
+          - name: image
+            component: photo
+            label: Background photo
+          - name: imageAlt
+            component: photoAlt
+
+  - name: contact
+    label: Contact page
+    type: file
+    path: packages/site/src/content/pages/contact.md
+    format: yaml-frontmatter
+    operations:
+      delete: false
+    fields:
+      - name: title
+        type: string
+        label: Page heading
+        required: true
+      - name: searchTitle
+        type: string
+        label: Search title
+        description: Optional. Browser-tab / Google title when it should differ from the heading.
+      - name: description
+        component: searchDescription
+      - name: noindex
+        type: boolean
+        label: Hide from search engines
+        default: false
+      - name: body
+        component: body
+        label: Introduction
+      - name: office
+        type: object
+        label: Office block
+        description: Shown beside the map. The address itself comes from "Firm details".
+        fields:
+          - name: heading
+            type: string
+            required: true
+          - name: directions
+            type: string
+            label: Directions link text
+            required: true
+      - name: form
+        type: object
+        label: Contact form
+        description: The form appears on the homepage and the contact page once a form processor is configured in code.
+        fields:
+          - name: heading
+            type: string
+            required: true
+          - name: text
+            type: text
+            label: Line under the heading
+          - name: consent
+            type: text
+            label: Consent line
+            description: Shown above the submit button.
+            required: true
+          - name: button
+            type: string
+            label: Submit button text
+            required: true
+          - name: thanks
+            type: text
+            label: Thank-you message
+            description: Replaces the form after a successful send.
+            required: true
+
+  - name: practice-cards
+    label: Practice area cards
+    type: file
+    path: packages/site/src/data/practice-areas.json
+    format: json
+    operations:
+      delete: false
+    fields:
+      - name: cards
+        type: object
+        label: Cards
+        description: The two practice silos as shown on the homepage and the Practice Areas page; the first line of the footer lists their headings.
         list:
           min: 2
           max: 2
@@ -142,29 +343,13 @@ content:
             type: text
             required: true
           - name: link
-            type: string
-            label: Link (site path)
-            required: true
-            pattern:
-              regex: "^/.*/$"
-              message: "Site path starting and ending with / (e.g. /personal-injury/)"
-      - name: casesHeading
-        type: string
-        label: Heading over the practice-area list
-        required: true
-      - name: answers
-        type: object
-        label: Answer-library section
-        fields:
-          - name: heading
-            type: string
-            required: true
-          - name: text
-            type: rich-text
-            required: true
-            options:
-              format: markdown
-              media: false
+            component: link
+          - name: image
+            component: photo
+            label: Illustration
+          - name: imageAlt
+            component: photoAlt
+            label: Illustration description
 
   - name: practice-areas
     label: Practice areas
@@ -293,14 +478,9 @@ content:
         label: Title
         default: Attorney
       - name: photo
-        type: image
-        label: Photo
-        required: true
+        component: photo
       - name: photoAlt
-        type: string
-        label: Photo description
-        description: Read aloud by screen readers, e.g. "Portrait of Jane Doe".
-        required: true
+        component: photoAlt
       - name: barNumber
         type: string
         label: Florida Bar number
@@ -336,13 +516,18 @@ content:
     fields:
       - name: brand
         type: string
-        label: Site name
-        description: "Shown in the header and browser tab (\"Denied or Injured\")."
+        label: Firm name
+        description: "Shown next to the logo, in the copyright line and in the browser tab (\"Meyers & Onatsko\")."
         required: true
       - name: brandLine
         type: string
+        label: Line under the firm name
+        description: "\"Attorneys at Law\" in the header and footer."
+        required: true
+      - name: tagline
+        type: string
         label: Tagline
-        description: The line under the site name.
+        description: Shown at the bottom of the footer.
         required: true
       - name: entity
         type: string
@@ -396,7 +581,7 @@ content:
       - name: geography
         type: string
         label: Area served
-        description: Shown in the footer and on the contact page.
+        description: Shown under the firm name in the footer.
         required: true
 
   - name: snippets

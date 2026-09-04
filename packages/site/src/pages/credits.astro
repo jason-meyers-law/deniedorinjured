@@ -1,0 +1,11 @@
+---
+/** Photo credits — the attribution the CC BY / CC BY-SA licenses on
+ * the homepage photographs require. Words in content/pages/credits.md;
+ * linked from the footer's legal line. */
+import Page from "../layouts/Page.astro";
+import { pageContent } from "../lib/pages";
+
+const { data: page, Content } = await pageContent("credits");
+---
+
+<Page page={page} Content={Content} />

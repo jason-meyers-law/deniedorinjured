@@ -1,26 +1,41 @@
 ---
 /** Chrome for a fixed page whose words come from src/content/pages:
- * head metadata, H1, optional notice, the markdown body, then whatever
- * the route adds (grids, contact details, ...) in the slot. */
+ * head metadata, a page-title band, optional notice, the markdown
+ * body, then whatever the route adds (grids, contact details, ...)
+ * in the slot; full-bleed sections (the contact form) go in the
+ * `after` slot. `plain` skips the title band (the homepage draws its
+ * own hero). */
 import type { CollectionEntry } from "astro:content";
 import Base from "./Base.astro";
 
 interface Props {
   page: CollectionEntry<"pages">["data"];
   Content: any;
-  hero?: boolean;
+  plain?: boolean;
 }
-const { page, Content, hero = false } = Astro.props;
+const { page, Content, plain = false } = Astro.props;
 ---
 
 <Base
   title={page.searchTitle ?? page.title}
   description={page.description}
   noindex={page.noindex}
-  hero={hero}
 >
-  <h1>{page.title}</h1>
-  {page.notice && <p class="draft-notice">{page.notice}</p>}
-  <Content />
-  <slot />
+  {plain ? (
+    <slot />
+  ) : (
+    <>
+      <div class="page-title">
+        <div class="wrap"><h1>{page.title}</h1></div>
+      </div>
+      <section class="content-section">
+        <div class="wrap">
+          {page.notice && <p class="draft-notice">{page.notice}</p>}
+          <div class="prose"><Content /></div>
+          <slot />
+        </div>
+      </section>
+      <slot name="after" />
+    </>
+  )}
 </Base>

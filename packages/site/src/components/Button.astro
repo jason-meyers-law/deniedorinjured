@@ -1,0 +1,8 @@
+---
+interface Props { href: string; variant?: "solid" | "outline" | "light"; class?: string }
+import { href as toHref } from "../lib/site";
+const { href, variant = "solid", class: cls } = Astro.props;
+const internal = href.startsWith("/");
+---
+
+<a class:list={["btn", `btn-${variant}`, cls]} href={internal ? toHref(href) : href}><slot /></a>

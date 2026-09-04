@@ -1,0 +1,20 @@
+---
+/** The two practice silos as image cards (src/data/practice-areas.json). */
+import Icon from "./Icon.astro";
+import { href, practiceAreas } from "../lib/site";
+---
+
+<ul class="practice-cards">
+  {practiceAreas.map((p) => (
+    <li>
+      <a class="practice-card" href={href(p.link)}>
+        <img src={href(p.image)} alt={p.imageAlt} width="480" height="360" loading="lazy" />
+        <div class="practice-card-body">
+          <h3>{p.heading}</h3>
+          <p>{p.text}</p>
+          <span class="more">Learn More <Icon name="arrow" size={18} /></span>
+        </div>
+      </a>
+    </li>
+  ))}
+</ul>

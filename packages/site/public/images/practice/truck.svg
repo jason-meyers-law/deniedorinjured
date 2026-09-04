@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 260">
   <!-- Semi tractor-trailer outline, site palette. Ready for the
        truck-accidents page. -->
-  <rect x="115" y="88" width="330" height="112" rx="8" fill="none" stroke="#3a4145" stroke-width="9"/>
-  <line x1="445" y1="192" x2="470" y2="192" stroke="#3a4145" stroke-width="9"/>
-  <path d="M470 200 L470 132 q0 -16 16 -16 l58 0 q11 0 17 10 l28 44 q7 11 7 22 l0 8 z" fill="#3a4145"/>
+  <rect x="115" y="88" width="330" height="112" rx="8" fill="none" stroke="#1c2130" stroke-width="9"/>
+  <line x1="445" y1="192" x2="470" y2="192" stroke="#1c2130" stroke-width="9"/>
+  <path d="M470 200 L470 132 q0 -16 16 -16 l58 0 q11 0 17 10 l28 44 q7 11 7 22 l0 8 z" fill="#1c2130"/>
   <path d="M546 132 L562 132 L582 166 L546 166 Z" fill="#f5f5f7"/>
-  <g fill="#3a4145">
+  <g fill="#1c2130">
     <circle cx="185" cy="207" r="27"/>
     <circle cx="255" cy="207" r="27"/>
     <circle cx="495" cy="207" r="27"/>
@@ -17,6 +17,6 @@
     <circle cx="495" cy="207" r="10"/>
     <circle cx="562" cy="207" r="10"/>
   </g>
-  <circle cx="588" cy="184" r="6" fill="#4489b1"/>
-  <line x1="80" y1="240" x2="720" y2="240" stroke="#3a4145" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="588" cy="184" r="6" fill="#b8642f"/>
+  <line x1="80" y1="240" x2="720" y2="240" stroke="#1c2130" stroke-width="6" stroke-linecap="round"/>
 </svg>

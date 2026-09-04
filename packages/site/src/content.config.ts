@@ -39,6 +39,8 @@ const answers = defineCollection({
   }),
 });
 
+const button = z.object({ label: z.string(), link: z.string() });
+
 /** Prose for the fixed pages (home, hubs, contact, legal pages). The
  * route and structure live in src/pages; only the words live here.
  * One entry per route, matched by id (e.g. pages/contact.md ↔
@@ -56,14 +58,53 @@ const pages = defineCollection({
     noindex: z.boolean().default(false),
     /** Optional notice rendered above the body (e.g. "Draft — pending review"). */
     notice: z.string().optional(),
-    /** Homepage only: the two gateway cards. */
-    gateway: z
-      .array(z.object({ heading: z.string(), text: z.string(), link: z.string() }))
+    /** Homepage only — the sections between the intro and the footer. */
+    hero: z
+      .object({
+        eyebrow: z.string().optional(),
+        aside: z.string().optional(),
+        primary: button,
+        secondary: button.optional(),
+        image: z.string(),
+        imageAlt: z.string(),
+      })
       .optional(),
-    /** Homepage only: heading over the practice-area grid. */
-    casesHeading: z.string().optional(),
-    /** Homepage only: the answer-library section (text is markdown). */
-    answers: z.object({ heading: z.string(), text: z.string() }).optional(),
+    practice: z.object({ heading: z.string(), subheading: z.string().optional() }).optional(),
+    values: z
+      .array(z.object({ icon: z.enum(["shield", "scales", "people", "florida"]), label: z.string() }))
+      .optional(),
+    about: z
+      .object({
+        eyebrow: z.string().optional(),
+        heading: z.string(),
+        text: z.string(),
+        points: z.array(z.string()).default([]),
+        button: button,
+        image: z.string(),
+        imageAlt: z.string(),
+      })
+      .optional(),
+    cta: z
+      .object({
+        eyebrow: z.string().optional(),
+        heading: z.string(),
+        text: z.string().optional(),
+        button: button,
+        image: z.string(),
+        imageAlt: z.string(),
+      })
+      .optional(),
+    /** Contact page only: the form and the office/map block. */
+    form: z
+      .object({
+        heading: z.string(),
+        text: z.string().optional(),
+        consent: z.string(),
+        button: z.string(),
+        thanks: z.string(),
+      })
+      .optional(),
+    office: z.object({ heading: z.string(), directions: z.string() }).optional(),
   }),
 });
 

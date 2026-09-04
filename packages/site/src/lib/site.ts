@@ -7,6 +7,7 @@
  */
 import firmData from "../data/firm.json";
 import snippetsData from "../data/snippets.json";
+import practiceAreasData from "../data/practice-areas.json";
 
 /** While true, every page carries <meta name="robots" content="noindex">.
  * Flip to false only when the launch QA checklist (docs/launch-qa.md)
@@ -27,6 +28,7 @@ export function href(path: string): string {
 export const firm = {
   brand: firmData.brand,
   brandLine: firmData.brandLine,
+  tagline: firmData.tagline,
   entity: firmData.entity,
   attorney: firmData.attorney,
   barNumber: firmData.barNumber,
@@ -38,8 +40,27 @@ export const firm = {
   address: `${firmData.address.street}, ${firmData.address.city}, ${firmData.address.region} ${firmData.address.zip}`,
   /** Split form of the office address, for PostalAddress JSON-LD. */
   postal: firmData.address,
+  /** Area-served line under the footer brand block. */
   geography: firmData.geography,
+  /** Display form of the site's own address (footer contact block). */
+  website: "www.deniedorinjured.com",
 } as const;
+
+const mapQuery = encodeURIComponent(`${firm.address}`);
+/** Google Maps: keyless embed for the contact page and a directions
+ * link. The embed loads Google's script on that page only — disclosed
+ * in the privacy policy. */
+export const mapEmbedUrl = `https://www.google.com/maps?q=${mapQuery}&output=embed`;
+export const mapDirectionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${mapQuery}`;
+
+/** The two practice silos as cards (homepage, Practice Areas page). */
+export const practiceAreas = practiceAreasData.cards;
+
+/** Contact-form processor endpoint (a Formspree form URL such as
+ * https://formspree.io/f/xxxxxxxx). Empty string = no form is rendered
+ * anywhere; phone/email remain. Submissions are delivered to the
+ * address configured in the Formspree form, not read from here. */
+export const formEndpoint = "";
 
 /** Short site-wide passages (article CTA, footer notice) — editable
  * text that is not a page of its own. */

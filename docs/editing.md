@@ -12,16 +12,26 @@ few minutes. Nothing about how pages are built or indexed changes
 
 | In the CMS sidebar | Files | What it controls |
 | --- | --- | --- |
-| Pages | `packages/site/src/content/pages/*.md` | Prose, heading, search title/description, "hide from search" and a notice for the fixed pages (contact, personal-injury and answers hubs, insurance-denied, attorneys heading, privacy, disclaimer, 404). Cannot be created, renamed, or deleted — each matches a route in code. |
-| Homepage | `.../pages/home.md` | Intro, the two gateway cards, section headings, the answer-library blurb. |
+| Pages | `packages/site/src/content/pages/*.md` | Prose, heading, search title/description, "hide from search" and a notice for the fixed pages (practice-areas, personal-injury and answers hubs, insurance-denied, about heading + intro, privacy, disclaimer, photo credits, 404). Cannot be created, renamed, or deleted — each matches a route in code. |
+| Homepage | `.../pages/home.md` | Every section of the homepage: the banner (small line, heading, intro, two buttons, side note, background photo), the Practice Areas heading, the four values (icon + label), the About section (heading, text, checkmarks, button, photo), and the consultation band (heading, text, button, background photo). |
+| Contact page | `.../pages/contact.md` | Intro, the office block's heading and directions-link text, and the contact-form wording (heading, consent line, button, thank-you message). |
+| Practice area cards | `packages/site/src/data/practice-areas.json` | The two cards (heading, text, link, illustration) shown on the homepage and the Practice Areas page; their headings also make the first line of the footer. |
 | Practice areas | `.../content/practice-areas/*.md` | One article per file; the filename is the URL. Draft checkbox = publish gate. |
 | Injury answers | `.../content/answers/*.md` | Same, plus the question and the highlighted direct answer. |
 | Attorneys | `.../content/attorneys/*.md` | Bio, photo, title, schools, Bar number (optional), display order. |
-| Firm details | `packages/site/src/data/firm.json` | Site name, tagline, legal name, principal attorney, phone, intake email, office address, area served. Drives the header, footer, contact page, and structured data. |
+| Firm details | `packages/site/src/data/firm.json` | Firm name and the line under it, tagline, legal name, principal attorney, phone, email, office address, area served. Drives the header, footer, contact page (including the map), and structured data. |
 | Site-wide text | `packages/site/src/data/snippets.json` | The article call-to-action paragraph and the footer not-legal-advice line. |
 
-Not editable in the CMS (code): navigation labels, layout, the
-contact band, JSON-LD shape, `STAGING`, the GA4 ID, and the vCards.
+Photos: pick **Upload** in any photo field; files land in
+`packages/site/public/images/`. Use a landscape JPEG at least 1600px
+wide for the two background photos and 1200px for the About photo.
+A photo from elsewhere needs a license that allows commercial use;
+add its credit to the Photo Credits page.
+
+Not editable in the CMS (code): navigation labels and the "Free
+Consultation" header button, layout, JSON-LD shape, `STAGING`, the
+GA4 ID, the contact-form processor address (`formEndpoint`), and the
+vCards.
 
 ## Rules the config enforces
 

@@ -1,42 +1,35 @@
 ---
-/** Base HTML shell in the Justice-template layout: centered display
- * header with nav (hero image on pages that ask for it), light main
- * section, dark contact band, columned footer. Staging noindex and
- * banner ride along on every page. */
-import { getCollection } from "astro:content";
-import { STAGING, firm, href, snippets } from "../lib/site";
+/** Base HTML shell: logo + nav bar with the consultation button, the
+ * page in the slot, then the dark footer (brand block, nav, contact
+ * details, copyright/tagline, legal line). Staging noindex and banner
+ * ride along on every page. */
+import { STAGING, firm, href, practiceAreas, snippets } from "../lib/site";
 import Analytics from "../components/Analytics.astro";
 import BaseHead from "../components/BaseHead.astro";
+import Icon from "../components/Icon.astro";
+import Logo from "../components/Logo.astro";
 import "../styles/global.css";
-
-// Footer only links to reviewed (non-draft) practice-area pages — a
-// draft page isn't built at all (see personal-injury/[...slug].astro),
-// so linking to one would be a dead link.
-const publishedAreas = (await getCollection("practiceAreas"))
-  .filter((a) => !a.data.draft)
-  .sort((a, b) => a.data.order - b.data.order);
 
 interface Props {
   title: string;
   description: string;
   ogType?: "website" | "article";
-  /** Show the header hero image (homepage). */
-  hero?: boolean;
   /** Force noindex on this page even after launch (draft legal content). */
   noindex?: boolean;
 }
-const { title, description, ogType, hero = false, noindex = false } = Astro.props;
+const { title, description, ogType, noindex = false } = Astro.props;
 
 const nav = [
-  ["Personal Injury", "/personal-injury/"],
-  ["Injury Answers", "/florida-injury-answers/"],
-  ["Insurance Denied", "/insurance-denied/"],
-  ["About", "/about/jason-meyers/"],
+  ["Home", "/"],
+  ["Practice Areas", "/practice-areas/"],
+  ["About", "/about/"],
+  ["Resources", "/florida-injury-answers/"],
   ["Contact", "/contact/"],
 ] as const;
 
 const current = Astro.url.pathname;
-const isActive = (path: string) => current.startsWith(href(path));
+const isActive = (path: string) =>
+  path === "/" ? current === href("/") : current.startsWith(href(path));
 ---
 
 <html lang="en">
@@ -51,72 +44,64 @@ const isActive = (path: string) => current.startsWith(href(path));
       </div>
     )}
     <header class="site-header">
-      <p class="brand-title"><a href={href("/")}>{firm.brand}</a></p>
-      <p class="brand-line">{firm.brandLine}</p>
-      <nav class="site-nav">
-        <ul>
-          {nav.map(([label, path]) => (
-            <li>
-              <a href={href(path)} class={isActive(path) ? "active" : undefined}>{label}</a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-      {hero && (
-        <img
-          class="header-img"
-          src={href("/images/building.jpg")}
-          alt="Stone high-rise building photographed from street level"
-          width="2003"
-          height="1728"
-        />
-      )}
+      <div class="wrap header-row">
+        <a class="brand" href={href("/")}>
+          <Logo size={56} class="brand-mark" />
+          <span class="brand-text">
+            <span class="brand-title">{firm.brand}</span>
+            <span class="brand-line">{firm.brandLine}</span>
+          </span>
+        </a>
+        <nav class="site-nav" aria-label="Main">
+          <ul>
+            {nav.map(([label, path]) => (
+              <li>
+                <a href={href(path)} class={isActive(path) ? "active" : undefined}>{label}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <a class="btn btn-solid header-cta" href={href("/contact/")}>Free Consultation</a>
+      </div>
     </header>
-    <main class="main-section">
-      <div class="wrap">
-        <slot />
-      </div>
+    <main>
+      <slot />
     </main>
-    <section class="quote-section">
-      <p class="wrap">
-        <a href={href("/contact/")}>Contact {firm.entity}</a> to discuss an
-        injury or an insurance denial.
-      </p>
-    </section>
     <footer class="site-footer">
-      <div class="footer-columns">
-        <ul class="footer-links">
-          <li><h2>Injured</h2></li>
-          {publishedAreas.map((a) => (
-            <li><a href={href(`/personal-injury/${a.id}/`)}>{a.data.title}</a></li>
+      <div class="wrap footer-row">
+        <div class="footer-brand">
+          <a class="brand" href={href("/")}>
+            <Logo size={48} class="brand-mark" />
+            <span class="brand-text">
+              <span class="brand-title">{firm.brand}</span>
+              <span class="brand-line">{firm.brandLine}</span>
+            </span>
+          </a>
+          <p class="footer-areas">{practiceAreas.map((p) => p.heading).join("  |  ")}</p>
+          <p class="footer-place">{firm.geography}</p>
+        </div>
+        <ul class="footer-nav">
+          {nav.map(([label, path]) => (
+            <li><a href={href(path)}>{label}</a></li>
           ))}
-          <li><a href={href("/florida-injury-answers/")}>Florida Injury Answers</a></li>
         </ul>
-        <ul class="footer-links">
-          <li><h2>Denied</h2></li>
-          <li><a href={href("/insurance-denied/")}>Insurance Coverage Disputes</a></li>
-        </ul>
-        <ul class="footer-links">
-          <li><h2>Firm</h2></li>
-          <li><a href={href("/about/jason-meyers/")}>Attorneys</a></li>
-          <li><a href={href("/contact/")}>Contact</a></li>
-        </ul>
-        <ul class="footer-links">
-          <li><h2>{firm.entity}</h2></li>
-          <li>{firm.address}</li>
-          <li><a href={firm.phoneHref}>{firm.phone}</a></li>
-          <li>{firm.geography}</li>
+        <ul class="footer-contact">
+          <li><Icon name="phone" size={18} /><a href={firm.phoneHref}>{firm.phone}</a></li>
+          <li><Icon name="mail" size={18} /><a href={`mailto:${firm.email}`}>{firm.email}</a></li>
+          <li><Icon name="globe" size={18} /><a href={href("/")}>{firm.website}</a></li>
+          <li><Icon name="pin" size={18} /><span>{firm.postal.city}, {firm.postal.region}</span></li>
         </ul>
       </div>
-      <div class="legal-line">
+      <div class="wrap footer-bottom">
+        <p class="copyright">&copy; {new Date().getFullYear()} {firm.brand}. All rights reserved.</p>
+        <p class="tagline">{firm.tagline}</p>
+      </div>
+      <div class="wrap legal-line">
         <p>{snippets.footerNotice}</p>
         <p>
           <a href={href("/disclaimer/")}>Disclaimer</a>
           &bull; <a href={href("/privacy/")}>Privacy</a>
-        </p>
-        <p>
-          &copy; {new Date().getFullYear()} {firm.entity}
-          &bull; Template by <a href="https://cloudcannon.com/" rel="noopener">CloudCannon</a>
+          &bull; <a href={href("/credits/")}>Photo credits</a>
         </p>
       </div>
     </footer>

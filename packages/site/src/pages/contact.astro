@@ -1,18 +1,40 @@
 ---
-/** Contact page. Static site: no form backend yet — phone/email only
- * until an intake workflow and a form processor are chosen. The
- * details come from the firm record; the intro from content/pages. */
+/** Contact: intro, the office block with a Google Maps embed and a
+ * directions link, and the form (when a processor is configured). */
 import Page from "../layouts/Page.astro";
-import { firm } from "../lib/site";
+import ContactForm from "../components/ContactForm.astro";
+import Icon from "../components/Icon.astro";
+import { firm, mapEmbedUrl, mapDirectionsUrl } from "../lib/site";
 import { pageContent } from "../lib/pages";
 
 const { data: page, Content } = await pageContent("contact");
+const office = page.office;
 ---
 
 <Page page={page} Content={Content}>
-  <ul>
-    <li>Phone: <a href={firm.phoneHref}>{firm.phone}</a></li>
-    <li>Email: <a href={`mailto:${firm.email}`}>{firm.email}</a></li>
-    <li>Office: {firm.address}</li>
-  </ul>
+  <div class="office">
+    <iframe
+      class="office-map"
+      src={mapEmbedUrl}
+      title={`Map showing ${firm.brand} at ${firm.address}`}
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      allowfullscreen
+    ></iframe>
+    <div class="office-details">
+      {office && <h2>{office.heading}</h2>}
+      <p class="office-address">
+        {firm.postal.street}<br />
+        {firm.postal.city}, {firm.postal.region} {firm.postal.zip}
+      </p>
+      {office && (
+        <p><a class="more" href={mapDirectionsUrl} rel="noopener">{office.directions} <Icon name="arrow" size={18} /></a></p>
+      )}
+      <ul class="office-contact">
+        <li><Icon name="phone" size={18} /><a href={firm.phoneHref}>{firm.phone}</a></li>
+        <li><Icon name="mail" size={18} /><a href={`mailto:${firm.email}`}>{firm.email}</a></li>
+      </ul>
+    </div>
+  </div>
+  <ContactForm slot="after" />
 </Page>

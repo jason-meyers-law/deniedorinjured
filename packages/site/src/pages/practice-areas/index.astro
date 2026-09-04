@@ -1,0 +1,31 @@
+---
+/** Practice Areas: the two silos as cards, then the published
+ * practice-area articles. Intro from content/pages/practice-areas.md. */
+import Page from "../../layouts/Page.astro";
+import PracticeCards from "../../components/PracticeCards.astro";
+import { href } from "../../lib/site";
+import { pageContent } from "../../lib/pages";
+import { getCollection } from "astro:content";
+
+const { data: page, Content } = await pageContent("practice-areas");
+const areas = (await getCollection("practiceAreas"))
+  .filter((a) => !a.data.draft)
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<Page page={page} Content={Content}>
+  <PracticeCards />
+  {areas.length > 0 && (
+    <>
+      <h2>Injury cases we handle</h2>
+      <ul class="card-grid">
+        {areas.map((a) => (
+          <li class="card">
+            <h3><a href={href(`/personal-injury/${a.id}/`)}>{a.data.title}</a></h3>
+            <p>{a.data.description}</p>
+          </li>
+        ))}
+      </ul>
+    </>
+  )}
+</Page>
