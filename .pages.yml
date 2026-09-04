@@ -582,6 +582,34 @@ content:
         label: Area served
         description: Shown under the firm name in the footer.
         required: true
+      - name: hours
+        type: object
+        label: Office hours
+        description: "Shown on the contact page, in the footer, and to Google as the firm's opening hours. Keep these matching the Google Business Profile."
+        fields:
+          - name: days
+            type: select
+            label: Days open
+            options:
+              multiple: true
+              values: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]
+            required: true
+          - name: opens
+            type: string
+            label: Opens
+            description: "24-hour clock, e.g. 09:00"
+            required: true
+            pattern:
+              regex: "^([01][0-9]|2[0-3]):[0-5][0-9]$"
+              message: "Use HH:MM, 24-hour"
+          - name: closes
+            type: string
+            label: Closes
+            description: "24-hour clock, e.g. 14:00"
+            required: true
+            pattern:
+              regex: "^([01][0-9]|2[0-3]):[0-5][0-9]$"
+              message: "Use HH:MM, 24-hour"
 
   - name: snippets
     label: Site-wide text

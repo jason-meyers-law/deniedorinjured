@@ -19,8 +19,8 @@ const { hero, practice, values, about, cta } = page;
 const homeUrl = new URL(href("/"), Astro.site).toString();
 
 /** Entity facts here are Bar-verified and visible on the site (header
- * logo, footer NAP + map link, bio). Anything unconfirmed (hours,
- * price range, geo coordinates) stays out. */
+ * logo, footer NAP + map link + hours, bio). Anything unconfirmed
+ * (price range, geo coordinates) stays out. */
 const legalServiceLd = {
   "@type": "LegalService",
   "@id": `${homeUrl}#firm`,
@@ -41,6 +41,12 @@ const legalServiceLd = {
     addressCountry: "US",
   },
   hasMap: mapDirectionsUrl,
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: firm.hoursSpec.days,
+    opens: firm.hoursSpec.opens,
+    closes: firm.hoursSpec.closes,
+  },
   areaServed: { "@type": "State", name: "Florida" },
   founder: {
     "@type": "Person",

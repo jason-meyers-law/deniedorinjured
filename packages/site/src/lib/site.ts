@@ -43,7 +43,26 @@ export const firm = {
   geography: firmData.geography,
   /** Display form of the site's own address (footer contact block). */
   website: "deniedorinjured.com",
+  /** Office hours: "Monday – Friday, 9:00 AM – 2:00 PM" for the contact
+   * page and footer; the raw days/opens/closes feed the schema. */
+  hours: hoursLabel(firmData.hours),
+  hoursSpec: firmData.hours,
 } as const;
+
+/** "09:00" -> "9:00 AM". */
+function clock(t: string): string {
+  const [h, m] = t.split(":").map(Number);
+  return `${((h + 11) % 12) + 1}:${String(m).padStart(2, "0")} ${h < 12 ? "AM" : "PM"}`;
+}
+
+function hoursLabel(h: { days: string[]; opens: string; closes: string }): string {
+  const week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+  const idx = h.days.map((d) => week.indexOf(d));
+  const contiguous = idx.every((n, i) => i === 0 || n === idx[i - 1] + 1);
+  const days =
+    h.days.length > 2 && contiguous ? `${h.days[0]} – ${h.days[h.days.length - 1]}` : h.days.join(", ");
+  return `${days}, ${clock(h.opens)} – ${clock(h.closes)}`;
+}
 
 const mapQuery = encodeURIComponent(`${firm.address}`);
 /** Google Maps: keyless embed for the contact page and a directions

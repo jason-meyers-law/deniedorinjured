@@ -2,6 +2,10 @@
 
 ## 2026-09-04 (redesign to the Meyers & Onatsko mockup)
 
+- Office hours published: Monday – Friday, 9:00 AM – 2:00 PM, on the
+  contact page, in the footer, and as `openingHoursSpecification` in
+  the LegalService schema (`hours` in firm.json; editable in the CMS).
+  Reverses the launch-time "no hours" decision.
 - About page: each attorney has a "Save contact (vCard)" link under
   their title (`vcard` field on the attorney entry; the .vcf files
   already lived at `/vcard/`).

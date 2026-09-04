@@ -12,5 +12,10 @@
     "region": "FL",
     "zip": "32922"
   },
-  "geography": "Brevard County • Florida"
+  "geography": "Brevard County • Florida",
+  "hours": {
+    "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    "opens": "09:00",
+    "closes": "14:00"
+  }
 }

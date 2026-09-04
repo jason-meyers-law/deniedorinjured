@@ -84,6 +84,7 @@ const isActive = (path: string) =>
           <li><Icon name="mail" size={18} /><a href={`mailto:${firm.email}`}>{firm.email}</a></li>
           <li><Icon name="globe" size={18} /><a href={href("/")}>{firm.website}</a></li>
           <li><Icon name="pin" size={18} /><a href={mapDirectionsUrl} target="_blank" rel="noopener">{firm.address}</a></li>
+          <li><Icon name="clock" size={18} /><span>{firm.hours}</span></li>
         </ul>
       </div>
       <div class="wrap footer-bottom">
