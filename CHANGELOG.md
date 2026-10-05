@@ -2,6 +2,9 @@
 
 ## 2026-09-04 (redesign to the Meyers & Onatsko mockup)
 
+- Homepage icon row: the "Proudly serving Florida" icon is now an
+  accurate state outline (licensed from the Noun Project), replacing
+  the hand-drawn shape that didn't resemble Florida.
 - Office hours published: Monday – Friday, 9:00 AM – 2:00 PM, on the
   contact page, in the footer, and as `openingHoursSpecification` in
   the LegalService schema (`hours` in firm.json; editable in the CMS).

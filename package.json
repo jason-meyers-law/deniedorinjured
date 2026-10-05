@@ -3,5 +3,9 @@
   "private": true,
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "allowScripts": {
+    "sharp@0.34.5": true,
+    "esbuild@0.25.12": true
+  }
 }
