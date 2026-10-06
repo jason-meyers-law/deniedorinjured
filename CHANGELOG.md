@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-06
+
+- Office hours removed from the contact page and the footer. They
+  are still sent to Google as `openingHoursSpecification` in the
+  LegalService schema (`hours` in firm.json; editable in the CMS).
+
 ## 2026-09-04 (redesign to the Meyers & Onatsko mockup)
 
 - Homepage icon row: the "Proudly serving Florida" icon is now an

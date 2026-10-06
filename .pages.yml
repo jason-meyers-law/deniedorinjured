@@ -585,7 +585,7 @@ content:
       - name: hours
         type: object
         label: Office hours
-        description: "Shown on the contact page, in the footer, and to Google as the firm's opening hours. Keep these matching the Google Business Profile."
+        description: "Sent to Google as the firm's opening hours (not shown on the site). Keep these matching the Google Business Profile."
         fields:
           - name: days
             type: select
